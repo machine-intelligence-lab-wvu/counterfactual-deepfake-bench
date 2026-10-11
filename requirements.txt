@@ -1,0 +1,5 @@
+# Pipeline-only deps (ComfyUI's own requirements are installed by setup.sh)
+av>=14
+numpy
+pillow
+huggingface_hub>=1.0

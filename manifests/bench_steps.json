@@ -1,0 +1,32 @@
+[
+  {
+    "label": "fp8_s20_cfg35",
+    "ok": true,
+    "seconds": 1300.8516664505005,
+    "precision": "fp8",
+    "steps": 20,
+    "boundary": 10,
+    "cfg": 3.5,
+    "lora": false,
+    "w": 1280,
+    "h": 720,
+    "length": 81,
+    "seed": 771234,
+    "prefix": "bench/fp8_s20_cfg35"
+  },
+  {
+    "label": "fp8_s20_cfg10",
+    "ok": true,
+    "seconds": 657.7766234874725,
+    "precision": "fp8",
+    "steps": 20,
+    "boundary": 10,
+    "cfg": 1.0,
+    "lora": false,
+    "w": 1280,
+    "h": 720,
+    "length": 81,
+    "seed": 771234,
+    "prefix": "bench/fp8_s20_cfg10"
+  }
+]

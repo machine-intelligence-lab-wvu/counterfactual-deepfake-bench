@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+logs/*
+!logs/.gitkeep
+# generated media and weights live on Hugging Face, never in git
+*.mp4
+*.safetensors
+*.zip

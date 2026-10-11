@@ -1,0 +1,131 @@
+[
+ {
+  "prompt_id": "ltx23__black__m__60+__g009__reseed",
+  "model": "ltx23",
+  "cell": "black__m__60+",
+  "counterfactual_group": 9,
+  "demographic": {
+   "race": "black",
+   "race_phrase": "Black",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "60+",
+   "age_phrase": "in his late sixties",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "a short white afro",
+   "attire": "a simple t-shirt"
+  },
+  "scene": {
+   "setting_key": "classroom",
+   "setting": "an empty classroom, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "laugh",
+   "behavior": "laughing out loud with the shoulders shaking and the head tipping back, then settling forward into a broad smile",
+   "audio": "a soft quiet laugh"
+  },
+  "seed": 5050097579746258771,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true
+ },
+ {
+  "prompt_id": "ltx23__black__f__60+__g009__reseed",
+  "model": "ltx23",
+  "cell": "black__f__60+",
+  "counterfactual_group": 9,
+  "demographic": {
+   "race": "black",
+   "race_phrase": "Black",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "60+",
+   "age_phrase": "in her late sixties",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "a white natural afro",
+   "attire": "a simple t-shirt"
+  },
+  "scene": {
+   "setting_key": "classroom",
+   "setting": "an empty classroom, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "laugh",
+   "behavior": "laughing out loud with the shoulders shaking and the head tipping back, then settling forward into a broad smile",
+   "audio": "a soft quiet laugh"
+  },
+  "seed": 5050097579746258771,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true
+ },
+ {
+  "prompt_id": "ltx23__east_asian__f__30-44__g009__reseed",
+  "model": "ltx23",
+  "cell": "east_asian__f__30-44",
+  "counterfactual_group": 9,
+  "demographic": {
+   "race": "east_asian",
+   "race_phrase": "East Asian",
+   "article": "an",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "30-44",
+   "age_phrase": "in her early thirties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "long black hair",
+   "attire": "a simple t-shirt"
+  },
+  "scene": {
+   "setting_key": "classroom",
+   "setting": "an empty classroom, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "laugh",
+   "behavior": "laughing out loud with the shoulders shaking and the head tipping back, then settling forward into a broad smile",
+   "audio": "a soft quiet laugh"
+  },
+  "seed": 5050097579746258771,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true
+ }
+]

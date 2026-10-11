@@ -1,0 +1,32 @@
+[
+  {
+    "label": "fp16_s20_cfg35",
+    "ok": true,
+    "seconds": 1628.2859580516815,
+    "precision": "fp16",
+    "steps": 20,
+    "boundary": 10,
+    "cfg": 3.5,
+    "lora": false,
+    "w": 1280,
+    "h": 720,
+    "length": 81,
+    "seed": 771234,
+    "prefix": "bench/fp16_s20_cfg35"
+  },
+  {
+    "label": "fp16_4step_lora",
+    "ok": true,
+    "seconds": 177.19605112075806,
+    "precision": "fp16",
+    "steps": 4,
+    "boundary": 2,
+    "cfg": 1.0,
+    "lora": true,
+    "w": 1280,
+    "h": 720,
+    "length": 81,
+    "seed": 771234,
+    "prefix": "bench/fp16_4step_lora"
+  }
+]

@@ -1,0 +1,13 @@
+[
+  {
+    "label": "ltx_720p_s30_cfg3",
+    "ok": true,
+    "seconds": 198.25641703605652,
+    "steps": 30,
+    "w": 1280,
+    "h": 720,
+    "len": 121,
+    "audio": true,
+    "error": null
+  }
+]

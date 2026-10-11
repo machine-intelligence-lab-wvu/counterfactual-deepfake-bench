@@ -1,0 +1,17 @@
+[
+  {
+    "label": "fp16_4step_lora_g3",
+    "ok": true,
+    "seconds": 192.18976306915283,
+    "precision": "fp16",
+    "steps": 4,
+    "boundary": 2,
+    "cfg": 1.0,
+    "lora": true,
+    "w": 1280,
+    "h": 720,
+    "length": 81,
+    "seed": 771234,
+    "prefix": "bench/fp16_4step_lora_g3"
+  }
+]

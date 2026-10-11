@@ -1,0 +1,89 @@
+#!/usr/bin/env python
+"""Publish generated clips to the Hugging Face dataset repo.
+
+Builds metadata.csv (one row per clip, flattened from the sidecar .json and,
+when present, the QC report) at the dataset root, then uploads with
+upload_large_folder, which is resumable and only sends files not already in
+the repo - so it is also how new runs get appended.
+
+  python scripts/upload_hf.py --data-root ../fairdeep-bench            # main run
+  python scripts/upload_hf.py --data-root ../fairdeep-bench --include-pilots
+  python scripts/upload_hf.py --metadata-only                          # just rebuild csv
+
+Download elsewhere:
+  hf download Ahsanz/fairdeep-bench --repo-type dataset --local-dir fairdeep-bench
+"""
+import argparse, csv, glob, json, os
+from huggingface_hub import HfApi
+
+HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MAIN = ["synthetic"]
+PILOTS = ["samples", "samples_motionfix", "seedtest", "setswap", "v2test", "v3test",
+          "cleancombo"]
+QC_COLS = ["motion_raw", "motion_norm", "luma_mean", "contrast", "black_frames",
+           "stalled_frames", "pillarboxed", "letterboxed", "pass", "fail_reasons"]
+
+
+def row(data_root, run, mp4):
+    side = json.load(open(mp4[:-4] + ".json"))
+    d, sc, g = side["demographic"], side["scene"], side.get("generation", {})
+    return {
+        "file_name": os.path.relpath(mp4, data_root),
+        "run": run,
+        "prompt_id": side["prompt_id"],
+        "model": side["model"],
+        "cell": side["cell"],
+        "race": d["race"], "gender": d["gender"], "age_band": d["age_band"],
+        "counterfactual_group": side["counterfactual_group"],
+        "setting": sc["setting_key"], "lighting": sc["lighting_key"],
+        "camera": side["camera"]["key"], "behavior": side["action"]["key"],
+        "hair": side["appearance"]["hair"], "attire": side["appearance"]["attire"],
+        "seed": side["seed"], "width": side["width"], "height": side["height"],
+        "fps": side["fps"], "duration_s": side["duration_s"],
+        "steps": g.get("steps"), "cfg": g.get("cfg"),
+        "checkpoint": g.get("checkpoint"), "generated_utc": g.get("generated_utc"),
+        "prompt_positive": side["prompt_rendered"]["positive"],
+        "prompt_negative": side["prompt_rendered"]["negative"],
+    }
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--data-root", default=os.path.join(os.path.dirname(HERE), "fairdeep-bench"))
+    ap.add_argument("--repo", default="Ahsanz/fairdeep-bench")
+    ap.add_argument("--qc", default=os.path.join(HERE, "manifests", "qc_report.csv"))
+    ap.add_argument("--include-pilots", action="store_true")
+    ap.add_argument("--public", action="store_true", help="create repo public (default private)")
+    ap.add_argument("--metadata-only", action="store_true")
+    args = ap.parse_args()
+    root = os.path.abspath(args.data_root)
+    runs = MAIN + (PILOTS if args.include_pilots else [])
+
+    qc = {}
+    if os.path.exists(args.qc):
+        qc = {r["clip"]: r for r in csv.DictReader(open(args.qc))}
+
+    rows = []
+    for run in runs:
+        for mp4 in sorted(glob.glob(os.path.join(root, run, "*", "*", "*.mp4"))):
+            r = row(root, run, mp4)
+            q = qc.get(os.path.basename(mp4)) if run == "synthetic" else None
+            r.update({f"qc_{c}": (q or {}).get(c, "") for c in QC_COLS})
+            rows.append(r)
+    with open(os.path.join(root, "metadata.csv"), "w", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(rows[0]))
+        w.writeheader(); w.writerows(rows)
+    print(f"metadata.csv: {len(rows)} clips from {runs}")
+    if args.metadata_only:
+        return
+
+    api = HfApi()
+    api.create_repo(args.repo, repo_type="dataset", private=not args.public, exist_ok=True)
+    allow = ["metadata.csv", "README.md"] + [f"{r}/**" for r in runs]
+    api.upload_large_folder(repo_id=args.repo, repo_type="dataset", folder_path=root,
+                            allow_patterns=allow)
+    print(f"uploaded -> https://huggingface.co/datasets/{args.repo}")
+
+
+if __name__ == "__main__":
+    main()
