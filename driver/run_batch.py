@@ -25,12 +25,29 @@ sys.path[:0] = [os.path.join(ROOT, "workflows"), os.path.join(ROOT, "renderers")
 
 import ltx23_graph                      # noqa: E402
 import ltx23 as ltx23_renderer          # noqa: E402
+import wan22_graph                      # noqa: E402
+import wan22 as wan22_renderer          # noqa: E402
 
 # ComfyUI checkout location; override per cluster with FAIRDEEP_COMFY_ROOT or --comfy-root
 COMFY_ROOT = os.environ.get("FAIRDEEP_COMFY_ROOT",
                             os.path.join(os.path.dirname(ROOT), "ComfyUI"))
-RENDERERS = {"ltx23": ltx23_renderer.render}
-GRAPHS = {"ltx23": ltx23_graph.build}
+RENDERERS = {"ltx23": ltx23_renderer.render, "wan22": wan22_renderer.render}
+GRAPHS = {"ltx23": ltx23_graph.build, "wan22": wan22_graph.build}
+
+
+def model_provenance(model, mdir):
+    """Weights + hash recorded in every sidecar, so a clip names what made it."""
+    if model == "wan22":
+        return {"checkpoint": wan22_graph.UNET_HI, "checkpoint_lo": wan22_graph.UNET_LO,
+                "checkpoint_hash": sha256_head(os.path.join(
+                    mdir, "diffusion_models", wan22_graph.UNET_HI)),
+                "text_encoder": wan22_graph.TE, "vae": wan22_graph.VAE,
+                "lora": [wan22_graph.HI_LORA, wan22_graph.LO_LORA],
+                "precision": "fp16", "audio": False}
+    return {"checkpoint": ltx23_graph.CKPT,
+            "checkpoint_hash": sha256_head(os.path.join(mdir, "checkpoints",
+                                                        ltx23_graph.CKPT)),
+            "text_encoder": ltx23_graph.GEMMA, "precision": "bf16", "audio": True}
 
 _log_lock = threading.Lock()
 _hash_cache = {}
@@ -208,6 +225,9 @@ def main():
     args = ap.parse_args()
 
     specs = json.load(open(args.matrix))
+    wrong = {s["model"] for s in specs} - {args.model}
+    if wrong:
+        sys.exit(f"matrix contains model(s) {wrong} but --model is {args.model}")
     if args.only_ids:
         want = set(args.only_ids.split(","))
         specs = [s for s in specs if s["prompt_id"] in want]
@@ -231,14 +251,7 @@ def main():
 
     hosts = args.hosts.split(",")
     mdir = os.path.join(args.comfy_root, "models")
-    provenance = {
-        "comfyui_version": "0.30.0",
-        "checkpoint": ltx23_graph.CKPT,
-        "checkpoint_hash": sha256_head(os.path.join(mdir, "checkpoints",
-                                                    ltx23_graph.CKPT)),
-        "text_encoder": ltx23_graph.GEMMA,
-        "precision": "bf16",
-    }
+    provenance = {"comfyui_version": "0.30.0", **model_provenance(args.model, mdir)}
 
     q = queue.Queue()
     for s in specs:
