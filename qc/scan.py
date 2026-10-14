@@ -6,6 +6,13 @@ generation, before FairFace / MiVOLO / ArcFace are wired in:
   - container conformance: resolution, fps, frame count, audio track
   - temporal sanity: frozen clips, black frames, stalled frames
   - framing artifacts: pillarboxing / letterboxing
+  - with --faces: face count via YuNet (qc/faces.py), for the "exactly one
+    face" gate. Reported as its own verdict, `face_pass`, separate from the
+    technical `pass`, so either can be applied alone in analysis.
+
+Expected resolution, fps, frame count and audio come from each clip's sidecar
+(model-specific: LTX 2.3 is 24 fps with audio, Wan 2.2 is 16 fps without), with
+the LTX values as fallback for clips that have no sidecar.
 
 Motion is reported two ways. `motion_raw` is mean absolute inter-frame pixel
 difference; it is luminance-dependent, so it under-reports movement on darker
@@ -22,19 +29,25 @@ import warnings
 warnings.filterwarnings("ignore")
 
 EXPECT_W, EXPECT_H, EXPECT_FPS = 1280, 704, 24.0
+# Motion uses the first MAX_FRAMES frames. Inter-frame diffs are per frame, so at
+# 16 fps (Wan) each diff spans 1.5x the time it does at 24 fps (LTX): compare
+# motion within a generator, not across generators.
 MAX_FRAMES = 40
 FROZEN_RAW = 0.30
 BLACK_MEAN = 8.0
 
 
-def scan_one(path):
+def scan_one(path, faces=False):
     import av, numpy as np
     rec = {"path": os.path.relpath(path), "clip": os.path.basename(path)}
+    exp = {"w": EXPECT_W, "h": EXPECT_H, "fps": EXPECT_FPS, "audio": True}
     side = os.path.splitext(path)[0] + ".json"
     if os.path.exists(side):
         s = json.load(open(side))
         d = s["demographic"]
-        rec.update(cell=s["cell"], race=d["race"], gender=d["gender"],
+        exp = {"w": s["width"], "h": s["height"], "fps": float(s["fps"]),
+               "audio": s.get("generation", {}).get("audio", s["model"] == "ltx23")}
+        rec.update(model=s["model"], cell=s["cell"], race=d["race"], gender=d["gender"],
                    age_band=d["age_band"], group=s["counterfactual_group"],
                    lighting=s["scene"]["lighting_key"],
                    setting=s["scene"]["setting_key"],
@@ -48,11 +61,11 @@ def scan_one(path):
         rec["codec"] = vs.codec_context.name
         rec["audio"] = int(any(st.type == "audio" for st in c.streams))
         rec["n_frames_hdr"] = vs.frames or 0
-        fr = []
-        for i, f in enumerate(c.decode(video=0)):
-            fr.append(f.to_ndarray(format="rgb24"))
-            if i + 1 >= MAX_FRAMES:
-                break
+        fr = [f.to_ndarray(format="rgb24") for f in c.decode(video=0)]
+        if faces and fr:
+            from faces import analyse
+            rec.update(analyse(fr))
+        fr = fr[:MAX_FRAMES]
         if len(fr) < 2:
             rec["error"] = "fewer than 2 decodable frames"
             rec["pass"] = 0
@@ -81,15 +94,17 @@ def scan_one(path):
         rec["letterboxed"] = int(rec["edge_t"] < 12 and rec["edge_b"] < 12
                                  and centre > 25)
         fails = []
-        if (rec["w"], rec["h"]) != (EXPECT_W, EXPECT_H):
+        if (rec["w"], rec["h"]) != (exp["w"], exp["h"]):
             fails.append(f"resolution {rec['w']}x{rec['h']}")
-        if abs(rec["fps"] - EXPECT_FPS) > 0.01:
+        if abs(rec["fps"] - exp["fps"]) > 0.01:
             fails.append(f"fps {rec['fps']}")
         if rec.get("exp_len") and rec["n_frames_hdr"] and \
                 rec["n_frames_hdr"] != rec["exp_len"]:
             fails.append(f"frames {rec['n_frames_hdr']} != {rec['exp_len']}")
-        if not rec["audio"]:
+        if exp["audio"] and not rec["audio"]:
             fails.append("no audio track")
+        if not exp["audio"] and rec["audio"]:
+            fails.append("unexpected audio track")
         if rec["motion_raw"] < FROZEN_RAW:
             fails.append(f"frozen {rec['motion_raw']}")
         if rec["black_frames"]:
@@ -111,26 +126,40 @@ def main():
     ap.add_argument("--root", required=True)
     ap.add_argument("--out-dir", required=True)
     ap.add_argument("--workers", type=int, default=8)
+    ap.add_argument("--tag", default="", help="suffix: qc_report_<tag>.csv")
+    ap.add_argument("--faces", action="store_true", help="add YuNet face-count columns")
     a = ap.parse_args()
     paths = sorted(glob.glob(os.path.join(a.root, "**", "*.mp4"), recursive=True))
     print(f"scanning {len(paths)} clips with {a.workers} workers ...", flush=True)
     with ProcessPoolExecutor(max_workers=a.workers) as ex:
-        recs = list(ex.map(scan_one, paths, chunksize=8))
+        recs = list(ex.map(scan_one, paths, [a.faces] * len(paths), chunksize=8))
 
     os.makedirs(a.out_dir, exist_ok=True)
-    keys = ["clip", "cell", "race", "gender", "age_band", "group", "lighting",
+    keys = ["clip", "model", "cell", "race", "gender", "age_band", "group", "lighting",
             "setting", "behavior", "w", "h", "fps", "codec", "audio",
             "n_frames_hdr", "exp_len", "exp_dur", "motion_raw", "motion_min",
             "motion_norm", "luma_mean", "contrast", "black_frames",
             "stalled_frames", "edge_l", "edge_r", "edge_t", "edge_b",
-            "pillarboxed", "letterboxed", "pass", "fail_reasons", "error", "path"]
-    qc = os.path.join(a.out_dir, "qc_report.csv")
+            "pillarboxed", "letterboxed"]
+    if a.faces:
+        keys += ["face_frames", "face_none_frames", "face_bg_frames",
+                 "face_bg_max_count", "face_secondary_rel_max", "face_subject_h",
+                 "face_subject_cx", "face_bg_people", "face_pass"]
+    keys += ["pass", "fail_reasons", "error", "path"]
+    sfx = f"_{a.tag}" if a.tag else ""
+    qc = os.path.join(a.out_dir, f"qc_report{sfx}.csv")
     with open(qc, "w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=keys, extrasaction="ignore")
         w.writeheader()
         for r in recs:
             w.writerow(r)
 
+    if a.faces:
+        fp = [r for r in recs if r.get("face_pass")]
+        both = [r for r in fp if r.get("pass")]
+        print(f"face_pass {len(fp)}/{len(recs)}  "
+              f"(background people {sum(r.get('face_bg_people', 0) for r in recs)})  "
+              f"technical+face {len(both)}/{len(recs)}")
     ok = [r for r in recs if r.get("pass")]
     bad = [r for r in recs if not r.get("pass")]
     print(f"\npass {len(ok)}/{len(recs)}  fail {len(bad)}")
@@ -146,7 +175,7 @@ def main():
     for r in recs:
         if "cell" in r:
             per[r["cell"]].append(r)
-    cs = os.path.join(a.out_dir, "cell_summary.csv")
+    cs = os.path.join(a.out_dir, f"cell_summary{sfx}.csv")
     with open(cs, "w", newline="") as fh:
         w = csv.writer(fh)
         w.writerow(["cell", "race", "gender", "age_band", "n", "n_pass",

@@ -21,7 +21,8 @@ MAIN = ["synthetic"]
 PILOTS = ["samples", "samples_motionfix", "seedtest", "setswap", "v2test", "v3test",
           "cleancombo"]
 QC_COLS = ["motion_raw", "motion_norm", "luma_mean", "contrast", "black_frames",
-           "stalled_frames", "pillarboxed", "letterboxed", "pass", "fail_reasons"]
+           "stalled_frames", "pillarboxed", "letterboxed", "pass", "fail_reasons",
+           "face_bg_people", "face_secondary_rel_max", "face_none_frames", "face_pass"]
 
 
 def row(data_root, run, mp4):
@@ -51,7 +52,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data-root", default=os.path.join(os.path.dirname(HERE), "fairdeep-bench"))
     ap.add_argument("--repo", default="Ahsanz/fairdeep-bench")
-    ap.add_argument("--qc", default=os.path.join(HERE, "manifests", "qc_report.csv"))
+    ap.add_argument("--qc", default=os.path.join(HERE, "manifests", "qc_report_*.csv"),
+                    help="glob of qc/scan.py reports, merged by clip filename")
     ap.add_argument("--include-pilots", action="store_true")
     ap.add_argument("--public", action="store_true", help="create repo public (default private)")
     ap.add_argument("--metadata-only", action="store_true")
@@ -60,8 +62,8 @@ def main():
     runs = MAIN + (PILOTS if args.include_pilots else [])
 
     qc = {}
-    if os.path.exists(args.qc):
-        qc = {r["clip"]: r for r in csv.DictReader(open(args.qc))}
+    for path in sorted(glob.glob(args.qc)):
+        qc.update({r["clip"]: r for r in csv.DictReader(open(path))})
 
     rows = []
     for run in runs:
