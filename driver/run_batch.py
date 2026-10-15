@@ -27,12 +27,16 @@ import ltx23_graph                      # noqa: E402
 import ltx23 as ltx23_renderer          # noqa: E402
 import wan22_graph                      # noqa: E402
 import wan22 as wan22_renderer          # noqa: E402
+import hunyuan15_graph                  # noqa: E402
+import hunyuan15 as hunyuan15_renderer  # noqa: E402
 
 # ComfyUI checkout location; override per cluster with FAIRDEEP_COMFY_ROOT or --comfy-root
 COMFY_ROOT = os.environ.get("FAIRDEEP_COMFY_ROOT",
                             os.path.join(os.path.dirname(ROOT), "ComfyUI"))
-RENDERERS = {"ltx23": ltx23_renderer.render, "wan22": wan22_renderer.render}
-GRAPHS = {"ltx23": ltx23_graph.build, "wan22": wan22_graph.build}
+RENDERERS = {"ltx23": ltx23_renderer.render, "wan22": wan22_renderer.render,
+             "hunyuan15": hunyuan15_renderer.render}
+GRAPHS = {"ltx23": ltx23_graph.build, "wan22": wan22_graph.build,
+          "hunyuan15": hunyuan15_graph.build}
 
 
 def model_provenance(model, mdir):
@@ -43,6 +47,13 @@ def model_provenance(model, mdir):
                     mdir, "diffusion_models", wan22_graph.UNET_HI)),
                 "text_encoder": wan22_graph.TE, "vae": wan22_graph.VAE,
                 "lora": [wan22_graph.HI_LORA, wan22_graph.LO_LORA],
+                "precision": "fp16", "audio": False}
+    if model == "hunyuan15":
+        return {"checkpoint": hunyuan15_graph.UNET,
+                "checkpoint_hash": sha256_head(os.path.join(
+                    mdir, "diffusion_models", hunyuan15_graph.UNET)),
+                "text_encoder": [hunyuan15_graph.TE, hunyuan15_graph.TE2],
+                "vae": hunyuan15_graph.VAE, "shift": 7.0,
                 "precision": "fp16", "audio": False}
     return {"checkpoint": ltx23_graph.CKPT,
             "checkpoint_hash": sha256_head(os.path.join(mdir, "checkpoints",

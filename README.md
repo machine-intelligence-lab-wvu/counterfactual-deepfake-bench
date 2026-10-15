@@ -9,8 +9,9 @@ over its HTTP API, one server per GPU. Clips are published to the HF dataset
 |---|---|
 | `specs/taxonomy.py` | 56 demographic cells + scene/lighting/behaviour/camera banks |
 | `specs/build_matrix.py` | counterfactual-group prompt matrix → `manifests/*.json` |
-| `renderers/ltx23.py` | spec → LTX 2.3 positive/negative prompt |
-| `workflows/ltx23_graph.py` | production ComfyUI API graph (LTX 2.3 dev bf16, audio+video) |
+| `specs/derive_matrix.py` | re-time a matrix for another generator (same cells, groups, seeds) |
+| `renderers/{ltx23,wan22,hunyuan15}.py` | spec → per-model positive/negative prompt |
+| `workflows/{ltx23,wan22,hunyuan15}_graph.py` | production ComfyUI API graphs (LTX 2.3 audio+video, Wan 2.2 and Hunyuan 1.5 video-only) |
 | `workflows/{wan22,hunyuan15,ltx23}_t2v.py` | throughput benchmarks |
 | `driver/run_batch.py` | multi-GPU batch driver, resumable, writes sidecars + log |
 | `qc/scan.py`, `qc/montage.py` | technical QC report, review montages |
@@ -40,7 +41,11 @@ kill $(cat "$FAIRDEEP_PIDS")
 
 # SLURM
 sbatch slurm/generate_ltx23.sbatch               # MATRIX=..., OUT_ROOT=... to override
+for k in 0 1; do sbatch --export=ALL,SHARD=$k,NSHARDS=2 slurm/generate_hunyuan15.sbatch; done
 ```
+Shard `k` takes every `NSHARDS`-th spec, so shards stay balanced across cells and clip
+lengths. `slurm/*_bridges2.sbatch` are the PSC Bridges-2 variants (L40S or H100, paths
+from `/ocean/.../fairdeep/env.sh` because the home quota cannot hold the weights).
 The driver skips clips whose `.mp4` already exists, so a killed job can be resubmitted.
 To split one matrix across clusters, give each a different `--only-ids` list (or build a
 separate matrix with different group indices) and merge on Hugging Face.

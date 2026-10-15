@@ -14,6 +14,7 @@ import argparse, copy, json
 # per-model fps and length rule (frames for a target duration)
 MODELS = {
     "wan22": {"fps": 16, "stride": 4, "width": 1280, "height": 704},
+    "hunyuan15": {"fps": 24, "stride": 4, "width": 1280, "height": 704},
 }
 
 
