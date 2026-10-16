@@ -15,7 +15,7 @@ over its HTTP API, one server per GPU. Clips are published to the HF dataset
 | `workflows/{wan22,hunyuan15,ltx23}_t2v.py` | throughput benchmarks |
 | `driver/run_batch.py` | multi-GPU batch driver, resumable, writes sidecars + log |
 | `qc/scan.py`, `qc/montage.py` | technical QC report, review montages |
-| `scripts/` | cluster setup helpers, HF upload |
+| `scripts/` | cluster setup helpers, remaining-work matrix, HF upload |
 | `slurm/` | example SLURM job |
 | `P0_REPORT.md`, `THROUGHPUT_REPORT.md` | feasibility + timing reports |
 
@@ -49,6 +49,22 @@ from `/ocean/.../fairdeep/env.sh` because the home quota cannot hold the weights
 The driver skips clips whose `.mp4` already exists, so a killed job can be resubmitted.
 To split one matrix across clusters, give each a different `--only-ids` list (or build a
 separate matrix with different group indices) and merge on Hugging Face.
+
+### Finishing a run on another cluster
+A cluster that picks up the tail of a run has an empty output tree, so it cannot skip
+what is already done - give it a matrix of only the missing specs, built from the run
+logs committed here:
+```bash
+python scripts/remaining.py --matrix manifests/prompt_matrix_hunyuan15_sub504b.json \
+    --logs 'manifests/generation_log_hunyuan15b_s*.jsonl' \
+    --out manifests/prompt_matrix_hunyuan15_sub504b_rest.json
+MODELS=all bash setup.sh                       # Hunyuan 1.5 weights, ~200 GiB
+MATRIX=manifests/prompt_matrix_hunyuan15_sub504b_rest.json sbatch slurm/generate_hunyuan15.sbatch
+```
+Keep `--steps 20 --cfg 6.0` and the pinned ComfyUI commit: the seed is carried in the
+spec, so the same spec reproduces on any cluster only if sampler settings match. Clips
+from both halves land in the same `synthetic/hunyuan15/<cell>/` layout and merge on
+Hugging Face by filename.
 
 New matrix: `python specs/build_matrix.py --model ltx23 --groups 36 --out manifests/<name>.json`
 

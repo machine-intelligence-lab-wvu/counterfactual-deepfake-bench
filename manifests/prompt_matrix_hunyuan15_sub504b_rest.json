@@ -1,0 +1,3698 @@
+[
+ {
+  "prompt_id": "hunyuan15__southeast_asian__f__18-29__g023",
+  "model": "hunyuan15",
+  "cell": "southeast_asian__f__18-29",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "southeast_asian",
+   "race_phrase": "Southeast Asian",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "18-29",
+   "age_phrase": "in her late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "shoulder-length dark hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__southeast_asian__f__18-29__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__southeast_asian__f__30-44__g023",
+  "model": "hunyuan15",
+  "cell": "southeast_asian__f__30-44",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "southeast_asian",
+   "race_phrase": "Southeast Asian",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "30-44",
+   "age_phrase": "in her early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "shoulder-length dark hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__southeast_asian__f__30-44__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__southeast_asian__f__45-59__g023",
+  "model": "hunyuan15",
+  "cell": "southeast_asian__f__45-59",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "southeast_asian",
+   "race_phrase": "Southeast Asian",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "45-59",
+   "age_phrase": "in her mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "greying shoulder-length hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__southeast_asian__f__45-59__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__southeast_asian__f__60+__g023",
+  "model": "hunyuan15",
+  "cell": "southeast_asian__f__60+",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "southeast_asian",
+   "race_phrase": "Southeast Asian",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "60+",
+   "age_phrase": "in her late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "short white hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__southeast_asian__f__60+__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__indian__m__18-29__g023",
+  "model": "hunyuan15",
+  "cell": "indian__m__18-29",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "indian",
+   "race_phrase": "South Asian",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "18-29",
+   "age_phrase": "in his late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "neatly combed dark hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__indian__m__18-29__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__indian__m__30-44__g023",
+  "model": "hunyuan15",
+  "cell": "indian__m__30-44",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "indian",
+   "race_phrase": "South Asian",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "30-44",
+   "age_phrase": "in his early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "neatly combed dark hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__indian__m__30-44__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__indian__m__45-59__g023",
+  "model": "hunyuan15",
+  "cell": "indian__m__45-59",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "indian",
+   "race_phrase": "South Asian",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "45-59",
+   "age_phrase": "in his mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "salt-and-pepper hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__indian__m__45-59__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__indian__m__60+__g023",
+  "model": "hunyuan15",
+  "cell": "indian__m__60+",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "indian",
+   "race_phrase": "South Asian",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "60+",
+   "age_phrase": "in his late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "short white hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__indian__m__60+__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__indian__f__18-29__g023",
+  "model": "hunyuan15",
+  "cell": "indian__f__18-29",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "indian",
+   "race_phrase": "South Asian",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "18-29",
+   "age_phrase": "in her late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "shoulder-length wavy black hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__indian__f__18-29__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__indian__f__30-44__g023",
+  "model": "hunyuan15",
+  "cell": "indian__f__30-44",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "indian",
+   "race_phrase": "South Asian",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "30-44",
+   "age_phrase": "in her early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "shoulder-length wavy black hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__indian__f__30-44__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__indian__f__45-59__g023",
+  "model": "hunyuan15",
+  "cell": "indian__f__45-59",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "indian",
+   "race_phrase": "South Asian",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "45-59",
+   "age_phrase": "in her mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "greying wavy hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__indian__f__45-59__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__indian__f__60+__g023",
+  "model": "hunyuan15",
+  "cell": "indian__f__60+",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "indian",
+   "race_phrase": "South Asian",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "60+",
+   "age_phrase": "in her late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "short white hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__indian__f__60+__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__mena__m__18-29__g023",
+  "model": "hunyuan15",
+  "cell": "mena__m__18-29",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "mena",
+   "race_phrase": "Middle Eastern",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "18-29",
+   "age_phrase": "in his late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "short black hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__mena__m__18-29__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__mena__m__30-44__g023",
+  "model": "hunyuan15",
+  "cell": "mena__m__30-44",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "mena",
+   "race_phrase": "Middle Eastern",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "30-44",
+   "age_phrase": "in his early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "short black hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__mena__m__30-44__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__mena__m__45-59__g023",
+  "model": "hunyuan15",
+  "cell": "mena__m__45-59",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "mena",
+   "race_phrase": "Middle Eastern",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "45-59",
+   "age_phrase": "in his mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "salt-and-pepper hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__mena__m__45-59__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__mena__m__60+__g023",
+  "model": "hunyuan15",
+  "cell": "mena__m__60+",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "mena",
+   "race_phrase": "Middle Eastern",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "60+",
+   "age_phrase": "in his late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "short white hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__mena__m__60+__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__mena__f__18-29__g023",
+  "model": "hunyuan15",
+  "cell": "mena__f__18-29",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "mena",
+   "race_phrase": "Middle Eastern",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "18-29",
+   "age_phrase": "in her late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "shoulder-length dark brown hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__mena__f__18-29__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__mena__f__30-44__g023",
+  "model": "hunyuan15",
+  "cell": "mena__f__30-44",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "mena",
+   "race_phrase": "Middle Eastern",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "30-44",
+   "age_phrase": "in her early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "shoulder-length dark brown hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__mena__f__30-44__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__mena__f__45-59__g023",
+  "model": "hunyuan15",
+  "cell": "mena__f__45-59",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "mena",
+   "race_phrase": "Middle Eastern",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "45-59",
+   "age_phrase": "in her mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "greying shoulder-length hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__mena__f__45-59__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__mena__f__60+__g023",
+  "model": "hunyuan15",
+  "cell": "mena__f__60+",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "mena",
+   "race_phrase": "Middle Eastern",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "60+",
+   "age_phrase": "in her late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "short white hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__mena__f__60+__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__latino__m__18-29__g023",
+  "model": "hunyuan15",
+  "cell": "latino__m__18-29",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "latino",
+   "race_phrase": "Hispanic",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "18-29",
+   "age_phrase": "in his late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "wavy black hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__latino__m__18-29__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__latino__m__30-44__g023",
+  "model": "hunyuan15",
+  "cell": "latino__m__30-44",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "latino",
+   "race_phrase": "Hispanic",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "30-44",
+   "age_phrase": "in his early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "wavy black hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__latino__m__30-44__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__latino__m__45-59__g023",
+  "model": "hunyuan15",
+  "cell": "latino__m__45-59",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "latino",
+   "race_phrase": "Hispanic",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "45-59",
+   "age_phrase": "in his mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "salt-and-pepper wavy hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__latino__m__45-59__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__latino__m__60+__g023",
+  "model": "hunyuan15",
+  "cell": "latino__m__60+",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "latino",
+   "race_phrase": "Hispanic",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "60+",
+   "age_phrase": "in his late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "short white hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__latino__m__60+__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__latino__f__18-29__g023",
+  "model": "hunyuan15",
+  "cell": "latino__f__18-29",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "latino",
+   "race_phrase": "Hispanic",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "18-29",
+   "age_phrase": "in her late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "shoulder-length black hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__latino__f__18-29__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__latino__f__30-44__g023",
+  "model": "hunyuan15",
+  "cell": "latino__f__30-44",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "latino",
+   "race_phrase": "Hispanic",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "30-44",
+   "age_phrase": "in her early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "shoulder-length black hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__latino__f__30-44__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__latino__f__45-59__g023",
+  "model": "hunyuan15",
+  "cell": "latino__f__45-59",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "latino",
+   "race_phrase": "Hispanic",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "45-59",
+   "age_phrase": "in her mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "greying shoulder-length hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__latino__f__45-59__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__latino__f__60+__g023",
+  "model": "hunyuan15",
+  "cell": "latino__f__60+",
+  "counterfactual_group": 23,
+  "demographic": {
+   "race": "latino",
+   "race_phrase": "Hispanic",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "60+",
+   "age_phrase": "in her late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "short white hair",
+   "attire": "a plain casual shirt"
+  },
+  "scene": {
+   "setting_key": "cafe",
+   "setting": "a small cafe interior, softly blurred behind the subject",
+   "lighting_key": "warmlamp",
+   "lighting": "warm indoor lamplight from above"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "read",
+   "behavior": "reading aloud continuously, lips and jaw moving on every syllable, eyes tracking left to right across the line, blinking between lines",
+   "audio": "a steady quiet reading voice"
+  },
+  "seed": 2574566453348130910,
+  "width": 1280,
+  "height": 704,
+  "length": 121,
+  "fps": 24,
+  "duration_s": 5.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__latino__f__60+__g023"
+ },
+ {
+  "prompt_id": "hunyuan15__white__m__18-29__g029",
+  "model": "hunyuan15",
+  "cell": "white__m__18-29",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "white",
+   "race_phrase": "White",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "18-29",
+   "age_phrase": "in his late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "cropped blond hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__white__m__18-29__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__white__m__30-44__g029",
+  "model": "hunyuan15",
+  "cell": "white__m__30-44",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "white",
+   "race_phrase": "White",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "30-44",
+   "age_phrase": "in his early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "cropped blond hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__white__m__30-44__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__white__m__45-59__g029",
+  "model": "hunyuan15",
+  "cell": "white__m__45-59",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "white",
+   "race_phrase": "White",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "45-59",
+   "age_phrase": "in his mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "greying cropped hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__white__m__45-59__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__white__m__60+__g029",
+  "model": "hunyuan15",
+  "cell": "white__m__60+",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "white",
+   "race_phrase": "White",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "60+",
+   "age_phrase": "in his late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "white hair, receding at the temples",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__white__m__60+__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__white__f__18-29__g029",
+  "model": "hunyuan15",
+  "cell": "white__f__18-29",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "white",
+   "race_phrase": "White",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "18-29",
+   "age_phrase": "in her late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "wavy brown hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__white__f__18-29__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__white__f__30-44__g029",
+  "model": "hunyuan15",
+  "cell": "white__f__30-44",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "white",
+   "race_phrase": "White",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "30-44",
+   "age_phrase": "in her early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "wavy brown hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__white__f__30-44__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__white__f__45-59__g029",
+  "model": "hunyuan15",
+  "cell": "white__f__45-59",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "white",
+   "race_phrase": "White",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "45-59",
+   "age_phrase": "in her mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "greying wavy hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__white__f__45-59__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__white__f__60+__g029",
+  "model": "hunyuan15",
+  "cell": "white__f__60+",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "white",
+   "race_phrase": "White",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "60+",
+   "age_phrase": "in her late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "soft grey hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__white__f__60+__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__black__m__18-29__g029",
+  "model": "hunyuan15",
+  "cell": "black__m__18-29",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "black",
+   "race_phrase": "Black",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "18-29",
+   "age_phrase": "in his late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "a short afro",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__black__m__18-29__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__black__m__30-44__g029",
+  "model": "hunyuan15",
+  "cell": "black__m__30-44",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "black",
+   "race_phrase": "Black",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "30-44",
+   "age_phrase": "in his early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "a short afro",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__black__m__30-44__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__black__m__45-59__g029",
+  "model": "hunyuan15",
+  "cell": "black__m__45-59",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "black",
+   "race_phrase": "Black",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "45-59",
+   "age_phrase": "in his mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "a greying short afro",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__black__m__45-59__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__black__m__60+__g029",
+  "model": "hunyuan15",
+  "cell": "black__m__60+",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "black",
+   "race_phrase": "Black",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "60+",
+   "age_phrase": "in his late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "a short white afro",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__black__m__60+__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__black__f__18-29__g029",
+  "model": "hunyuan15",
+  "cell": "black__f__18-29",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "black",
+   "race_phrase": "Black",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "18-29",
+   "age_phrase": "in her late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "long braided black hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__black__f__18-29__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__black__f__30-44__g029",
+  "model": "hunyuan15",
+  "cell": "black__f__30-44",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "black",
+   "race_phrase": "Black",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "30-44",
+   "age_phrase": "in her early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "long braided black hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__black__f__30-44__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__black__f__45-59__g029",
+  "model": "hunyuan15",
+  "cell": "black__f__45-59",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "black",
+   "race_phrase": "Black",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "45-59",
+   "age_phrase": "in her mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "braided hair with grey strands",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__black__f__45-59__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__black__f__60+__g029",
+  "model": "hunyuan15",
+  "cell": "black__f__60+",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "black",
+   "race_phrase": "Black",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "60+",
+   "age_phrase": "in her late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "a white natural afro",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__black__f__60+__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__east_asian__m__18-29__g029",
+  "model": "hunyuan15",
+  "cell": "east_asian__m__18-29",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "east_asian",
+   "race_phrase": "East Asian",
+   "article": "an",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "18-29",
+   "age_phrase": "in his late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "neatly parted black hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__east_asian__m__18-29__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__east_asian__m__30-44__g029",
+  "model": "hunyuan15",
+  "cell": "east_asian__m__30-44",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "east_asian",
+   "race_phrase": "East Asian",
+   "article": "an",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "30-44",
+   "age_phrase": "in his early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "neatly parted black hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__east_asian__m__30-44__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__east_asian__m__45-59__g029",
+  "model": "hunyuan15",
+  "cell": "east_asian__m__45-59",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "east_asian",
+   "race_phrase": "East Asian",
+   "article": "an",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "45-59",
+   "age_phrase": "in his mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "salt-and-pepper hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__east_asian__m__45-59__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__east_asian__m__60+__g029",
+  "model": "hunyuan15",
+  "cell": "east_asian__m__60+",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "east_asian",
+   "race_phrase": "East Asian",
+   "article": "an",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "60+",
+   "age_phrase": "in his late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "short white hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__east_asian__m__60+__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__east_asian__f__18-29__g029",
+  "model": "hunyuan15",
+  "cell": "east_asian__f__18-29",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "east_asian",
+   "race_phrase": "East Asian",
+   "article": "an",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "18-29",
+   "age_phrase": "in her late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "long black hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__east_asian__f__18-29__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__east_asian__f__30-44__g029",
+  "model": "hunyuan15",
+  "cell": "east_asian__f__30-44",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "east_asian",
+   "race_phrase": "East Asian",
+   "article": "an",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "30-44",
+   "age_phrase": "in her early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "long black hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__east_asian__f__30-44__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__east_asian__f__45-59__g029",
+  "model": "hunyuan15",
+  "cell": "east_asian__f__45-59",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "east_asian",
+   "race_phrase": "East Asian",
+   "article": "an",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "45-59",
+   "age_phrase": "in her mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "greying straight hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__east_asian__f__45-59__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__east_asian__f__60+__g029",
+  "model": "hunyuan15",
+  "cell": "east_asian__f__60+",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "east_asian",
+   "race_phrase": "East Asian",
+   "article": "an",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "60+",
+   "age_phrase": "in her late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "white hair tied back",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__east_asian__f__60+__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__southeast_asian__m__18-29__g029",
+  "model": "hunyuan15",
+  "cell": "southeast_asian__m__18-29",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "southeast_asian",
+   "race_phrase": "Southeast Asian",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "18-29",
+   "age_phrase": "in his late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "tousled dark hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__southeast_asian__m__18-29__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__southeast_asian__m__30-44__g029",
+  "model": "hunyuan15",
+  "cell": "southeast_asian__m__30-44",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "southeast_asian",
+   "race_phrase": "Southeast Asian",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "30-44",
+   "age_phrase": "in his early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "tousled dark hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__southeast_asian__m__30-44__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__southeast_asian__m__45-59__g029",
+  "model": "hunyuan15",
+  "cell": "southeast_asian__m__45-59",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "southeast_asian",
+   "race_phrase": "Southeast Asian",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "45-59",
+   "age_phrase": "in his mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "salt-and-pepper hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__southeast_asian__m__45-59__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__southeast_asian__m__60+__g029",
+  "model": "hunyuan15",
+  "cell": "southeast_asian__m__60+",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "southeast_asian",
+   "race_phrase": "Southeast Asian",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "60+",
+   "age_phrase": "in his late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "short white hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__southeast_asian__m__60+__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__southeast_asian__f__18-29__g029",
+  "model": "hunyuan15",
+  "cell": "southeast_asian__f__18-29",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "southeast_asian",
+   "race_phrase": "Southeast Asian",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "18-29",
+   "age_phrase": "in her late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "shoulder-length dark hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__southeast_asian__f__18-29__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__southeast_asian__f__30-44__g029",
+  "model": "hunyuan15",
+  "cell": "southeast_asian__f__30-44",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "southeast_asian",
+   "race_phrase": "Southeast Asian",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "30-44",
+   "age_phrase": "in her early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "shoulder-length dark hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__southeast_asian__f__30-44__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__southeast_asian__f__45-59__g029",
+  "model": "hunyuan15",
+  "cell": "southeast_asian__f__45-59",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "southeast_asian",
+   "race_phrase": "Southeast Asian",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "45-59",
+   "age_phrase": "in her mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "greying shoulder-length hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__southeast_asian__f__45-59__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__southeast_asian__f__60+__g029",
+  "model": "hunyuan15",
+  "cell": "southeast_asian__f__60+",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "southeast_asian",
+   "race_phrase": "Southeast Asian",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "60+",
+   "age_phrase": "in her late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "short white hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__southeast_asian__f__60+__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__indian__m__18-29__g029",
+  "model": "hunyuan15",
+  "cell": "indian__m__18-29",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "indian",
+   "race_phrase": "South Asian",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "18-29",
+   "age_phrase": "in his late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "neatly combed dark hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__indian__m__18-29__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__indian__m__30-44__g029",
+  "model": "hunyuan15",
+  "cell": "indian__m__30-44",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "indian",
+   "race_phrase": "South Asian",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "30-44",
+   "age_phrase": "in his early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "neatly combed dark hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__indian__m__30-44__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__indian__m__45-59__g029",
+  "model": "hunyuan15",
+  "cell": "indian__m__45-59",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "indian",
+   "race_phrase": "South Asian",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "45-59",
+   "age_phrase": "in his mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "salt-and-pepper hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__indian__m__45-59__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__indian__m__60+__g029",
+  "model": "hunyuan15",
+  "cell": "indian__m__60+",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "indian",
+   "race_phrase": "South Asian",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "60+",
+   "age_phrase": "in his late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "short white hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__indian__m__60+__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__indian__f__18-29__g029",
+  "model": "hunyuan15",
+  "cell": "indian__f__18-29",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "indian",
+   "race_phrase": "South Asian",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "18-29",
+   "age_phrase": "in her late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "shoulder-length wavy black hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__indian__f__18-29__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__indian__f__30-44__g029",
+  "model": "hunyuan15",
+  "cell": "indian__f__30-44",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "indian",
+   "race_phrase": "South Asian",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "30-44",
+   "age_phrase": "in her early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "shoulder-length wavy black hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__indian__f__30-44__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__indian__f__45-59__g029",
+  "model": "hunyuan15",
+  "cell": "indian__f__45-59",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "indian",
+   "race_phrase": "South Asian",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "45-59",
+   "age_phrase": "in her mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "greying wavy hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__indian__f__45-59__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__indian__f__60+__g029",
+  "model": "hunyuan15",
+  "cell": "indian__f__60+",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "indian",
+   "race_phrase": "South Asian",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "60+",
+   "age_phrase": "in her late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "short white hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__indian__f__60+__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__mena__m__18-29__g029",
+  "model": "hunyuan15",
+  "cell": "mena__m__18-29",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "mena",
+   "race_phrase": "Middle Eastern",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "18-29",
+   "age_phrase": "in his late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "short black hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__mena__m__18-29__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__mena__m__30-44__g029",
+  "model": "hunyuan15",
+  "cell": "mena__m__30-44",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "mena",
+   "race_phrase": "Middle Eastern",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "30-44",
+   "age_phrase": "in his early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "short black hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__mena__m__30-44__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__mena__m__45-59__g029",
+  "model": "hunyuan15",
+  "cell": "mena__m__45-59",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "mena",
+   "race_phrase": "Middle Eastern",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "45-59",
+   "age_phrase": "in his mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "salt-and-pepper hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__mena__m__45-59__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__mena__m__60+__g029",
+  "model": "hunyuan15",
+  "cell": "mena__m__60+",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "mena",
+   "race_phrase": "Middle Eastern",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "60+",
+   "age_phrase": "in his late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "short white hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__mena__m__60+__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__mena__f__18-29__g029",
+  "model": "hunyuan15",
+  "cell": "mena__f__18-29",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "mena",
+   "race_phrase": "Middle Eastern",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "18-29",
+   "age_phrase": "in her late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "shoulder-length dark brown hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__mena__f__18-29__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__mena__f__30-44__g029",
+  "model": "hunyuan15",
+  "cell": "mena__f__30-44",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "mena",
+   "race_phrase": "Middle Eastern",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "30-44",
+   "age_phrase": "in her early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "shoulder-length dark brown hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__mena__f__30-44__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__mena__f__45-59__g029",
+  "model": "hunyuan15",
+  "cell": "mena__f__45-59",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "mena",
+   "race_phrase": "Middle Eastern",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "45-59",
+   "age_phrase": "in her mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "greying shoulder-length hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__mena__f__45-59__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__mena__f__60+__g029",
+  "model": "hunyuan15",
+  "cell": "mena__f__60+",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "mena",
+   "race_phrase": "Middle Eastern",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "60+",
+   "age_phrase": "in her late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "short white hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__mena__f__60+__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__latino__m__18-29__g029",
+  "model": "hunyuan15",
+  "cell": "latino__m__18-29",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "latino",
+   "race_phrase": "Hispanic",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "18-29",
+   "age_phrase": "in his late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "wavy black hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__latino__m__18-29__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__latino__m__30-44__g029",
+  "model": "hunyuan15",
+  "cell": "latino__m__30-44",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "latino",
+   "race_phrase": "Hispanic",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "30-44",
+   "age_phrase": "in his early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "wavy black hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__latino__m__30-44__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__latino__m__45-59__g029",
+  "model": "hunyuan15",
+  "cell": "latino__m__45-59",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "latino",
+   "race_phrase": "Hispanic",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "45-59",
+   "age_phrase": "in his mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "salt-and-pepper wavy hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__latino__m__45-59__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__latino__m__60+__g029",
+  "model": "hunyuan15",
+  "cell": "latino__m__60+",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "latino",
+   "race_phrase": "Hispanic",
+   "article": "a",
+   "gender": "m",
+   "gender_word": "man",
+   "age_band": "60+",
+   "age_phrase": "in his late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "short white hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__latino__m__60+__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__latino__f__18-29__g029",
+  "model": "hunyuan15",
+  "cell": "latino__f__18-29",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "latino",
+   "race_phrase": "Hispanic",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "18-29",
+   "age_phrase": "in her late twenties",
+   "age_detail": "smooth youthful skin, no wrinkles",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "shoulder-length black hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__latino__f__18-29__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__latino__f__30-44__g029",
+  "model": "hunyuan15",
+  "cell": "latino__f__30-44",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "latino",
+   "race_phrase": "Hispanic",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "30-44",
+   "age_phrase": "in her early forties",
+   "age_detail": "faint expression lines, healthy adult skin",
+   "age_tier": "young"
+  },
+  "appearance": {
+   "hair": "shoulder-length black hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__latino__f__30-44__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__latino__f__45-59__g029",
+  "model": "hunyuan15",
+  "cell": "latino__f__45-59",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "latino",
+   "race_phrase": "Hispanic",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "45-59",
+   "age_phrase": "in her mid fifties",
+   "age_detail": "visible fine lines around the eyes and mouth, middle-aged features",
+   "age_tier": "mid"
+  },
+  "appearance": {
+   "hair": "greying shoulder-length hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__latino__f__45-59__g029"
+ },
+ {
+  "prompt_id": "hunyuan15__latino__f__60+__g029",
+  "model": "hunyuan15",
+  "cell": "latino__f__60+",
+  "counterfactual_group": 29,
+  "demographic": {
+   "race": "latino",
+   "race_phrase": "Hispanic",
+   "article": "a",
+   "gender": "f",
+   "gender_word": "woman",
+   "age_band": "60+",
+   "age_phrase": "in her late seventies",
+   "age_detail": "clearly elderly, deeply wrinkled and creased skin, age spots, sagging jawline, hooded eyelids, thinning skin",
+   "age_tier": "old"
+  },
+  "appearance": {
+   "hair": "short white hair",
+   "attire": "a plain knit sweater"
+  },
+  "scene": {
+   "setting_key": "office",
+   "setting": "a modern open-plan office, softly blurred behind the subject",
+   "lighting_key": "harsh",
+   "lighting": "harsh direct overhead lighting casting hard shadows"
+  },
+  "camera": {
+   "key": "slowsway",
+   "framing": "near-static handheld camera with a slight natural sway, head-and-shoulders portrait framing, face centred"
+  },
+  "action": {
+   "key": "turn",
+   "behavior": "turning the head steadily to one side, pausing briefly, then turning back to face the camera as the hair shifts with the movement",
+   "audio": "quiet room tone"
+  },
+  "seed": 2621555084969604599,
+  "width": 1280,
+  "height": 704,
+  "length": 145,
+  "fps": 24,
+  "duration_s": 6.04,
+  "ai_generated": true,
+  "derived_from": "ltx23__latino__f__60+__g029"
+ }
+]
