@@ -46,6 +46,9 @@ for k in 0 1; do sbatch --export=ALL,SHARD=$k,NSHARDS=2 slurm/generate_hunyuan15
 Shard `k` takes every `NSHARDS`-th spec, so shards stay balanced across cells and clip
 lengths. `slurm/*_bridges2.sbatch` are the PSC Bridges-2 variants (L40S or H100, paths
 from `/ocean/.../fairdeep/env.sh` because the home quota cannot hold the weights).
+`slurm/generate_hunyuan15_deltaai.sbatch` is the NCSA DeltaAI variant (4x GH200 per node,
+paths from `/work/nvme/.../fairdeep/env.sh`; `MODELS=hunyuan15 bash setup.sh` is enough
+for it, ~35 GiB).
 The driver skips clips whose `.mp4` already exists, so a killed job can be resubmitted.
 To split one matrix across clusters, give each a different `--only-ids` list (or build a
 separate matrix with different group indices) and merge on Hugging Face.
