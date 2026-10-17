@@ -131,8 +131,13 @@ def main():
     a = ap.parse_args()
     paths = sorted(glob.glob(os.path.join(a.root, "**", "*.mp4"), recursive=True))
     print(f"scanning {len(paths)} clips with {a.workers} workers ...", flush=True)
+    recs = []
     with ProcessPoolExecutor(max_workers=a.workers) as ex:
-        recs = list(ex.map(scan_one, paths, [a.faces] * len(paths), chunksize=8))
+        for i, r in enumerate(ex.map(scan_one, paths, [a.faces] * len(paths),
+                                     chunksize=8), 1):
+            recs.append(r)
+            if i % 25 == 0 or i == len(paths):
+                print(f"  {i}/{len(paths)}", flush=True)
 
     os.makedirs(a.out_dir, exist_ok=True)
     keys = ["clip", "model", "cell", "race", "gender", "age_band", "group", "lighting",

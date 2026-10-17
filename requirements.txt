@@ -3,3 +3,4 @@ av>=14
 numpy
 pillow
 huggingface_hub>=1.0
+opencv-python-headless   # qc/faces.py (YuNet), only needed for scan.py --faces
