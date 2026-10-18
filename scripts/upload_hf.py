@@ -2,9 +2,10 @@
 """Publish generated clips to the Hugging Face dataset repo.
 
 Builds metadata.csv (one row per clip, flattened from the sidecar .json and,
-when present, the QC report) at the dataset root, then uploads with
-upload_large_folder, which is resumable and only sends files not already in
-the repo - so it is also how new runs get appended.
+when present, the QC report) at the dataset root, then uploads the folder.
+Either uploader only sends files the repo does not already hold, so this is
+also how new runs get appended. huggingface_hub 2.x dropped the resumable
+upload_large_folder, so fall back to upload_folder there.
 
   python scripts/upload_hf.py --data-root ../fairdeep-bench            # main run
   python scripts/upload_hf.py --data-root ../fairdeep-bench --include-pilots
@@ -82,8 +83,14 @@ def main():
     api = HfApi()
     api.create_repo(args.repo, repo_type="dataset", private=not args.public, exist_ok=True)
     allow = ["metadata.csv", "README.md"] + [f"{r}/**" for r in runs]
-    api.upload_large_folder(repo_id=args.repo, repo_type="dataset", folder_path=root,
-                            allow_patterns=allow)
+    large = getattr(api, "upload_large_folder", None)
+    if large is not None:                      # huggingface_hub 1.x: resumable
+        large(repo_id=args.repo, repo_type="dataset", folder_path=root,
+              allow_patterns=allow)
+    else:                                      # 2.x: one commit, same dedup
+        api.upload_folder(repo_id=args.repo, repo_type="dataset", folder_path=root,
+                          allow_patterns=allow,
+                          commit_message="Add generated clips, sidecars and metadata")
     print(f"uploaded -> https://huggingface.co/datasets/{args.repo}")
 
 
