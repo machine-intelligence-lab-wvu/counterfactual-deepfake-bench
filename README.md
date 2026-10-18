@@ -1,8 +1,11 @@
 # fairdeep-datagen
 
 Controlled synthetic video generation for **FairDeep-Fake Bench**. ComfyUI is driven headlessly
-over its HTTP API, one server per GPU. Clips are published to the HF dataset
-[`Ahsanz/fairdeep-bench`](https://huggingface.co/datasets/Ahsanz/fairdeep-bench) (private).
+over its HTTP API, one server per GPU. Clips are published to Hugging Face datasets:
+LTX 2.3 and Wan 2.2 (2,016 each) in
+[`Ahsanz/fairdeep-bench`](https://huggingface.co/datasets/Ahsanz/fairdeep-bench), the HunyuanVideo
+1.5 sub504b subset (504/504) in
+[`robinrizwan/fairdeep-bench`](https://huggingface.co/datasets/robinrizwan/fairdeep-bench) (private).
 
 ## Layout
 | Path | Role |
@@ -74,9 +77,11 @@ New matrix: `python specs/build_matrix.py --model ltx23 --groups 36 --out manife
 ## QC and publish
 ```bash
 ../.venv/bin/python qc/scan.py --root ../fairdeep-bench/synthetic --out-dir manifests
-../.venv/bin/python scripts/upload_hf.py                 # rebuild metadata.csv + upload new clips
+../.venv/bin/python scripts/upload_hf.py --repo <user>/fairdeep-bench   # rebuild metadata.csv + upload new clips
 hf download Ahsanz/fairdeep-bench --repo-type dataset --local-dir ../fairdeep-bench
 ```
+`upload_hf.py` keeps the hub's existing `metadata.csv` rows for clips this machine does not
+hold, so a cluster with only its own run can append without erasing the rest.
 
 ## Pinned versions
 ComfyUI `7972b5ba`, VideoHelperSuite `4ee72c06`, torch 2.11.0+cu128, Python 3.12.
