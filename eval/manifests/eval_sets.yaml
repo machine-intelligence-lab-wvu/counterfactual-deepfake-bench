@@ -1,0 +1,20 @@
+# Batches that make up the current eval set. A batch is scored once per
+# (detector, checkpoint, view); aggregate unions every active batch that has scores.
+# To add a batch: build its manifest, add it here with active: true, preprocess, score.
+active: [fake_b1]
+batches:
+  fake_b1:
+    kind: fake
+    manifest: eval/manifests/fake_b1.csv
+    source: Ahsanz/fairdeep-bench@837c7a6 (ltx23, wan22) + robinrizwan/fairdeep-bench@96f6a98 (hunyuan15)
+    data_root: /work/nvme/bjej/rahamed/fairdeep/eval/fairdeep-bench
+  fake_b2:
+    kind: fake
+    manifest: eval/manifests/fake_b2.csv
+    source: pending (~500 more generated clips)
+    data_root: TBD
+  real_b1:
+    kind: real
+    manifest: eval/manifests/real_b1.csv
+    source: pending (~3,000 CelebV-HQ clips with perceived subgroup labels)
+    data_root: TBD
