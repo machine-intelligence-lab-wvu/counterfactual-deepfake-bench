@@ -15,12 +15,18 @@ The priors are weak - CelebA's `young` is a single binary cut, not four bands -
 so this is a download *order*, never a label. Every demographic label comes from
 FairFace in label_strata.py.
 
+No length or sharpness requirement is imposed here. The 6.04 s length was a
+*generation* rule; comparisons will be run at several clip lengths, so a real
+clip only has to be long enough to carry some motion (MIN_DUR). Blur is a
+property of real footage, not a defect to exclude, so CelebV-HQ's `blurry` flag
+is kept and recorded rather than used as a gate.
+
     python real/plan_pool.py --info celebvhq_info.json --out manifests/celebvhq_pool.json
 """
 import argparse, json, random
 from collections import Counter
 
-TARGET_DUR = 6.04   # the synthetic clips' length; see specs/taxonomy.py
+MIN_DUR = 2.0       # floor only; matches filter_real.py's default --min-dur
 
 
 def build(info, min_dur, drop_blurry, pad):
@@ -36,7 +42,7 @@ def build(info, min_dur, drop_blurry, pad):
         a = c["attributes"]["appearance"]
         if drop_blurry and a[iB]:
             continue
-        male, young, gray = bool(a[iM]), bool(a[iY]), bool(a[iG])
+        male, young, gray, blurry = bool(a[iM]), bool(a[iY]), bool(a[iG]), bool(a[iB])
 
         # Scarcity weight. gray_hair is the only signal for the 60+ band, which
         # is the binding constraint (11.4% of the pool for 14 of 56 cells), so
@@ -51,8 +57,8 @@ def build(info, min_dur, drop_blurry, pad):
         out.append({
             "clip_id": cid,
             "ytb_id": c["ytb_id"],
-            # pad the request so our own window picker has slack to find a clean
-            # TARGET_DUR run inside the annotated shot
+            # optional slack either side; 0 by default, because padding past the
+            # annotated shot can pull in a cut that the shot boundaries avoid
             "start_sec": round(max(0.0, d["start_sec"] - pad), 2),
             "end_sec": round(d["end_sec"] + pad, 2),
             "ann_start_sec": d["start_sec"],
@@ -60,6 +66,7 @@ def build(info, min_dur, drop_blurry, pad):
             "ann_duration": round(dur, 2),
             "bbox": c["bbox"],
             "prior": {"male": male, "young": young, "gray_hair": gray},
+            "blurry": blurry,
             "weight": round(w, 3),
         })
     return out
@@ -69,16 +76,17 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--info", required=True, help="celebvhq_info.json")
     ap.add_argument("--out", required=True)
-    ap.add_argument("--min-dur", type=float, default=TARGET_DUR,
-                    help=f"drop clips shorter than this (default {TARGET_DUR})")
-    ap.add_argument("--pad", type=float, default=0.5,
+    ap.add_argument("--min-dur", type=float, default=MIN_DUR,
+                    help=f"drop clips shorter than this (default {MIN_DUR})")
+    ap.add_argument("--pad", type=float, default=0.0,
                     help="seconds of slack fetched either side of the annotated shot")
-    ap.add_argument("--keep-blurry", action="store_true")
+    ap.add_argument("--drop-blurry", action="store_true",
+                    help="exclude clips CelebV-HQ flags blurry (kept by default)")
     ap.add_argument("--seed", type=int, default=0)
     a = ap.parse_args()
 
     info = json.load(open(a.info, encoding="utf-8"))
-    pool = build(info, a.min_dur, not a.keep_blurry, a.pad)
+    pool = build(info, a.min_dur, a.drop_blurry, a.pad)
 
     # Weighted shuffle: sort by weight/Expo(1), which orders by weight in
     # expectation without making the result a rigid ranking - two runs explore
@@ -89,7 +97,7 @@ def main():
     for i, r in enumerate(pool):
         r["rank"] = i
 
-    json.dump({"target_dur": TARGET_DUR, "n": len(pool), "clips": pool},
+    json.dump({"min_dur": a.min_dur, "n": len(pool), "clips": pool},
               open(a.out, "w"), indent=1)
 
     pr = Counter()

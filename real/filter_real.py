@@ -1,6 +1,6 @@
 """Filter real footage into clips that match the synthetic half's spec.
 
-The synthetic clips are not a loose collection - they are 1280x704, ~6 s,
+The synthetic clips are not a loose collection - they are 1280x704,
 single-subject, head-and-shoulders, face centred. A real half that differs on
 any of those is not a control: a detector can separate the halves on framing or
 resolution alone and never look at a face. So this does not merely *accept or
@@ -12,7 +12,16 @@ Targets are measured from the 3,936 QC-passing synthetic clips, not guessed:
     face height / frame height   p10 0.54   median 0.68   p90 0.80
     face centre x                p10 0.36   median 0.49   p90 0.57
     resolution                   1280x704 everywhere
-    duration                     6.04 s (LTX, Hunyuan) / 6.06 s (Wan)
+
+Length and sharpness are deliberately *not* matched. 6.04 s was a generation
+rule, and comparisons trim clips to several lengths, so each real clip keeps its
+whole clean run (at least --min-dur) and analysis cuts it to whatever length a
+comparison needs. Blur is a property of real footage and stays in;
+--min-sharpness exists for a strict subset but is off by default. Brightness is
+gated only against black frames, the same single check qc/scan.py applies to the
+synthetic half - the synthetic lighting bank includes low-light and backlit
+scenes on purpose, and dropping dim real clips would remove exactly the
+lighting x skin-tone conditions the benchmark is built to probe.
 
 Two deliberate non-conformances, both recorded per clip rather than resolved:
 
@@ -38,7 +47,7 @@ from faces import (BG_MIN_FRAMES, MIN_FACE_PX, PERSON_SCORE,  # noqa: E402
 
 TARGET_W, TARGET_H = 1280, 704
 ASPECT = TARGET_W / TARGET_H              # 1.8182
-TARGET_DUR = 6.04
+MIN_DUR = 2.0                             # shortest clean run kept; not a target length
 
 FACE_FRAC_TARGET = 0.68                   # face height as a fraction of frame height
 FACE_FRAC_MIN, FACE_FRAC_MAX = 0.54, 0.80
@@ -47,8 +56,7 @@ FACE_CY_TARGET = 0.42                     # head-and-shoulders: eyes above centr
 SCAN_FPS = 4.0                            # face/quality sampling rate during the scan
 FROZEN_RAW = 0.30                         # from qc/scan.py, same meaning
 BLACK_MEAN = 8.0
-MIN_SHARPNESS = 40.0
-BRIGHT_MIN, BRIGHT_MAX = 35.0, 225.0
+MIN_SHARPNESS = 0.0                       # off: blur is real-footage signal, not a defect
 
 _det = {}
 
@@ -130,7 +138,7 @@ def scan(path, model, scan_fps=SCAN_FPS):
             "samples": samples}, None
 
 
-def pick_window(sc, target_dur, max_upscale):
+def pick_window(sc, min_dur, max_upscale, min_sharp):
     """Longest-scoring run of samples that is one person, in frame, and usable.
 
     A clip is accepted on a *window*, not on its average: real footage cuts, pans
@@ -145,8 +153,7 @@ def pick_window(sc, target_dur, max_upscale):
     for r in s:
         ok = (r["face"] and r["n_others"] == 0
               and r["luma"] >= BLACK_MEAN
-              and BRIGHT_MIN <= r["luma"] <= BRIGHT_MAX
-              and r["sharp"] >= MIN_SHARPNESS)
+              and r["sharp"] >= min_sharp)
         if ok:
             # the crop this sample would need must not over-upscale
             crop_h = r["fh"] / FACE_FRAC_TARGET
@@ -164,21 +171,21 @@ def pick_window(sc, target_dur, max_upscale):
         elif not alive and run_start is not None:
             a, b = run_start, idx - 1
             span = s[b]["t"] - s[a]["t"]
-            if span >= target_dur:
-                # prefer the sharpest run of sufficient length
-                sc_run = float(np.median([s[k]["sharp"] for k in range(a, b + 1)]))
-                if best is None or sc_run > best[2]:
-                    best = (a, b, sc_run)
+            if span >= min_dur:
+                # keep the longest clean run; comparisons trim to their own lengths
+                if best is None or span > best[2]:
+                    best = (a, b, span)
             run_start = None
 
     if best is None:
-        return None, "no clean run of %.2fs" % target_dur
+        return None, "no clean run of %.2fs" % min_dur
     a, b, _ = best
     run = s[a:b + 1]
     fh = float(np.median([r["fh"] for r in run]))
     fcx = float(np.median([r["fx"] + r["fw"] / 2 for r in run]))
     fcy = float(np.median([r["fy"] + r["fh"] / 2 for r in run]))
-    return {"start_t": s[a]["t"], "end_t": s[b]["t"], "n_samples": len(run),
+    return {"start_t": s[a]["t"], "end_t": s[b]["t"], "dur": s[b]["t"] - s[a]["t"],
+            "n_samples": len(run),
             "face_h": fh, "face_cx": fcx, "face_cy": fcy,
             "sharp": float(np.median([r["sharp"] for r in run])),
             "luma": float(np.median([r["luma"] for r in run])),
@@ -194,7 +201,7 @@ def _why(samples, good):
         return "no face detected"
     if sum(r["n_others"] > 0 for r in samples) >= BG_MIN_FRAMES:
         return "background people"
-    if all(r["sharp"] < MIN_SHARPNESS for r in samples if r["face"]):
+    if MIN_SHARPNESS > 0 and all(r["sharp"] < MIN_SHARPNESS for r in samples if r["face"]):
         return "too soft"
     return "face too small or frame unusable"
 
@@ -266,11 +273,11 @@ def process(path, out_dir, model, ff, args):
         return rec
     rec.update(src_w=sc["w"], src_h=sc["h"], src_fps=round(sc["fps"], 3),
                src_dur=round(sc["dur"], 2))
-    if sc["dur"] < args.target_dur:
-        rec.update(accepted=0, reason=f"source {sc['dur']:.2f}s < {args.target_dur}s")
+    if sc["dur"] < args.min_dur:
+        rec.update(accepted=0, reason=f"source {sc['dur']:.2f}s < {args.min_dur}s")
         return rec
 
-    win, err = pick_window(sc, args.target_dur, args.max_upscale)
+    win, err = pick_window(sc, args.min_dur, args.max_upscale, args.min_sharpness)
     if err:
         rec.update(accepted=0, reason=err)
         return rec
@@ -283,13 +290,15 @@ def process(path, out_dir, model, ff, args):
         rec.update(accepted=0, reason=err)
         return rec
 
-    ok, msg = encode(path, dst, win, box, args.target_dur, ff, args.crf)
+    dur = min(win["dur"], args.max_dur) if args.max_dur else win["dur"]
+    ok, msg = encode(path, dst, win, box, dur, ff, args.crf)
     if not ok:
         rec.update(accepted=0, reason=f"encode failed: {msg[0][:120]}")
         return rec
 
     rec.update(accepted=1, reason="", w=TARGET_W, h=TARGET_H,
-               fps=round(sc["fps"], 3), window_start=round(win["start_t"], 2),
+               fps=round(sc["fps"], 3), duration=round(dur, 2),
+               window_start=round(win["start_t"], 2),
                face_frac=box["face_frac"], upscale=box["upscale"],
                crop_w=box["w"], crop_h=box["h"],
                face_subject_h=round(win["face_h"], 1),
@@ -300,7 +309,7 @@ def process(path, out_dir, model, ff, args):
     side = {
         "clip_id": stem, "source": "real", "model": "real",
         "width": TARGET_W, "height": TARGET_H, "fps": round(sc["fps"], 3),
-        "duration_s": args.target_dur,
+        "duration_s": round(dur, 2),
         "conformance": {
             "source_resolution": [sc["w"], sc["h"]],
             "source_fps": round(sc["fps"], 3),
@@ -324,7 +333,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--videos", required=True, help="dir or glob of source videos")
     ap.add_argument("--out-root", required=True)
-    ap.add_argument("--target-dur", type=float, default=TARGET_DUR)
+    ap.add_argument("--min-dur", type=float, default=MIN_DUR,
+                    help="shortest clean run kept (s); clips are not trimmed to a fixed length")
+    ap.add_argument("--max-dur", type=float, default=0.0,
+                    help="cap output length (s); 0 keeps the whole clean run")
+    ap.add_argument("--min-sharpness", type=float, default=MIN_SHARPNESS,
+                    help="Laplacian-variance floor; 0 keeps blurry footage")
     ap.add_argument("--max-upscale", type=float, default=2.0,
                     help="1.0 forbids upscaling entirely")
     ap.add_argument("--scan-fps", type=float, default=SCAN_FPS)
@@ -360,7 +374,7 @@ def main():
             print(f"  {i}/{len(paths)}  accepted {acc} ({100*acc/len(recs):.0f}%)", flush=True)
 
     keys = ["clip", "accepted", "reason", "src_w", "src_h", "src_fps", "src_dur",
-            "w", "h", "fps", "window_start", "face_frac", "upscale", "crop_w",
+            "w", "h", "fps", "duration", "window_start", "face_frac", "upscale", "crop_w",
             "crop_h", "face_subject_h", "motion_raw", "luma_mean", "contrast",
             "sharpness", "src"]
     report = a.report or (out_dir.parent / "qc_report_real.csv")

@@ -22,7 +22,7 @@ OUT_ROOT="${OUT_ROOT:-../fairdeep-bench/real}"
 WEIGHTS="${WEIGHTS:-models/res34_fair_align_multi_7_20190809.pt}"
 PER_CELL="${PER_CELL:-90}"
 MAX_UPSCALE="${MAX_UPSCALE:-2.0}"
-TARGET_DUR="${TARGET_DUR:-6.04}"
+MIN_DUR="${MIN_DUR:-2.0}"          # shortest clean run kept; clips are not trimmed
 PY="${PY:-../.venv/bin/python}"
 
 # Bridges-2 / DeltaAI keep weights off the home quota; env.sh exports the paths.
@@ -33,11 +33,11 @@ fi
 
 mkdir -p logs "$OUT_ROOT"
 
-echo "=== conform $RAW_ROOT -> $OUT_ROOT (dur=$TARGET_DUR max_upscale=$MAX_UPSCALE)"
+echo "=== conform $RAW_ROOT -> $OUT_ROOT (min_dur=$MIN_DUR max_upscale=$MAX_UPSCALE)"
 "$PY" real/filter_real.py \
     --videos "$RAW_ROOT" \
     --out-root "$OUT_ROOT" \
-    --target-dur "$TARGET_DUR" \
+    --min-dur "$MIN_DUR" \
     --max-upscale "$MAX_UPSCALE" \
     --report manifests/qc_report_real.csv
 
