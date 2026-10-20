@@ -112,16 +112,19 @@ def pointrange(table, factors, fdir, out, name, title, xlabel, note=None):
             lo = np.array([tg["ci_lo"].get(l, np.nan) for l in levels])
             hi = np.array([tg["ci_hi"].get(l, np.nan) for l in levels])
             ax.hlines(y, lo, hi, color=GEN_COLOR[g], linewidth=2)
-            ax.plot(est, y, "o", color=GEN_COLOR[g], markersize=5, markeredgecolor="white",
-                    markeredgewidth=1, label=GEN_LABEL[g])
+            solo = np.isnan(lo) & ~np.isnan(est)      # level from one group: no interval
+            ax.plot(est[~solo], y[~solo], "o", color=GEN_COLOR[g], markersize=5,
+                    markeredgecolor="white", markeredgewidth=1, label=GEN_LABEL[g])
+            ax.plot(est[solo], y[solo], "o", markerfacecolor="white", markeredgecolor=GEN_COLOR[g],
+                    markersize=5, markeredgewidth=1.5)
         ax.set_yticks(range(len(levels)), levels)
         ax.invert_yaxis()
         ax.set_ylabel(f.replace("_", " "), color=INK)
-    axes[0, 0].legend(loc="lower left", bbox_to_anchor=(0, 1.02), ncol=len(gens))
+    axes[0, 0].legend(loc="lower left", bbox_to_anchor=(0, 1.0), ncol=len(gens))
+    axes[0, 0].set_title(title, loc="left", pad=26)
     axes[-1, 0].set_xlabel(xlabel)
-    fig.suptitle(title, x=0.02, ha="left", y=1.0 + 0.02 * nrow / 3)
-    if note:
-        _note(fig, note)
+    _note(fig, ("hollow marker = level seen in one counterfactual group (no interval)"
+                + (f"; {note}" if note else "")))
     _save(fig, fdir, name, out)
 
 

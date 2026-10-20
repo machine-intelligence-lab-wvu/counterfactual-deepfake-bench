@@ -87,7 +87,9 @@ def breakdown_table(df, gb, value, B_rates=False):
                 d.groupby(factor), key=lambda t: str(t[0]))
             for lev, dd in levels:
                 pt, reps = gb.mean(dd[value], dd["counterfactual_group"])
-                lo, hi = ci(reps)
+                # resampling whole groups cannot express uncertainty for a level seen in a
+                # single group (every replicate is the same mean or missing): no interval
+                lo, hi = ci(reps) if dd["counterfactual_group"].nunique() >= 2 else (np.nan, np.nan)
                 r = {"generator": gen, "factor": factor, "level": lev, "n": len(dd),
                      "n_groups": dd["counterfactual_group"].nunique(), "estimate": pt,
                      "ci_lo": lo, "ci_hi": hi}

@@ -123,6 +123,11 @@ def write_report(snap, meta, T, figs, det, spec):
                     & (sb["generator"] == "all")], ["factor", "level", "n", "estimate", "ci_lo", "ci_hi"]))
     L.append("Per-generator scene-factor and 56-cell rows: `tables/score_by_breakdown.csv`.\n")
     L.append("### Subgroup gap (max - min of level means)\n")
+    L.append("A gap is max - min, so it is never negative and its interval cannot include 0; "
+             "it is a size, not a test of a difference. Over many levels with few clips each "
+             "(56 cells; HunyuanVideo has 9 groups per cell) the gap also grows with noise, so "
+             "compare it with the per-level intervals in `tables/score_by_breakdown.csv`. "
+             "Levels seen in a single counterfactual group have no interval.\n")
     L.append(_md(T["subgroup_gap_score"], ["generator", "attribute", "n_levels", "gap", "ci_lo",
                                            "ci_hi", "max_level", "min_level"]))
     L.append("### CF spread (mean over groups of the std of score across the group's cells)\n")
