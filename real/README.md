@@ -125,17 +125,44 @@ Two boundaries do not line up and are handled explicitly in `fairface.py`:
   `--exclude-ambiguous` to drop them. In the live sample 2 of 4 labelled clips
   were `40-49`, so this is not a corner case.
 
-## Fetching from a cluster
+## Fetching
 
-YouTube throttles and frequently blocks datacenter IP ranges, so `fetch_celebvhq.py`
-may fail en masse on Bridges-2 or DeltaAI even though it works from a laptop.
-Fetch from a residential connection and move the raw segments to the cluster, or
-pass `--cookies cookies.txt`. Steps 3 and 4 have no network dependency and are
-the parts worth running on a GPU node - see `slurm/filter_real.sbatch`.
+Tested from a fresh clone of this branch: 45 clips attempted, **39 valid (87%)**.
+Failures were 3 private videos, 1 source that always yields an empty file, and 2
+hangs. Healthy fetches took 3-21 s (median 6-8 s) and ~1 MB each; with 4 workers
+that is roughly 2-3 hours per 7,000 clips.
 
-Link attrition is permanent: CelebV-HQ is a 2022 release and some sources are
-gone. Failures are logged with a reason and never retried, so a resumed run
-spends its budget further down the pool instead of re-requesting dead videos.
+**Server setup.** Two things a fresh server is likely to lack:
+
+- **A JavaScript runtime.** yt-dlp now needs one to solve YouTube's player
+  challenges; without it, it warns and some formats go missing. The fetcher uses
+  deno if installed, otherwise node; it prints a warning if neither exists.
+  Install deno in user space (no root needed):
+  `curl -fsSL https://deno.land/install.sh | sh`
+- **A residential-looking IP.** YouTube often blocks datacenter ranges with a
+  "confirm you're not a bot" page, so fetching can fail en masse on Bridges-2 or
+  DeltaAI even though it works from a laptop. The fetcher detects this, prints a
+  warning on the first hit, and reports a `bot=` count. Fix with
+  `--cookies cookies.txt` exported from a logged-in browser, or fetch from a
+  residential connection and copy the raw segments up. Run a `--limit 20` probe
+  on the server first; if `bot=` is most of it, the IP is blocked.
+
+**Resuming.** The driver skips clips already on disk, so a killed run can just be
+restarted. Failures are classified so a resume spends its budget well:
+
+- *permanent* - private, removed, terminated, geo-blocked: never retried, since
+  that attrition does not heal;
+- *transient* - timeout, ffmpeg crash, HTTP errors, empty output: retried, up to
+  3 attempts per clip, because some segments hang on every attempt and each hang
+  costs a full `--timeout`;
+- *bot check* - never counted against the clip, since it says nothing about the
+  clip, only about the IP.
+
+Every fetched file is checked for a decodable frame before it counts; yt-dlp can
+exit 0 and still leave a ~261-byte stub, which earlier versions logged as success.
+
+Steps 3 and 4 have no network dependency and are the parts worth running on a
+GPU node - see `slurm/filter_real.sbatch`.
 
 ## DFDC
 
