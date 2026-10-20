@@ -29,18 +29,29 @@ import wan22_graph                      # noqa: E402
 import wan22 as wan22_renderer          # noqa: E402
 import hunyuan15_graph                  # noqa: E402
 import hunyuan15 as hunyuan15_renderer  # noqa: E402
+import ltx25_graph                      # noqa: E402
+import ltx25 as ltx25_renderer          # noqa: E402
 
 # ComfyUI checkout location; override per cluster with FAIRDEEP_COMFY_ROOT or --comfy-root
 COMFY_ROOT = os.environ.get("FAIRDEEP_COMFY_ROOT",
                             os.path.join(os.path.dirname(ROOT), "ComfyUI"))
 RENDERERS = {"ltx23": ltx23_renderer.render, "wan22": wan22_renderer.render,
-             "hunyuan15": hunyuan15_renderer.render}
+             "hunyuan15": hunyuan15_renderer.render, "ltx25": ltx25_renderer.render}
 GRAPHS = {"ltx23": ltx23_graph.build, "wan22": wan22_graph.build,
-          "hunyuan15": hunyuan15_graph.build}
+          "hunyuan15": hunyuan15_graph.build, "ltx25": ltx25_graph.build}
 
 
-def model_provenance(model, mdir):
+def model_provenance(model, mdir, recipe=None):
     """Weights + hash recorded in every sidecar, so a clip names what made it."""
+    if model == "ltx25":
+        unet = ltx25_graph.DISTILLED if recipe == "distilled2" else ltx25_graph.DEV
+        return {"checkpoint": unet,
+                "checkpoint_hash": sha256_head(os.path.join(mdir, "diffusion_models", unet)),
+                "text_encoder": ltx25_graph.TE, "vae": ltx25_graph.VIDEO_VAE,
+                "recipe": recipe or "dev1",
+                "lora": [ltx25_graph.DISTILLED_LORA] if recipe == "dev2" else [],
+                "upscaler": ltx25_graph.UPSCALER if recipe in ("distilled2", "dev2") else None,
+                "prompt_enhancer": False, "precision": "bf16", "audio": True}
     if model == "wan22":
         return {"checkpoint": wan22_graph.UNET_HI, "checkpoint_lo": wan22_graph.UNET_LO,
                 "checkpoint_hash": sha256_head(os.path.join(
@@ -77,6 +88,15 @@ def sha256_head(path, nbytes=64 << 20):
         v = None
     _hash_cache[path] = v
     return v
+
+
+def comfy_commit(root):
+    try:
+        import subprocess
+        return subprocess.run(["git", "-C", root, "rev-parse", "--short", "HEAD"],
+                              capture_output=True, text=True, check=True).stdout.strip()
+    except Exception:
+        return None
 
 
 def http_json(url, payload=None, timeout=120):
@@ -122,9 +142,10 @@ def worker(host, q, args, log_path, stats, provenance):
             continue
 
         pos, neg = render(spec)
+        extra = {"recipe": args.recipe} if args.recipe else {}
         graph = build(pos, neg, spec["width"], spec["height"], spec["length"],
                       spec["seed"], steps=args.steps, cfg=args.cfg,
-                      fps=spec["fps"], prefix=f"fairdeep/{args.model}/{pid}")
+                      fps=spec["fps"], prefix=f"fairdeep/{args.model}/{pid}", **extra)
         t0 = time.time()
         rec = {"prompt_id": pid, "cell": spec["cell"], "host": host,
                "group": spec["counterfactual_group"], "seed": spec["seed"],
@@ -193,8 +214,11 @@ def worker(host, q, args, log_path, stats, provenance):
         sidecar = dict(spec)
         sidecar["prompt_rendered"] = {"positive": pos, "negative": neg}
         sidecar["generation"] = {
-            "steps": args.steps, "cfg": args.cfg, "sampler": "euler",
-            "scheduler": "simple", "wall_seconds": dt, "host": host,
+            "steps": args.steps, "cfg": args.cfg,
+            # multi-stage recipes mix samplers/schedules; the recipe name says which
+            **({"sampler": "euler", "scheduler": "simple"}
+               if args.recipe in (None, "dev1") else {}),
+            "wall_seconds": dt, "host": host,
             "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             **provenance,
         }
@@ -230,7 +254,11 @@ def main():
     ap.add_argument("--clip-timeout", type=int, default=3600)
     ap.add_argument("--log", default=None)
     ap.add_argument("--comfy-root", default=COMFY_ROOT,
-                    help="ComfyUI checkout whose output/ and models/ the servers use")
+                    help="ComfyUI checkout whose output/ the servers write to")
+    ap.add_argument("--models-dir", default=None,
+                    help="weights dir for provenance hashes (default <comfy-root>/models)")
+    ap.add_argument("--recipe", default=None,
+                    help="sampling recipe for generators that have several (ltx25)")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--verbose", action="store_true")
     args = ap.parse_args()
@@ -261,8 +289,9 @@ def main():
         return
 
     hosts = args.hosts.split(",")
-    mdir = os.path.join(args.comfy_root, "models")
-    provenance = {"comfyui_version": "0.30.0", **model_provenance(args.model, mdir)}
+    mdir = args.models_dir or os.path.join(args.comfy_root, "models")
+    provenance = {"comfyui_commit": comfy_commit(args.comfy_root),
+                  **model_provenance(args.model, mdir, args.recipe)}
 
     q = queue.Queue()
     for s in specs:

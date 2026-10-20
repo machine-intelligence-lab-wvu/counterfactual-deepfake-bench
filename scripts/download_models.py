@@ -3,7 +3,7 @@
 
 Weights are never committed to git (~200 GiB). Each cluster pulls them once:
   python scripts/download_models.py --comfy-root ../ComfyUI --models ltx23
-  python scripts/download_models.py --models all          # ltx23 + wan22 + hunyuan15
+  python scripts/download_models.py --models all          # every group below
 Existing files are skipped, so re-running is safe. Set HF_HUB_CACHE to a scratch
 filesystem if home quota is tight.
 """
@@ -13,6 +13,7 @@ from huggingface_hub import hf_hub_download
 WAN = "Comfy-Org/Wan_2.2_ComfyUI_Repackaged"
 WAN21 = "Comfy-Org/Wan_2.1_ComfyUI_repackaged"
 HY = "Comfy-Org/HunyuanVideo_1.5_repackaged"
+LTX25 = "Lightricks/LTX-2.5"
 
 # (repo, path in repo, ComfyUI models/ subfolder)
 MODELS = {
@@ -20,6 +21,17 @@ MODELS = {
         ("Lightricks/LTX-2.3", "ltx-2.3-22b-dev.safetensors", "checkpoints"),
         ("Lightricks/LTX-2.3", "ltx-2.3-spatial-upscaler-x2-1.1.safetensors", "latent_upscale_models"),
         ("Comfy-Org/ltx-2", "split_files/text_encoders/gemma_3_12B_it.safetensors", "text_encoders"),
+    ],
+    # Gated: accept the LTX-2.x Community License on the repo page first, and a
+    # fine-grained token needs "read access to public gated repos".
+    "ltx25": [
+        (LTX25, "diffusion_models/ltx-2.5-22b-dev-transformer-bf16.safetensors", "diffusion_models"),
+        (LTX25, "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors", "diffusion_models"),
+        (LTX25, "text_encoders/gemma4-12b-with-proj-ltx-2.5-bf16.safetensors", "text_encoders"),
+        (LTX25, "vae/ltx-2.5-video-vae-bf16.safetensors", "vae"),
+        (LTX25, "vae/ltx-2.5-audio-vae-bf16.safetensors", "vae"),
+        (LTX25, "latent_upscale_models/ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors", "latent_upscale_models"),
+        (LTX25, "loras/ltx-2.5-22b-distilled-lora-450-bf16.safetensors", "loras"),
     ],
     "wan22": [
         (WAN, "split_files/diffusion_models/wan2.2_t2v_high_noise_14B_fp16.safetensors", "diffusion_models"),

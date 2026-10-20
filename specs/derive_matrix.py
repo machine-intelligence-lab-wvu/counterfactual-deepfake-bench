@@ -15,6 +15,7 @@ import argparse, copy, json
 MODELS = {
     "wan22": {"fps": 16, "stride": 4, "width": 1280, "height": 704},
     "hunyuan15": {"fps": 24, "stride": 4, "width": 1280, "height": 704},
+    "ltx25": {"fps": 24, "stride": 8, "width": 1280, "height": 704},
 }
 
 
