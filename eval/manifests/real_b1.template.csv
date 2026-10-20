@@ -1,0 +1,2 @@
+clip_id,batch,label,source_id,path,perceived_race,perceived_gender,perceived_age_band,label_confidence,width,height,fps,duration_s,face_gate,primary,identity_cluster,generator
+celebvhq__EXAMPLE0001,real_b1,0,EXAMPLE0001,/path/to/CelebV-HQ/35666/EXAMPLE0001.mp4,black,f,18-29,0.93,512,512,25,7.4,1,1,,real
