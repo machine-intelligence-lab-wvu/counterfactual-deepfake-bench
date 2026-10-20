@@ -101,12 +101,21 @@ class DeCoF(Detector):
         with av.open(path) as c:
             s = c.streams.video[0]
             n_hdr = s.frames
+            # The 8 frames used come from the first ~30 of the window, so decode only up to the
+            # last one needed when the header gives the frame count (view outputs always do;
+            # the count is ffprobe-verified). Same frames, same tensor as decoding all 128.
+            need = (int(sample_indices(n_hdr)[-1]) + 1) if n_hdr >= 8 else 128
             frames = []
             for fr in c.decode(s):
                 frames.append(fr)
-                if len(frames) >= 128:
+                if len(frames) >= need:
                     break
-        idx = sample_indices(len(frames) if not n_hdr else min(n_hdr, len(frames)))
+        if n_hdr >= 8 and len(frames) == need:
+            idx = sample_indices(n_hdr)
+        else:                                  # no or wrong header: count frames ourselves
+            with av.open(path) as c:
+                frames = [fr for _, fr in zip(range(128), c.decode(c.streams.video[0]))]
+            idx = sample_indices(len(frames))
         out = torch.empty(8, 3, 224, 224)
         for k, i in enumerate(idx):
             img = frames[i].to_image()                     # RGB PIL
