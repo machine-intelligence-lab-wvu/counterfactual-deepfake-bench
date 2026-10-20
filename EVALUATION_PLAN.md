@@ -57,7 +57,7 @@ a spec file and a hash; scores are keyed by view hash. If a spec changes, it is 
 | View | Purpose | Spec |
 |---|---|---|
 | `native` | Full frame, as generated | 1280×704; native fps (LTX/Hunyuan 24, Wan 16; never resample fakes); first 5.0 s; H.264 CRF 23, preset medium, yuv420p, keyframe every 2 s; no audio; metadata stripped |
-| `face512` | Face-centred square, matches face-cropped real datasets | 512×512 crop centred on the tracked face box (scale-to-cover, downscale only); same fps, duration, and encoding rules as `native` |
+| `face512` | Face-centred square, matches face-cropped real datasets | Scale-to-cover (shorter side to 512, downscale only), then one fixed 512×512 window per clip centred on the median YuNet face centre over the clip, shifted inward at frame edges (never padded); same rule for reals; same fps, duration, and encoding rules as `native` |
 
 Rules:
 
@@ -82,8 +82,11 @@ now means no rescoring later.
 | AltFreezing | Face-forgery specialist | planned |
 
 DeCoF checkpoint: official AIGVDBench release (`AIGVDBench/AIGVDBench`, `Weights/DeCoF.tar`).
-Its training data overlaps our generator families (LTX, Hunyuan, Wan), so results are
-within-family, not unseen-generator. State this wherever DeCoF results appear.
+The released DeCoF checkpoint is most likely trained on AIGVDBench's Open-Sora split (per the
+paper's default training set and the checkpoint name); our generators are therefore likely
+unseen. Not confirmed by the authors. Our curated GenBuster subset includes LTX-Video and
+HunyuanVideo, which are separate from DeCoF's training data but not from AIGVDBench as a whole.
+State this wherever DeCoF results appear.
 
 All detectors: official checkpoint, zero-shot, official preprocessing applied on top of the view,
 one video-level score in [0, 1] (higher = more likely fake).
