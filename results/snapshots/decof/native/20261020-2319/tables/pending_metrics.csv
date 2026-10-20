@@ -1,0 +1,7 @@
+metric,status,reason
+"AUC, AP, EER, TPR@5%FPR (overall, per generator)",pending,needs reals (real_b1)
+Calibrated threshold (5% FPR on fps-matched reals),pending,needs reals (real_b1)
+"Real FPR by perceived race, gender, age band, race x gender",pending,needs reals (real_b1)
+Detection rate and flip rate at the calibrated threshold,pending,needs reals (real_b1)
+"Worst-subgroup AUC, subgroup AUC gap",pending,needs reals (real_b1)
+ROC curves per generator; real FPR by subgroup (figures),pending,needs reals (real_b1)

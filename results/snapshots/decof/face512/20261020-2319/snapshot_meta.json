@@ -1,0 +1,41 @@
+{
+  "detector": {
+    "detector": "decof",
+    "detector_version": "1+b75d2cbe",
+    "checkpoint_sha256": "4edb7b310cc729771e74b93f658c7fdc4f2e31fdfa617a88372a540d4f9e7b4a"
+  },
+  "threshold": 0.5,
+  "threshold_source": "official: argmax over 2 logits (DeCoF test.py) == softmax[:,1] >= 0.5",
+  "provisional": true,
+  "view": "face512",
+  "view_hash": "330ecb1e37e36e82",
+  "ffmpeg": "ffmpeg version 7.1.1 Copyright (c) 2000-2025 the FFmpeg developers",
+  "batches": [
+    "fake_b1"
+  ],
+  "inclusion_set": "primary",
+  "bootstrap": {
+    "B": 1000,
+    "seed": 20261020,
+    "unit": "counterfactual_group"
+  },
+  "n_scored": 4532,
+  "n_failed": 0,
+  "n_included_fakes": 3932,
+  "n_reals": 0,
+  "ignored_other_identity_rows": 0,
+  "factor_terms": [
+    "race",
+    "gender",
+    "age_band",
+    "setting",
+    "lighting",
+    "behavior",
+    "camera",
+    "duration_nominal",
+    "generator"
+  ],
+  "git_commit": "fd27ce0b293a-dirty",
+  "created": "2026-10-20T23:20:12Z",
+  "snapshot": "20261020-2319"
+}
