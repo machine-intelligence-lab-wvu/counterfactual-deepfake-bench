@@ -136,7 +136,9 @@ def write_report(snap, meta, T, figs, det, spec):
     L.append("OLS with every factor as a fixed effect, type-II ANOVA. `ss_share` is the factor's "
              "type-II sum of squares over the total sum of squares (type-II shares need not add to 1). "
              "Scene factors are constant within a counterfactual group, so their effects are "
-             "estimated from between-group differences only.\n")
+             "estimated from between-group differences only. The OLS F tests treat clips as "
+             "independent although clips are clustered in counterfactual groups, so their p values "
+             "are optimistic; use the group-bootstrap intervals above for inference.\n")
     L.append(_md(T["factor_anova"], [c for c in ["factor", "df", "sum_sq", "F", "p", "partial_eta2",
                                                  "ss_share", "reason"] if c in T["factor_anova"]], fmt="{:.4g}"))
     if "factor_lighting_x_race" in T:
@@ -145,6 +147,9 @@ def write_report(snap, meta, T, figs, det, spec):
     L.append("Mixed model `score ~ factors + (1 | counterfactual_group)` (REML) variance components "
              "(fixed effects: `tables/factor_mixed_fixed.csv`):\n")
     L.append(_md(T["factor_mixed_variance"], fmt="{:.4g}"))
+    L.append("A group variance at or near 0 is a boundary estimate: setting, lighting, behavior, "
+             "camera and duration are fixed per group and absorb most between-group variation, "
+             "leaving little for the random intercept. It does not mean scenes do not matter.\n")
 
     L.append(f"## 6.2 Provisional (threshold {thr}, provisional)\n")
     dr = T["provisional_detection_rate"]
