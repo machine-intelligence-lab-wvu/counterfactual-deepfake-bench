@@ -89,6 +89,8 @@ def main():
     ap.add_argument("--batch-size", type=int, default=32)
     ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2) - 2))
     ap.add_argument("--flush-every", type=int, default=1024, help="clips per part file")
+    ap.add_argument("--prefetch", type=int, default=2,
+                    help="batches queued per worker; memory ~ workers*prefetch*batch*4.8 MB x2 (pinned)")
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--only-ids", default=None)
     a = ap.parse_args()
@@ -119,7 +121,7 @@ def main():
             "git_commit": git_commit(), "gpu": gpu_name()}
     dl = DataLoader(Clips(items, det), batch_size=a.batch_size, num_workers=a.workers,
                     collate_fn=collate, pin_memory=True, persistent_workers=False,
-                    prefetch_factor=4 if a.workers else None)
+                    prefetch_factor=a.prefetch if a.workers else None)
     rows, seq, n, t0 = [], 0, 0, time.time()
     for ids, x, bad in dl:
         now = utc_now()
