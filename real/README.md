@@ -147,6 +147,13 @@ that is roughly 2-3 hours per 7,000 clips.
   residential connection and copy the raw segments up. Run a `--limit 20` probe
   on the server first; if `bot=` is most of it, the IP is blocked.
 
+- **An ffmpeg that can resolve hostnames.** The ffmpeg bundled by
+  `imageio-ffmpeg` is a static glibc build; on hosts whose name service goes
+  through SSSD/LDAP (e.g. AD-joined lab servers) it segfaults on the first
+  HTTPS lookup, so every fetch fails with `ffmpeg exited with code -11`. The
+  fetcher uses any `ffmpeg` on PATH first; a shared build such as BtbN's
+  `ffmpeg-n8.1-latest-linux64-gpl-shared` unpacked in `~/.local/opt` works.
+
 **Resuming.** The driver skips clips already on disk, so a killed run can just be
 restarted. Failures are classified so a resume spends its budget well:
 

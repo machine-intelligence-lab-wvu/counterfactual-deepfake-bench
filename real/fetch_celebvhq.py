@@ -61,6 +61,11 @@ FORMAT = ("bv*[height<=1080][ext=mp4]/bv*[height<=1080]/"
 
 
 def ffmpeg_exe():
+    """ffmpeg on PATH first. The bundled imageio build is static glibc, which
+    segfaults on hostname lookup on hosts with SSSD/LDAP name services, so it is
+    only the fallback."""
+    if shutil.which("ffmpeg"):
+        return shutil.which("ffmpeg")
     try:
         import imageio_ffmpeg
         return imageio_ffmpeg.get_ffmpeg_exe()
@@ -191,7 +196,7 @@ def main():
               "may miss formats. Install deno: curl -fsSL https://deno.land/install.sh | sh",
               flush=True)
     print(f"fetching up to {len(pool)} segments -> {out_root} "
-          f"({a.workers} workers, ffmpeg={'bundled' if ff else 'system'}, "
+          f"({a.workers} workers, ffmpeg={ff or 'yt-dlp default'}, "
           f"js={js or ('deno' if shutil.which('deno') else 'none')})")
 
     stats = {"ok": 0, "fail": 0, "skip": 0, "bot": 0}
