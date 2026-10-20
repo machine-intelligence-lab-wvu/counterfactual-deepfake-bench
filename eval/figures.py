@@ -223,8 +223,9 @@ def make_all(fakes, T, thr, fdir, det, view, spec):
                           f"Flip rate by generator, 95% CI ({PROV} {thr})",
                           "share of counterfactual groups with mixed decisions",
                           note=f"{PROV} = {thr}")
-    if T.get("factor_anova") is not None:
-        variance_share(T["factor_anova"], fdir, out)
+    fa = T.get("factor_anova")
+    if fa is not None and fa["partial_eta2"].notna().any():
+        variance_share(fa, fdir, out)
     if "out_path" in fakes.columns:
         example_strip(fakes, fdir, out)
     return out

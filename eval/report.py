@@ -52,7 +52,7 @@ def observations(T, thr):
         obs.append(f"Largest scene-factor gap (all generators): {r.attribute} {r.gap:.3f} "
                    f"[{r.ci_lo:.3f}, {r.ci_hi:.3f}] ({r.max_level} vs {r.min_level}).")
     an = T.get("factor_anova")
-    if an is not None and not an.empty:
+    if an is not None and an["partial_eta2"].notna().any():
         a = an[an["factor"] != "Residual"].sort_values("partial_eta2", ascending=False)
         top = ", ".join(f"{r.factor} {r.partial_eta2:.3f}" for r in a.head(3).itertuples())
         res = an[an["factor"] == "Residual"]["ss_share"]
@@ -132,7 +132,8 @@ def write_report(snap, meta, T, figs, det, spec):
              "type-II sum of squares over the total sum of squares (type-II shares need not add to 1). "
              "Scene factors are constant within a counterfactual group, so their effects are "
              "estimated from between-group differences only.\n")
-    L.append(_md(T["factor_anova"], ["factor", "df", "sum_sq", "F", "p", "partial_eta2", "ss_share"], fmt="{:.4g}"))
+    L.append(_md(T["factor_anova"], [c for c in ["factor", "df", "sum_sq", "F", "p", "partial_eta2",
+                                                 "ss_share", "reason"] if c in T["factor_anova"]], fmt="{:.4g}"))
     if "factor_lighting_x_race" in T:
         L.append("Lighting x race interaction (added to the same OLS):\n")
         L.append(_md(T["factor_lighting_x_race"], fmt="{:.4g}"))

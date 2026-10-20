@@ -257,7 +257,15 @@ def main():
     T["subgroup_gap_score"] = gap_table(fakes, gb, "score")
     T["cf_spread"], T["cf_spread_per_group"] = per_group_table(
         fakes, gb, cf_spread_per_group, "cf_spread")
-    an, inter, mixed, var, terms = factor_attribution(fakes)
+    try:
+        an, inter, mixed, var, terms = factor_attribution(fakes)
+    except Exception as e:      # e.g. too few clips for the number of factor levels
+        an = pd.DataFrame([{"factor": "not estimable", "df": np.nan, "sum_sq": np.nan,
+                            "F": np.nan, "p": np.nan, "partial_eta2": np.nan, "ss_share": np.nan,
+                            "reason": f"{type(e).__name__}: {e}"[:300]}])
+        inter, mixed, terms = None, None, []
+        var = pd.DataFrame([{"component": "not estimable", "variance": np.nan,
+                             "converged": False, "reason": an.loc[0, "reason"]}])
     T["factor_anova"], T["factor_mixed_fixed"], T["factor_mixed_variance"] = an, mixed, var
     if inter is not None:
         T["factor_lighting_x_race"] = inter
