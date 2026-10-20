@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# One queue wait: score every rendered, unscored clip of the listed views (optionally only the
+# ids in IDS_<view>), then aggregate each view that is complete (file-locked).
+#   sbatch --export=ALL,DETECTOR=decof,BATCH=fake_b1,VIEWS="native face512",IDS_face512=<file> eval/slurm/score_aggregate.sbatch
+# Sizing: scoring decodes ~30 frames per clip in 32 workers (7 GB peak at 16 workers);
+# ~7k clips at >= 10 clips/s is ~12 min; aggregate ~1 min per view. Limit ~1.5x.
+#SBATCH --job-name=fd-sa
+#SBATCH --account=bjej-dtai-gh
+#SBATCH --partition=ghx4
+#SBATCH --nodes=1
+#SBATCH --gpus-per-node=1
+#SBATCH --cpus-per-task=32
+#SBATCH --mem=40G
+#SBATCH --time=00:25:00
+#SBATCH --output=logs/%x_%j.out
+set -euo pipefail
+cd "${SLURM_SUBMIT_DIR}"
+source eval/env.sh
+for v in ${VIEWS}; do
+  var="IDS_${v}"; ids="${!var:-}"
+  python -m eval.run --detector "$DETECTOR" --view "$v" --batch "$BATCH" \
+    ${ids:+--only-ids "$ids"} --batch-size 32 --workers 30
+done
+python -m eval.finalize aggregate-if-complete --detector "$DETECTOR" --views ${VIEWS} --compare
