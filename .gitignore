@@ -12,3 +12,4 @@ results/scores/
 results/preprocess/**/*.parquet
 eval/**/__pycache__/
 .pytest_cache/
+results/locks/

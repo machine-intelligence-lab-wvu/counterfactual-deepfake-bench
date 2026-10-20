@@ -129,3 +129,35 @@ window shifts; 20/20 scored. face512 scores are higher than native for all 20 cl
 Timing (1 GH200, 72 CPUs): native render ~10 s per clip per worker, face512 ~28 s (YuNet on
 every frame); scoring 3.5 (native) / 6.4 (face512) clips/s with 16 workers and batch 20,
 including decode; aggregate ~40-50 s per view (1,000 bootstrap resamples).
+
+## 2026-10-20: Step 4, full run on fake_b1
+
+**Jobs.** Render: native array 3423870 (4 shards, 4-22 min each), face512 shards 0-1 in array
+3423871 (17 min each). The never-started remainder (3423871_2-3, 3423872-4; Slurm estimated a
+start of 2026-10-21 16:45) was replaced by single-wait chained jobs sized from the measured runs:
+3424790/3424791 (render + score face512 shards 2/3; 72 CPUs, 24 GB, 35 min limit; ran 21/19 min)
+and score + aggregate 3424789, which was OOM-killed after 45 s (DataLoader prefetch 4 x 30
+workers x batch 32 exceeded 40 GB; the 7 GB measured on the 20-clip run never filled the queue).
+Fixed with prefetch 2 (`--prefetch`) and resubmitted as 3425083 (32 CPUs, 40 GB, 25 min limit;
+ran 5 min, peak 41.3 GB, so the next scoring job should ask for 48 GB). The chained jobs started
+47-57 min after submission. Scoring ran at ~28 clips/s on one GH200 after the decode change in
+fd666a3 (stop at the last sampled frame; identical input tensors).
+
+**Coverage.** native: 4,536/4,536 rendered and scored. face512: 4,532 rendered and scored, 4 LTX
+clips excluded (no face found by YuNet in any frame), 4 windows shifted on the long axis (max
+142 px). 0 render failures, 0 scoring failures. primary: 3,936 (native) / 3,932 (face512).
+
+**Aggregation.** The first snapshots (20261020-2307/-2308) showed zero-width intervals for
+levels present in a single counterfactual group (HunyuanVideo has 9 groups, so many scene
+levels); resampling whole groups cannot express uncertainty there. Those levels now have no
+interval (hollow marker). Reports also state that a max-min gap is non-negative by construction,
+that OLS p values ignore clustering, and that the mixed model's group variance is 0 (scene fixed
+effects absorb between-group variation). The superseded snapshots were deleted before commit.
+
+**Headline (primary clips; DeCoF; provisional threshold 0.5):**
+
+| | native mean [95% CI] | native det. rate | face512 mean [95% CI] | face512 det. rate |
+|---|---|---|---|---|
+| LTX 2.3 | 0.375 [0.306, 0.450] | 34.6% | 0.544 [0.474, 0.617] | 55.7% |
+| Wan 2.2 | 0.063 [0.042, 0.087] | 3.1% | 0.159 [0.122, 0.198] | 11.2% |
+| HunyuanVideo 1.5 | 0.149 [0.096, 0.208] | 11.6% | 0.348 [0.269, 0.430] | 32.3% |
