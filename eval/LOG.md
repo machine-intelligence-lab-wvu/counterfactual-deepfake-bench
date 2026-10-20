@@ -97,3 +97,35 @@ Decisions:
   aqua `#1baf7a`) in fixed order; magnitude uses one sequential blue ramp. The palette
   validator needs node, which is not installed here; the three slots are the reference
   instance's pre-validated first three.
+
+## 2026-10-20: Step 3 sanity check
+
+**AIGVDBench test videos through our DeCoF adapter** (job 3423673, GH200, 32.6 s for 100 videos).
+20 test-split `Video_id`s (seed 20261020), the same ids from each of Real, Open-Sora, LTX,
+HunyuanVideo, Wan2.1 (T2V), read straight out of the release zips at `bf48acaa`; scored as
+released (all already H.264), no view applied. AUC = each generator's 20 vs the 20 reals;
+interval = 2,000 bootstrap resamples of reals and fakes.
+
+| Source | Mean score | Acc @ 0.5 | AUC (ours) | 95% interval | AUC (paper, Table 3) |
+|---|---|---|---|---|---|
+| Real | 0.063 | 1.00 | - | - | - |
+| Open-Sora | 0.984 | 1.00 | 100.00 | [100.0, 100.0] | 99.90 |
+| LTX | 0.333 | 0.30 | 78.75 | [64.0, 91.8] | 87.74 |
+| HunyuanVideo | 0.191 | 0.15 | 65.25 | [46.0, 81.8] | 79.82 |
+| Wan2.1 | 0.089 | 0.05 | 56.75 | [38.7, 73.8] | 72.90 |
+
+Every reported AUC lies inside our interval, and the ordering matches (Open-Sora > LTX >
+HunyuanVideo > Wan2.1). Our point estimates for the three non-training generators are 9-16
+points lower; with 20 vs 20 the intervals are 28-35 points wide, so this sample cannot tell a
+small protocol difference from noise. Open-Sora at 100 AUC with every clip >= 0.5 is in line
+with an Open-Sora-trained checkpoint. Paper values were mapped to generators by column order
+from the arXiv HTML (garbled headers); check against the PDF before quoting them.
+
+**20 of our clips end to end** (7 LTX, 7 Wan, 6 Hunyuan, all primary; ids in
+`eval/tests/ids20_e2e.txt`): 20/20 rendered and verified in both views, 0 excluded, 0 long-axis
+window shifts; 20/20 scored. face512 scores are higher than native for all 20 clips (Pearson r
+= 0.913 between views). Re-rendering 2 clips into a separate tree gave byte-identical files.
+
+Timing (1 GH200, 72 CPUs): native render ~10 s per clip per worker, face512 ~28 s (YuNet on
+every frame); scoring 3.5 (native) / 6.4 (face512) clips/s with 16 workers and batch 20,
+including decode; aggregate ~40-50 s per view (1,000 bootstrap resamples).
