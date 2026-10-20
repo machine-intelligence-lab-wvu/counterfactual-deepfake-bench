@@ -233,3 +233,35 @@ def test_metric_words():
                     if w in txt:
                         bad.append(f"{f}: {w}")
     assert not bad, bad
+
+
+def test_aggregate_folds_in_a_real_batch(tmp_path):
+    """A scored real batch (two fps renders per clip) joins without rescoring the fakes."""
+    env, res, det, view = _setup_two_batches(tmp_path)
+    sets = yaml.safe_load(open(env["FAIRDEEP_EVAL_SETS"]))
+    tpl = pd.read_csv(os.path.join(REPO, "eval", "manifests", "real_b1.template.csv"))
+    reals = pd.concat([tpl.assign(clip_id=f"celebvhq__r{i}", source_id=f"r{i}") for i in range(5)])
+    reals["batch"] = "real_bt"
+    p = tmp_path / "manifests" / "real_bt.csv"; reals.to_csv(p, index=False)
+    sets["batches"]["real_bt"] = {"kind": "real", "manifest": str(p), "data_root": "x"}
+    sets["active"].append("real_bt")
+    open(env["FAIRDEEP_EVAL_SETS"], "w").write(yaml.safe_dump(sets))
+    ids = [f"{c}__fps{f}" for c in reals["clip_id"] for f in (24, 16)]
+    d = res / "preprocess" / "face512" / "real_bt"; d.mkdir(parents=True)
+    pd.DataFrame({"clip_id": ids, "source_clip_id": [i.rsplit("__fps", 1)[0] for i in ids],
+                  "batch": "real_bt", "view": "face512", "view_hash": view["view_hash"],
+                  "status": "ok", "error": "", "out_path": "/nonexistent.mp4", "shifted_x": 0,
+                  "shift_x_px": 0, "shifted_y": 1, "timestamp": "2026-10-20T00:00:00Z"}
+                 ).to_parquet(d / "part-0.parquet")
+    d = res / "scores" / "decof" / "face512" / "real_bt"; d.mkdir(parents=True)
+    pd.DataFrame({"clip_id": ids, "batch": "real_bt", "score": 0.1, "status": "ok", "error": "",
+                  "detector": det.name, "detector_version": det.version,
+                  "checkpoint_sha256": det.checkpoint_sha256, "view": "face512",
+                  "view_hash": view["view_hash"], "git_commit": "t", "gpu": "t",
+                  "timestamp": "2026-10-20T00:00:01Z"}).to_parquet(d / "part-0.parquet")
+    r = _aggregate(env, "--no-figures")
+    assert r.returncode == 0, r.stderr[-2000:]
+    meta = json.loads((res / "snapshots" / "decof" / "face512" / "latest" / "snapshot_meta.json").read_text())
+    assert meta["n_reals"] == 10 and meta["n_included_fakes"] == 69
+    used = pd.read_csv(res / "snapshots" / "decof" / "face512" / "latest" / "manifest_used.csv")
+    assert (used[used["kind"] == "real"]["render_status"] == "ok").all()

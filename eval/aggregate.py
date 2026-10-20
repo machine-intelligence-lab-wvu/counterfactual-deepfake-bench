@@ -224,7 +224,11 @@ def main():
     render = pd.concat([latest_records(a.view, b, vh).assign(batch=b) for b in batches
                         if not latest_records(a.view, b, vh).empty], ignore_index=True)
     used = man[["clip_id", "batch", "kind", "generator", "primary"]].copy()
-    rs = render.set_index("source_clip_id")["status"] if not render.empty else pd.Series(dtype=str)
+    # reals have one render per fps; a source counts as rendered only if all renders are ok
+    rs = (render.groupby("source_clip_id")["status"].agg(
+        lambda st: "ok" if (st == "ok").all() else ("failed" if (st == "failed").any()
+                                                      else st.iloc[0]))
+          if not render.empty else pd.Series(dtype=str))
     used["render_status"] = used["clip_id"].map(rs).fillna("pending")
     sc = ok.groupby("source_clip_id")["score"].mean()
     used["scored"] = used["clip_id"].isin(sc.index).astype(int)
