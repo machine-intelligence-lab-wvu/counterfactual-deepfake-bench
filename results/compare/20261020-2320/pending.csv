@@ -1,0 +1,3 @@
+detector,view,pending
+decof,face512,"AUC/AP/EER/TPR@5%FPR, real FPR, calibrated threshold (needs reals)"
+decof,native,"AUC/AP/EER/TPR@5%FPR, real FPR, calibrated threshold (needs reals)"
