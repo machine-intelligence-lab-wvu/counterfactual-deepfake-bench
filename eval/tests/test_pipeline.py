@@ -265,3 +265,25 @@ def test_aggregate_folds_in_a_real_batch(tmp_path):
     assert meta["n_reals"] == 10 and meta["n_included_fakes"] == 69
     used = pd.read_csv(res / "snapshots" / "decof" / "face512" / "latest" / "manifest_used.csv")
     assert (used[used["kind"] == "real"]["render_status"] == "ok").all()
+
+
+def test_realfake_metrics():
+    """Weighted Mann-Whitney AUC equals sklearn's with unit weights; replicates are AUCs;
+    the calibrated threshold flags 5% of reals; ties count one half."""
+    from sklearn.metrics import roc_auc_score
+    from eval.realfake import auc_reps, calibrated_threshold, tpr_at_fpr
+    rng = np.random.default_rng(0)
+    f, r = rng.normal(1, 1, 300), rng.normal(0, 1, 400)
+    ones_f, ones_r = np.ones((3, 300)), np.ones((3, 400))
+    pt, reps = auc_reps(f, r, ones_f, ones_r)
+    ref = roc_auc_score(np.r_[np.ones(300), np.zeros(400)], np.r_[f, r])
+    assert abs(pt - ref) < 1e-6 and np.allclose(reps, ref, atol=1e-5)
+    # duplicating every fake and real (integer weights 2) leaves the AUC unchanged
+    _, reps2 = auc_reps(f, r, 2 * ones_f, 2 * ones_r)
+    assert np.allclose(reps2, ref, atol=1e-5)
+    t = calibrated_threshold(r)
+    assert abs((r >= t).mean() - 0.05) < 0.005
+    tpr, t2 = tpr_at_fpr(f, r)
+    assert t2 == t and 0 < tpr < 1
+    pt_tie, _ = auc_reps(np.array([0.5]), np.array([0.5]), np.ones((1, 1)), np.ones((1, 1)))
+    assert pt_tie == 0.5

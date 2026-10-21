@@ -232,3 +232,68 @@ def make_all(fakes, T, thr, fdir, det, view, spec):
     if "out_path" in fakes.columns:
         example_strip(fakes, fdir, out)
     return out
+
+
+# ------------------------------------------------------------------ section 6.3 (reals)
+def roc_curves(roc, auc_table, fdir, out, sfx):
+    plt = _style()
+    fig, ax = plt.subplots(figsize=(6.4, 4.8))
+    a = auc_table.set_index("generator")
+    for g, (fpr, tpr) in roc.items():
+        col, lab = (GEN_COLOR[g], GEN_LABEL[g]) if g in GEN_COLOR else (INK, "all fakes vs all reals")
+        ax.plot(fpr, tpr, color=col, linewidth=2 if g != "all" else 1.2,
+                linestyle="-" if g != "all" else "--",
+                label=f"{lab}  AUC {a.loc[g, 'auc']:.3f}")
+    ax.plot([0, 1], [0, 1], color=AXIS, linewidth=1)
+    ax.axvline(0.05, color=MUTED, linewidth=0.8, linestyle=":")
+    ax.set_xlim(0, 1); ax.set_ylim(0, 1)
+    ax.set_xlabel("false positive rate (reals flagged)")
+    ax.set_ylabel("true positive rate (fakes detected)")
+    ax.set_title(f"ROC per generator, fps-matched reals{sfx}", loc="left")
+    ax.legend(loc="lower right", fontsize=9)
+    _note(fig, "dotted line: 5% FPR")
+    _save(fig, fdir, "roc_per_generator", out)
+
+
+def real_fpr(table, thr, fdir, out, sfx):
+    plt = _style()
+    attrs = [x for x in ["race", "gender", "age_band", "race_gender"] if x in set(table["attribute"])]
+    heights = [table[table["attribute"] == x]["level"].nunique() for x in attrs]
+    fig, axes = plt.subplots(len(attrs), 1, figsize=(8, max(6, 0.3 * sum(heights) + 1.2 * len(attrs))),
+                             gridspec_kw={"height_ratios": heights}, squeeze=False, sharex=True)
+    for ax, at in zip(axes[:, 0], attrs):
+        t = table[table["attribute"] == at].sort_values("level")
+        y = np.arange(len(t))
+        ax.hlines(y, t["ci_lo"], t["ci_hi"], color=SEQ[4], linewidth=2)
+        ax.plot(t["fpr"], y, "o", color=SEQ[5], markersize=5, markeredgecolor="white")
+        ax.set_yticks(y, [f"{l}  (n={n})" for l, n in zip(t["level"], t["n_renders"])])
+        ax.invert_yaxis()
+        ax.axvline(0.05, color=MUTED, linewidth=0.8, linestyle=":")
+        ax.set_ylabel(at.replace("_", " "), color=INK)
+    axes[0, 0].set_title(f"Real FPR by perceived subgroup at the calibrated threshold "
+                         f"{thr:.3f}, 95% CI{sfx}", loc="left")
+    axes[-1, 0].set_xlabel("share of real renders flagged as generated")
+    _note(fig, "dotted line: 5% (the calibration target over all reals); perceived labels from FairFace")
+    _save(fig, fdir, "real_fpr_by_subgroup", out)
+
+
+def subgroup_auc(table, fdir, out, sfx):
+    t = table[table["attribute"].isin(["race", "gender", "age_band"])].rename(
+        columns={"attribute": "factor", "auc": "estimate"})
+    t = t[t["estimate"].notna()]
+    if t.empty:
+        return
+    pointrange(t, ["race", "gender", "age_band"], fdir, out, "subgroup_auc",
+               f"AUC by subgroup (fakes vs same-subgroup reals), 95% CI{sfx}", "AUC",
+               note="levels with < 30 real renders omitted")
+
+
+def make_realfake(T, roc, thr, fdir, det, view):
+    out = []
+    sfx = f"  [{det.name}, {view}]"
+    if roc:
+        roc_curves(roc, T["rf_auc"], fdir, out, sfx)
+    if not T["rf_real_fpr"].empty:
+        real_fpr(T["rf_real_fpr"], thr, fdir, out, sfx)
+    subgroup_auc(T["rf_subgroup_auc"], fdir, out, sfx)
+    return out

@@ -10,7 +10,7 @@ import pandas as pd
 from eval.common import REPO, RESULTS, eval_sets, utc_now
 from eval.detectors import registry
 
-VIEWS = ["native", "face512"]
+VIEWS = ["native", "face512", "native_2s", "face512_2s"]
 
 
 def _counts(batch, info, det_name, view):

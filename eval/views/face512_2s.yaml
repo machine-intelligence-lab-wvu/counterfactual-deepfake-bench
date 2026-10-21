@@ -1,0 +1,61 @@
+# Frozen view spec. Do not edit: change = new view name. Hash: 92b6f25d9ce9e5f4
+name: face512_2s
+version: 1
+purpose: Face-centred 512x512 square, comparable to face-cropped real datasets; 2.0
+  s segment, so real clips of 2-5 s are usable.
+duration_s: 2.0
+trim:
+  fake: start
+  real: middle
+fps:
+  fake: native
+  real:
+  - 24
+  - 16
+geometry:
+  mode: face_window
+  size: 512
+  scale: cover_shorter_side
+  scale_rounding: nearest
+  scale_flags: lanczos
+  source_rule: shorter_side_at_least_size
+  window: fixed_median_face_centre
+  edge_rule: shift_inward
+  face_detector:
+    name: YuNet
+    file: face_detection_yunet_2023mar.onnx
+    repo: opencv/face_detection_yunet@3cc26e7f1014a5ee5d74a42acee58bafc9d0a310
+    sha256: 8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4
+    score_threshold: 0.6
+    nms_threshold: 0.3
+    min_face_px: 12
+    subject: largest_face_per_frame
+    frames: all_in_segment
+    no_face_rule: exclude
+encode:
+  codec: libx264
+  crf: 23
+  preset: medium
+  pix_fmt: yuv420p
+  gop_seconds: 2
+  sc_threshold: 0
+  threads: 2
+  audio: none
+  strip_metadata: true
+  bitexact: true
+verify:
+  tool: ffprobe
+  checks:
+  - codec_name
+  - pix_fmt
+  - width
+  - height
+  - avg_frame_rate
+  - nb_frames
+  - no_audio
+  - keyframe_interval
+toolchain:
+  ffmpeg_package: conda-forge ffmpeg 7.1.1 gpl_h0a60610_911
+  x264_package: conda-forge x264 1!164.3095 pl5321hac29afa_3
+  ffmpeg_version: ffmpeg version 7.1.1 Copyright (c) 2000-2025 the FFmpeg developers
+view_hash: 92b6f25d9ce9e5f4

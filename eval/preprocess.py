@@ -207,6 +207,11 @@ def process(task):
             size = (S, S)
         if out_fps is not None:
             vf.insert(0, f"fps={out_fps}")
+        if start > 0:
+            # an input seek that lands between source frames leaves the first frame at a
+            # small positive pts; fps= then shifts every output frame by one and the
+            # keyframe/frame-count checks fail. Re-zero after the seek. Fakes start at 0.
+            vf.insert(0, "setpts=PTS-STARTPTS")
         vf.append("setsar=1")
         enc = spec["encode"]
         gop = round(enc["gop_seconds"] * float(fps))

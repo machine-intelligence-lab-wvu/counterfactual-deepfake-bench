@@ -15,6 +15,7 @@ import argparse
 import json
 import os
 import re
+import socket
 import warnings
 
 import numpy as np
@@ -249,7 +250,7 @@ def main():
     df_all[["clip_id", "batch", "generator", "cell", "counterfactual_group", "primary",
             "score", "timestamp"]].sort_values("clip_id").to_csv(
         os.path.join(snap, "scores.csv"), index=False, float_format="%.6f")
-    if a.view == "face512" and not render.empty:
+    if a.view.startswith("face512") and not render.empty:
         r_ok = render[render["status"] == "ok"]
         T["window_shift"] = pd.DataFrame([{
             "rendered": len(r_ok), "shifted_long_axis": int(r_ok["shifted_x"].sum()),
@@ -291,8 +292,24 @@ def main():
                       "provisional_detection_rate": detection_rate(d["score"], thr)})
     T["sensitivity_inclusion_set"] = pd.DataFrame(s_all)
     # 6.3
-    T["pending_metrics"] = pd.DataFrame([{"metric": m, "status": "pending", "reason": r}
-                                         for m, r in PENDING_63])
+    reals_p = reals[reals["primary"] == 1].copy() if a.set == "primary" else reals
+    rf, roc = None, {}
+    if len(reals_p):
+        from eval.realfake import RealFake
+        rf = RealFake(fakes, reals_p, gb, B=a.B)
+        T["rf_threshold"] = rf.threshold_table()
+        T["rf_auc"] = rf.auc_table()
+        T["rf_real_fpr"], T["rf_real_fpr_gap"] = rf.real_fpr_table()
+        T["rf_subgroup_auc"], T["rf_worst_subgroup_auc"] = rf.subgroup_auc_tables()
+        fakes["detected_cal"] = (fakes["score"] >= rf.thr).astype(float)
+        T["calibrated_detection_rate"] = breakdown_table(fakes, gb, "detected_cal")
+        T["calibrated_detection_gap"] = gap_table(fakes, gb, "detected_cal")
+        T["calibrated_flip_rate"], T["calibrated_flip_per_group"] = per_group_table(
+            fakes, gb, lambda d: flip_per_group(d, rf.thr), "flip_rate")
+        roc = rf.roc_points()
+    else:
+        T["pending_metrics"] = pd.DataFrame([{"metric": m, "status": "pending", "reason": r}
+                                             for m, r in PENDING_63])
     for k, v in T.items():
         if v is not None and not v.empty:
             v.to_csv(os.path.join(tdir, f"{k}.csv"), index=False, float_format="%.6g")
@@ -303,15 +320,22 @@ def main():
     if not a.no_figures:
         from eval import figures
         figs = figures.make_all(fakes, T, thr, fdir, det, a.view, spec)
+        if rf is not None:
+            figs += figures.make_realfake(T, roc, rf.thr, fdir, det, a.view)
 
     meta = {"detector": det.identity(), "threshold": thr, "threshold_source":
             det.threshold_source if a.threshold is None else "override", "provisional": True,
+            "calibrated_threshold": rf.thr if rf is not None else None,
+            "calibration": ("score at which 5% of primary real renders (24 and 16 fps pooled) "
+                            "are flagged" if rf is not None else "pending (no reals)"),
+            "n_included_reals": int(len(reals_p)),
             "view": a.view, "view_hash": vh, "ffmpeg": spec["toolchain"]["ffmpeg_version"],
             "batches": batches, "inclusion_set": a.set, "bootstrap": {"B": a.B, "seed": SEED,
             "unit": "counterfactual_group"}, "n_scored": int(len(ok)), "n_failed": int(len(failed)),
             "n_included_fakes": int(len(fakes)), "n_reals": int(len(reals)),
             "ignored_other_identity_rows": n_other, "factor_terms": terms,
-            "git_commit": git_commit(), "created": utc_now(), "snapshot": os.path.basename(snap)}
+            "git_commit": git_commit(), "created": utc_now(), "snapshot": os.path.basename(snap),
+            "host": socket.gethostname()}
     with open(os.path.join(snap, "snapshot_meta.json"), "w") as fh:
         json.dump(meta, fh, indent=2, default=str)
     from eval.report import write_report
@@ -327,7 +351,8 @@ def main():
         write_coverage()
     except Exception as e:
         print(f"coverage not updated: {e}")
-    print(f"snapshot {snap}\n  fakes included {len(fakes)} / scored {len(ok)}; "
+    print(f"snapshot {snap}\n  fakes included {len(fakes)}, real renders included {len(reals_p)}"
+          f" / scored {len(ok)}; "
           f"{len(T)} tables, {len(figs)} figures")
 
 

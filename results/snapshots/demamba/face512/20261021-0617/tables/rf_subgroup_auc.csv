@@ -1,0 +1,109 @@
+generator,attribute,level,n_fake,n_real,n_real_identities,auc,ci_lo,ci_hi,note
+ltx23,race,black,272,39,37,0.944759,0.897534,0.980741,
+ltx23,race,east_asian,270,47,43,0.850315,0.762534,0.928086,
+ltx23,race,indian,277,17,17,,,,not estimable: 17 real renders (< 30)
+ltx23,race,latino,262,37,35,0.933258,0.881938,0.974592,
+ltx23,race,mena,266,44,43,0.928486,0.86634,0.974053,
+ltx23,race,southeast_asian,271,25,24,,,,not estimable: 25 real renders (< 30)
+ltx23,race,white,256,416,373,0.911893,0.872328,0.946305,
+ltx23,gender,f,931,208,189,0.844114,0.777996,0.904333,
+ltx23,gender,m,943,417,374,0.883748,0.837493,0.926469,
+ltx23,age_band,18-29,468,209,196,0.83045,0.768203,0.886088,
+ltx23,age_band,30-44,470,227,211,0.874121,0.816938,0.92349,
+ltx23,age_band,45-59,478,101,93,0.877739,0.820708,0.927247,
+ltx23,age_band,60+,458,88,82,0.897504,0.84533,0.943104,
+ltx23,race_gender,black__f,137,7,7,,,,not estimable: 7 real renders (< 30)
+ltx23,race_gender,black__m,135,32,31,0.956481,0.916732,0.986329,
+ltx23,race_gender,east_asian__f,132,23,21,,,,not estimable: 23 real renders (< 30)
+ltx23,race_gender,east_asian__m,138,24,22,,,,not estimable: 24 real renders (< 30)
+ltx23,race_gender,indian__f,139,6,6,,,,not estimable: 6 real renders (< 30)
+ltx23,race_gender,indian__m,138,11,11,,,,not estimable: 11 real renders (< 30)
+ltx23,race_gender,latino__f,129,6,6,,,,not estimable: 6 real renders (< 30)
+ltx23,race_gender,latino__m,133,31,29,0.936939,0.877809,0.980512,
+ltx23,race_gender,mena__f,132,16,16,,,,not estimable: 16 real renders (< 30)
+ltx23,race_gender,mena__m,134,28,27,,,,not estimable: 28 real renders (< 30)
+ltx23,race_gender,southeast_asian__f,133,8,7,,,,not estimable: 8 real renders (< 30)
+ltx23,race_gender,southeast_asian__m,138,17,17,,,,not estimable: 17 real renders (< 30)
+ltx23,race_gender,white__f,129,142,128,0.875723,0.811038,0.932138,
+ltx23,race_gender,white__m,127,274,247,0.940255,0.908115,0.965924,
+wan22,race,black,217,39,37,0.99681,0.99148,0.999894,
+wan22,race,east_asian,226,47,43,0.971851,0.9411,0.996114,
+wan22,race,indian,230,17,17,,,,not estimable: 17 real renders (< 30)
+wan22,race,latino,219,37,35,0.998025,0.993947,1,
+wan22,race,mena,225,44,43,0.985152,0.953288,1,
+wan22,race,southeast_asian,229,25,24,,,,not estimable: 25 real renders (< 30)
+wan22,race,white,220,416,373,0.995646,0.991357,0.998905,
+wan22,gender,f,785,208,189,0.97699,0.963403,0.987741,
+wan22,gender,m,781,417,374,0.98432,0.975749,0.99112,
+wan22,age_band,18-29,388,209,196,0.959904,0.937411,0.977483,
+wan22,age_band,30-44,377,227,211,0.979405,0.964508,0.990089,
+wan22,age_band,45-59,398,101,93,0.985323,0.972092,0.99531,
+wan22,age_band,60+,403,88,82,0.997589,0.99317,0.999892,
+wan22,race_gender,black__f,110,7,7,,,,not estimable: 7 real renders (< 30)
+wan22,race_gender,black__m,107,32,31,0.999708,0.998335,1,
+wan22,race_gender,east_asian__f,117,23,21,,,,not estimable: 23 real renders (< 30)
+wan22,race_gender,east_asian__m,109,24,22,,,,not estimable: 24 real renders (< 30)
+wan22,race_gender,indian__f,116,6,6,,,,not estimable: 6 real renders (< 30)
+wan22,race_gender,indian__m,114,11,11,,,,not estimable: 11 real renders (< 30)
+wan22,race_gender,latino__f,109,6,6,,,,not estimable: 6 real renders (< 30)
+wan22,race_gender,latino__m,110,31,29,0.999413,0.997172,1,
+wan22,race_gender,mena__f,111,16,16,,,,not estimable: 16 real renders (< 30)
+wan22,race_gender,mena__m,114,28,27,,,,not estimable: 28 real renders (< 30)
+wan22,race_gender,southeast_asian__f,115,8,7,,,,not estimable: 8 real renders (< 30)
+wan22,race_gender,southeast_asian__m,114,17,17,,,,not estimable: 17 real renders (< 30)
+wan22,race_gender,white__f,107,142,128,0.994735,0.987371,0.999667,
+wan22,race_gender,white__m,113,274,247,0.996383,0.991513,0.999655,
+hunyuan15,race,black,141,39,37,0.989998,0.973112,0.999539,
+hunyuan15,race,east_asian,141,47,43,0.947337,0.902554,0.9839,
+hunyuan15,race,indian,142,17,17,,,,not estimable: 17 real renders (< 30)
+hunyuan15,race,latino,142,37,35,0.986486,0.967696,0.998216,
+hunyuan15,race,mena,139,44,43,0.979235,0.938145,0.999607,
+hunyuan15,race,southeast_asian,143,25,24,,,,not estimable: 25 real renders (< 30)
+hunyuan15,race,white,141,416,373,0.985824,0.97675,0.993727,
+hunyuan15,gender,f,495,208,189,0.948902,0.91823,0.973437,
+hunyuan15,gender,m,494,417,374,0.971349,0.957006,0.982967,
+hunyuan15,age_band,18-29,242,209,196,0.924414,0.886619,0.955185,
+hunyuan15,age_band,30-44,248,227,211,0.955201,0.928076,0.97794,
+hunyuan15,age_band,45-59,250,101,93,0.98398,0.966958,0.995278,
+hunyuan15,age_band,60+,249,88,82,0.984027,0.966138,0.995042,
+hunyuan15,race_gender,black__f,72,7,7,,,,not estimable: 7 real renders (< 30)
+hunyuan15,race_gender,black__m,69,32,31,0.998188,0.992207,1,
+hunyuan15,race_gender,east_asian__f,70,23,21,,,,not estimable: 23 real renders (< 30)
+hunyuan15,race_gender,east_asian__m,71,24,22,,,,not estimable: 24 real renders (< 30)
+hunyuan15,race_gender,indian__f,72,6,6,,,,not estimable: 6 real renders (< 30)
+hunyuan15,race_gender,indian__m,70,11,11,,,,not estimable: 11 real renders (< 30)
+hunyuan15,race_gender,latino__f,70,6,6,,,,not estimable: 6 real renders (< 30)
+hunyuan15,race_gender,latino__m,72,31,29,0.992384,0.977837,1,
+hunyuan15,race_gender,mena__f,70,16,16,,,,not estimable: 16 real renders (< 30)
+hunyuan15,race_gender,mena__m,69,28,27,,,,not estimable: 28 real renders (< 30)
+hunyuan15,race_gender,southeast_asian__f,71,8,7,,,,not estimable: 8 real renders (< 30)
+hunyuan15,race_gender,southeast_asian__m,72,17,17,,,,not estimable: 17 real renders (< 30)
+hunyuan15,race_gender,white__f,70,142,128,0.972837,0.948964,0.98988,
+hunyuan15,race_gender,white__m,71,274,247,0.995913,0.990778,0.999218,
+all,race,black,630,78,37,0.971184,0.946981,0.989822,
+all,race,east_asian,637,94,43,0.91213,0.857361,0.959437,
+all,race,indian,649,34,17,0.929303,0.853307,0.979678,
+all,race,latino,623,74,35,0.967051,0.941433,0.987676,
+all,race,mena,630,88,43,0.958234,0.914857,0.987901,
+all,race,southeast_asian,643,50,24,0.904432,0.834626,0.958279,
+all,race,white,617,832,373,0.956924,0.938443,0.973059,
+all,gender,f,2211,416,189,0.911702,0.877579,0.943606,
+all,gender,m,2218,834,374,0.936673,0.914102,0.95801,
+all,age_band,18-29,1098,418,196,0.893856,0.856546,0.926694,
+all,age_band,30-44,1095,454,211,0.926154,0.895638,0.954124,
+all,age_band,45-59,1126,202,93,0.937418,0.908862,0.963542,
+all,age_band,60+,1110,176,82,0.951443,0.925904,0.973025,
+all,race_gender,black__f,319,14,7,,,,not estimable: 14 real renders (< 30)
+all,race_gender,black__m,311,64,31,0.9791,0.959776,0.993399,
+all,race_gender,east_asian__f,319,46,21,0.879685,0.799138,0.957787,
+all,race_gender,east_asian__m,318,48,22,0.951192,0.90805,0.983078,
+all,race_gender,indian__f,327,12,6,,,,not estimable: 12 real renders (< 30)
+all,race_gender,indian__m,322,22,11,,,,not estimable: 22 real renders (< 30)
+all,race_gender,latino__f,308,12,6,,,,not estimable: 12 real renders (< 30)
+all,race_gender,latino__m,315,62,29,0.970353,0.941796,0.990773,
+all,race_gender,mena__f,313,32,16,0.965156,0.928992,0.991742,
+all,race_gender,mena__m,317,56,27,0.953921,0.883545,0.993806,
+all,race_gender,southeast_asian__f,319,16,7,,,,not estimable: 16 real renders (< 30)
+all,race_gender,southeast_asian__m,324,34,17,0.942266,0.899916,0.977972,
+all,race_gender,white__f,306,284,128,0.936769,0.905509,0.964087,
+all,race_gender,white__m,311,548,247,0.972211,0.957568,0.983889,

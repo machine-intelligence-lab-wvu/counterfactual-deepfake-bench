@@ -1,0 +1,46 @@
+# Frozen view spec. Do not edit: change = new view name. Hash: f40f08a345fde671
+name: native_2s
+version: 1
+purpose: Full frame as generated; fake-only analyses, and reals if they are 1280x704;
+  2.0 s segment, so real clips of 2-5 s are usable.
+duration_s: 2.0
+trim:
+  fake: start
+  real: middle
+fps:
+  fake: native
+  real:
+  - 24
+  - 16
+geometry:
+  mode: passthrough
+  width: 1280
+  height: 704
+  source_rule: equal
+encode:
+  codec: libx264
+  crf: 23
+  preset: medium
+  pix_fmt: yuv420p
+  gop_seconds: 2
+  sc_threshold: 0
+  threads: 2
+  audio: none
+  strip_metadata: true
+  bitexact: true
+verify:
+  tool: ffprobe
+  checks:
+  - codec_name
+  - pix_fmt
+  - width
+  - height
+  - avg_frame_rate
+  - nb_frames
+  - no_audio
+  - keyframe_interval
+toolchain:
+  ffmpeg_package: conda-forge ffmpeg 7.1.1 gpl_h0a60610_911
+  x264_package: conda-forge x264 1!164.3095 pl5321hac29afa_3
+  ffmpeg_version: ffmpeg version 7.1.1 Copyright (c) 2000-2025 the FFmpeg developers
+view_hash: f40f08a345fde671

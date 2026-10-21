@@ -161,3 +161,36 @@ effects absorb between-group variation). The superseded snapshots were deleted b
 | LTX 2.3 | 0.375 [0.306, 0.450] | 34.6% | 0.544 [0.474, 0.617] | 55.7% |
 | Wan 2.2 | 0.063 [0.042, 0.087] | 3.1% | 0.159 [0.122, 0.198] | 11.2% |
 | HunyuanVideo 1.5 | 0.149 [0.096, 0.208] | 11.6% | 0.348 [0.269, 0.430] | 32.3% |
+
+## 2026-10-21: WVU lab server environment; DeMamba adapter
+
+**Lab server (x86_64, RTX PRO 5000 Blackwell).** `eval_env/env_lab.sh` mirrors `eval/env.sh`: torch
+2.10.0 + torchvision 0.25.0 (cu128 wheels; cu129 on DeltaAI), conda-forge ffmpeg 7.1.1 build 911
+with x264 1!164.3095 (x86 builds of the pinned packages; `ffmpeg -version` matches, so both view
+specs pass `--check`), the same Python pins, plus `setuptools<81` (DeCoF's vendored CLIP imports
+`pkg_resources`). DeCoF.tar, ViT-L-14.pt and YuNet match their pinned SHA256.
+
+**Cross-platform check (14 LTX/Wan clips of `ids20_e2e.txt`).** native renders are identical to
+DeltaAI's render records; face512 windows move by at most 1 px (YuNet floats, x86 vs ARM). DeCoF
+scores still differ: native max |d| 0.104 (mean 0.035), face512 max |d| 0.161 (mean 0.051), with 2/14
+face512 decisions flipped at 0.5. Inputs are identical for native, so the difference is the
+platform (CPU decode/resize, GPU, CUDA build), not the view. **Scores from the two platforms must
+not be mixed** - `aggregate` checks checkpoint and view hashes, not platform. All of fake_b1 is
+therefore re-scored on the lab server, so that real_b1 (scored here) is compared against fakes
+scored on the same machine.
+
+**DeMamba adapter** (`eval/detectors/demamba/`). Weights are ours:
+`Ahsanz/DeMamba-GenVideo100K@27468b8` `best_acc.pth` (SHA256 f89897c7...56ce17, epoch 15), trained
+on GenVideo-100K with a single-GPU adaptation of github.com/chenhaoxing/DeMamba. The authors have
+not released weights (their issue #16). Model code is our standalone evaluator's inference copy of
+DeMamba.py / mamba_base.py / pscan.py; the checkpoint loads strictly (transformers 5.20.2).
+Preprocessing matches the authors' val pipeline: 2 fps for clips >= 4 s (every round(fps/2)-th
+frame), centre 8-frame window (authors: random), 10% centre trim of the long side, cv2 INTER_LINEAR
+to 224x224, ImageNet mean/std. Open points settled:
+- channel order RGB: our training dataloader applies `cv2.cvtColor(BGR2RGB)` (confirmed by the
+  person who trained it; the checkpoint README's "BGR" line refers to OpenCV's decode);
+- fp32, TF32 off (training used bf16 autocast; bf16 moves scores by <= 0.04 on 120 clips);
+- frames are sampled from the decoded view, not extracted to JPEG first as the authors do.
+`prepare()` gives tensors identical to the standalone evaluator on 53 view clips. Not yet
+sanity-checked against GenVideo validation numbers (accuracy 88.74%, AUC 96.67%): no copy of
+GenVideo-Val on this server.

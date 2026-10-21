@@ -166,8 +166,41 @@ def write_report(snap, meta, T, figs, det, spec):
     L.append("### Sensitivity: inclusion set\n")
     L.append(_md(T["sensitivity_inclusion_set"]))
 
-    L.append("## 6.3 Pending until reals exist\n")
-    L.append(_md(T["pending_metrics"]))
+    if "rf_auc" in T:
+        thr_c = meta["calibrated_threshold"]
+        L.append(f"## 6.3 Real vs generated (calibrated threshold {thr_c:.4f})\n")
+        L.append("The threshold is the score at which 5% of primary real renders (24 and 16 fps "
+                 "pooled) are flagged; one per detector and view, never per subgroup. Each "
+                 "generator is compared with reals rendered at its own fps. Intervals: fakes "
+                 "resample counterfactual groups, reals resample identity clusters (source "
+                 "video). Real labels are perceived (FairFace), not self-reported.\n")
+        L.append("### Calibration\n")
+        L.append(_md(T["rf_threshold"], fmt="{:.4f}"))
+        L.append("### AUC, AP, EER, TPR at 5% FPR\n")
+        L.append(_md(T["rf_auc"], ["generator", "real_fps", "n_fake", "n_real", "auc", "auc_ci_lo",
+                                   "auc_ci_hi", "ap", "eer", "tpr_at_5fpr",
+                                   "detection_rate_global_thr", "det_ci_lo", "det_ci_hi"]))
+        L.append("### Real FPR by perceived subgroup\n")
+        L.append(_md(T["rf_real_fpr"], ["attribute", "level", "n_renders", "n_identities", "fpr",
+                                        "ci_lo", "ci_hi"]))
+        L.append("### Real FPR gap (max - min across levels; non-negative by construction)\n")
+        L.append(_md(T["rf_real_fpr_gap"]))
+        L.append("### Worst-subgroup AUC and AUC gap\n")
+        L.append(_md(T["rf_worst_subgroup_auc"]))
+        L.append("### Detection rate at the calibrated threshold\n")
+        dc = T["calibrated_detection_rate"]
+        L.append(_md(dc[dc["factor"] == "overall"], ["generator", "n", "estimate", "ci_lo", "ci_hi"]))
+        for f in ["race", "gender", "age_band"]:
+            L.append(f"#### by {f.replace('_', ' ')}\n")
+            L.append(_md(dc[dc["factor"] == f], ["generator", "level", "n", "estimate", "ci_lo", "ci_hi"]))
+        L.append("### Detection-rate gap at the calibrated threshold\n")
+        L.append(_md(T["calibrated_detection_gap"], ["generator", "attribute", "gap", "ci_lo",
+                                                     "ci_hi", "max_level", "min_level"]))
+        L.append("### Flip rate at the calibrated threshold\n")
+        L.append(_md(T["calibrated_flip_rate"]))
+    else:
+        L.append("## 6.3 Pending until reals exist\n")
+        L.append(_md(T["pending_metrics"]))
 
     L.append("## Figures\n")
     caps = {
@@ -181,6 +214,9 @@ def write_report(snap, meta, T, figs, det, spec):
         "flip_rate_by_generator_provisional": "Flip rate by generator (provisional threshold).",
         "factor_attribution_variance_share": "Partial eta squared by factor.",
         "example_strip": "Highest- and lowest-scoring included clips.",
+        "roc_per_generator": "ROC per generator against fps-matched reals.",
+        "real_fpr_by_subgroup": "Real FPR by perceived subgroup at the calibrated threshold.",
+        "subgroup_auc": "AUC by subgroup: each subgroup's fakes vs same-subgroup reals.",
     }
     for f in figs:
         L.append(f"**{caps.get(f, f)}** (`figures/{f}.pdf`)\n\n![{f}](figures/{f}.png)\n")
