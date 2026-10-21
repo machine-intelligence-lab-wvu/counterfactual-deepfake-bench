@@ -194,3 +194,26 @@ to 224x224, ImageNet mean/std. Open points settled:
 `prepare()` gives tensors identical to the standalone evaluator on 53 view clips. Not yet
 sanity-checked against GenVideo validation numbers (accuracy 88.74%, AUC 96.67%): no copy of
 GenVideo-Val on this server.
+
+## 2026-10-21: real_all (unfiltered CelebV-HQ) in four views
+
+**Batch.** `real_all` = all 2,221 fetched CelebV-HQ segments, no filtering (`filter_accepted` /
+`filter_reason` kept per clip; 1,785 accepted). FairFace labels for 2,084 (436 rejected clips
+labelled from the raw segment, `real/label_raw.py` on real-half). `real_b1` is inactive.
+
+**Views.** New `native_up` / `native_up_2s` (mode `cover_window`): scale up or down to cover
+1280x704 at the median face centre (frame centre if no face); fakes pass through. Real renders
+ok / total: native_up_2s 4432/4442, native_up 1855/1892, face512_2s 4412/4442 (30 excluded: no
+face), face512 1847/1892. Failures are `verify: frames N-1 != N` on 16 fps renders (open).
+
+**AUC, all generators, all reals / filter-accepted reals** (`results/compare/real_all/`):
+
+| view | DeCoF | DeMamba |
+|---|---|---|
+| native_up_2s | 0.565 / 0.550 | 0.930 / 0.926 |
+| native_up | 0.585 / 0.571 | 0.938 / 0.935 |
+| face512_2s | 0.679 / 0.664 | 0.937 / 0.931 |
+| face512 | 0.699 / 0.684 | 0.936 / 0.931 |
+
+Filtering moves no generator's AUC by more than 0.022. DeCoF on Wan 2.2 is below chance in
+full frame (0.37-0.39) and at chance on face crops (0.51-0.53).

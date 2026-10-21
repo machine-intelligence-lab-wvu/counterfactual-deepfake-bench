@@ -1,6 +1,6 @@
 # Coverage
 
-Updated 2026-10-21T14:46:35Z. Active batches: fake_b1, fake_b2, real_all.
+Updated 2026-10-21T15:54:26Z. Active batches: fake_b1, fake_b2, real_all.
 `rendered` = view videos that passed ffprobe verification; `excluded` = clips the view rules exclude (e.g. no face for face512); `pending` = rendered but not yet scored by this detector.
 
 | batch    | detector    | view       | clips               |   rendered |   excluded |   render_failed |   scored |   score_failed | pending                  |
@@ -66,22 +66,22 @@ Updated 2026-10-21T14:46:35Z. Active batches: fake_b1, fake_b2, real_all.
 | real_b1  | altfreezing | native_2s  | 1785 (3570 renders) |          0 |       3570 |               0 |        0 |              0 | detector not implemented |
 | real_b1  | altfreezing | face512_2s | 1785 (3570 renders) |       3536 |          0 |              34 |        0 |              0 | detector not implemented |
 | real_all | decof       | native     | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | 0                        |
-| real_all | decof       | face512    | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | 0                        |
+| real_all | decof       | face512    | 2221 (4442 renders) |       1847 |       2558 |              37 |     1847 |              0 | 0                        |
 | real_all | decof       | native_2s  | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | 0                        |
-| real_all | decof       | face512_2s | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | 0                        |
+| real_all | decof       | face512_2s | 2221 (4442 renders) |       4412 |         30 |               0 |     4412 |              0 | 0                        |
 | real_all | demamba     | native     | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | 0                        |
-| real_all | demamba     | face512    | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | 0                        |
+| real_all | demamba     | face512    | 2221 (4442 renders) |       1847 |       2558 |              37 |     1847 |              0 | 0                        |
 | real_all | demamba     | native_2s  | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | 0                        |
-| real_all | demamba     | face512_2s | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | 0                        |
+| real_all | demamba     | face512_2s | 2221 (4442 renders) |       4412 |         30 |               0 |     4412 |              0 | 0                        |
 | real_all | aigvdet     | native     | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | detector not implemented |
-| real_all | aigvdet     | face512    | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | detector not implemented |
+| real_all | aigvdet     | face512    | 2221 (4442 renders) |       1847 |       2558 |              37 |        0 |              0 | detector not implemented |
 | real_all | aigvdet     | native_2s  | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | detector not implemented |
-| real_all | aigvdet     | face512_2s | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | detector not implemented |
+| real_all | aigvdet     | face512_2s | 2221 (4442 renders) |       4412 |         30 |               0 |        0 |              0 | detector not implemented |
 | real_all | clip_probe  | native     | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | detector not implemented |
-| real_all | clip_probe  | face512    | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | detector not implemented |
+| real_all | clip_probe  | face512    | 2221 (4442 renders) |       1847 |       2558 |              37 |        0 |              0 | detector not implemented |
 | real_all | clip_probe  | native_2s  | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | detector not implemented |
-| real_all | clip_probe  | face512_2s | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | detector not implemented |
+| real_all | clip_probe  | face512_2s | 2221 (4442 renders) |       4412 |         30 |               0 |        0 |              0 | detector not implemented |
 | real_all | altfreezing | native     | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | detector not implemented |
-| real_all | altfreezing | face512    | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | detector not implemented |
+| real_all | altfreezing | face512    | 2221 (4442 renders) |       1847 |       2558 |              37 |        0 |              0 | detector not implemented |
 | real_all | altfreezing | native_2s  | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | detector not implemented |
-| real_all | altfreezing | face512_2s | 2221 (4442 renders) |          0 |          0 |               0 |        0 |              0 | detector not implemented |
+| real_all | altfreezing | face512_2s | 2221 (4442 renders) |       4412 |         30 |               0 |        0 |              0 | detector not implemented |
