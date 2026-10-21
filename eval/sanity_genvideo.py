@@ -1,6 +1,7 @@
 #!/usr/bin/env python
-"""Sanity check on GenVideo-Val (the DeMamba authors' validation set): score its videos with one
-of our adapters, as released (no view), and compare with reported numbers.
+"""Sanity check against published numbers: score a Real/ + Fake/<source>/ video set with one of our
+adapters, as released (no view). Used for GenVideo-Val (the DeMamba authors' validation set) and
+for a seeded AIGVDBench test sample (eval.fetch_aigvdb_sample).
 
   python -m eval.sanity_genvideo --detector d3 --root <GenVideo-Val> --out results/sanity/d3_genvideo \
       [--per-source 1000]
@@ -8,12 +9,14 @@ of our adapters, as released (no view), and compare with reported numbers.
 Layout: <root>/Real/*.mp4 (MSR-VTT) and <root>/Fake/<generator>/*.mp4. --per-source samples that many
 videos per source with a fixed seed (D3's eval.py uses the first 1,000 rows of each csv).
 
-Reported numbers:
+Reported numbers (--reference genvideo, the default):
   d3       Zheng et al. (arXiv 2508.00701) Table 1, D3 row, AP (real as the positive class, score =
            the raw second-order std, as in their eval.py); mean AP 98.46, mean AUC 97.72 (Table 8).
   demamba  our checkpoint card (Ahsanz/DeMamba-GenVideo100K FULL_val_metrics.txt), full set, random
            8-frame window: accuracy 88.74, AUC 96.67, AP 96.28, real recall 0.8316, per-generator
            recall and AP (AP of each generator's fakes vs all reals, fake positive).
+--reference aigvdb: V-PVP paper (arXiv 2607.15321) Table 1, per-generator AUC on the AIGVDBench
+Open-Source test split, rows V-PVP and DeCoF (the latter is AIGVDBench's DeCoF checkpoint).
 """
 import argparse
 import glob
@@ -38,6 +41,18 @@ DEMAMBA_AP = {"Crafter": 93.47, "Gen2": 94.11, "HotShot": 73.16, "Lavie": 76.28,
 DEMAMBA_RECALL = {"Crafter": 0.9964, "Gen2": 0.9978, "HotShot": 0.9643, "Lavie": 0.9200,
                   "ModelScope": 0.9786, "MoonValley": 1.0, "MorphStudio": 0.9857, "Show_1": 0.9043,
                   "Sora": 0.9107, "WildScrape": 0.8193}
+
+
+_T1 = [("I2V_EasyAnimate", 94.18, 90.84), ("I2V_LTX", 94.05, 90.55), ("I2V_Pyramid-Flow", 94.68, 95.54),
+       ("I2V_SEINE", 97.48, 97.33), ("I2V_SVD", 94.53, 98.98), ("I2V_VideoCrafter", 97.19, 63.10),
+       ("T2V_AccVideo", 97.75, 88.25), ("T2V_AnimateDiff", 96.84, 89.24),
+       ("T2V_Cogvideox1.5", 93.82, 98.16), ("T2V_EasyAnimate", 94.82, 91.87),
+       ("T2V_HunyuanVideo", 95.90, 86.33), ("T2V_IPOC", 96.11, 99.33), ("T2V_LTX", 95.82, 97.61),
+       ("T2V_Open-Sora", 99.69, 99.76), ("T2V_Pyramid-Flow", 96.40, 99.76),
+       ("T2V_RepVideo", 90.17, 97.22), ("T2V_VideoCrafter", 99.02, 89.25), ("T2V_Wan2.1", 87.67, 83.53),
+       ("V2V_Cogvideox1.5", 97.45, 97.40), ("V2V_LTX", 91.96, 89.86)]
+AIGVDB_AUC = {"vpvp": {g: v for g, v, _ in _T1}, "decof": {g: d for g, _, d in _T1}}
+AIGVDB_MEAN = {"vpvp": 95.28, "decof": 92.20}
 
 
 def index(root, per_source, seed):
@@ -72,7 +87,8 @@ class _DS(torch.utils.data.Dataset):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--detector", required=True, choices=["d3", "demamba", "decof"])
+    ap.add_argument("--detector", required=True, choices=["d3", "demamba", "decof", "vpvp"])
+    ap.add_argument("--reference", default="genvideo", choices=["genvideo", "aigvdb"])
     ap.add_argument("--root", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--per-source", type=int, default=0, help="0 = every video")
@@ -123,12 +139,14 @@ def summarise(a, det, df, t0):
         r = {"source": g, "n_fake": len(f), "n_real": len(real), "auc": 100 * roc_auc_score(y, s),
              "ap_fake_pos": 100 * average_precision_score(y, s),
              "recall_at_thr": float((f["score"] >= det.default_threshold).mean())}
-        if a.detector == "d3":
+        if a.reference == "aigvdb":
+            r["paper_auc"] = AIGVDB_AUC.get(a.detector, {}).get(g, np.nan)
+        elif a.detector == "d3":
             # the authors' AP: real is the positive class, raw std is the score
             std = 1 / s - 1
             r["ap_real_pos_std"] = 100 * average_precision_score(1 - y, std)
             r["paper_ap"] = D3_AP.get(g, np.nan)
-        if a.detector == "demamba":
+        if a.detector == "demamba" and a.reference == "genvideo":
             r["card_ap"] = DEMAMBA_AP.get(g, np.nan)
             r["card_recall"] = DEMAMBA_RECALL.get(g, np.nan)
         rows.append(r)
@@ -141,10 +159,14 @@ def summarise(a, det, df, t0):
             "mean_auc_per_source": float(t["auc"].mean()), "per_source": a.per_source,
             "seed": a.seed, "seconds": round(time.time() - t0), "gpu": gpu_name(),
             "git_commit": git_commit(), "created": utc_now()}
-    if a.detector == "d3":
+    if a.reference == "aigvdb":
+        summ["reference"] = "V-PVP paper Table 1 (AIGVDBench Open-Source test split)"
+        summ["paper_mean_auc"] = AIGVDB_MEAN.get(a.detector)
+        summ["paper_mean_auc_same_sources"] = float(t["paper_auc"].mean())
+    elif a.detector == "d3":
         summ["mean_ap_real_pos_std"] = float(t["ap_real_pos_std"].mean())
         summ["paper_mean_ap"], summ["paper_mean_auc"] = 98.46, 97.72
-    if a.detector == "demamba":
+    if a.detector == "demamba" and a.reference == "genvideo":
         summ.update(card_accuracy=88.74, card_auc=96.67, card_ap=96.28, card_real_recall=0.8316)
     t.to_csv(os.path.join(a.out, "per_source.csv"), index=False)
     json.dump(summ, open(os.path.join(a.out, "summary.json"), "w"), indent=2, default=str)

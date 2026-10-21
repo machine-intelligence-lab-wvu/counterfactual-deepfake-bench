@@ -1,0 +1,23 @@
+{
+  "detector": {
+    "detector": "vpvp",
+    "detector_version": "1+c6ec2331",
+    "checkpoint_sha256": "33581d50452bcf19373a3e5db1204e44b456cb216ac21a3b889ee6970ba6f93b"
+  },
+  "n_scored": 3150,
+  "n_failed": 0,
+  "overall_auc": 97.70422222222223,
+  "overall_ap_fake_pos": 99.878248148321,
+  "accuracy_at_thr": 91.42857142857143,
+  "real_recall_at_thr": 0.9266666666666666,
+  "mean_auc_per_source": 97.70422222222223,
+  "per_source": 0,
+  "seed": 20261021,
+  "seconds": 60,
+  "gpu": "NVIDIA RTX PRO 5000 Blackwell",
+  "git_commit": "0528ba2cad5a-dirty",
+  "created": "2026-10-21T22:25:01Z",
+  "reference": "V-PVP paper Table 1 (AIGVDBench Open-Source test split)",
+  "paper_mean_auc": 95.28,
+  "paper_mean_auc_same_sources": 95.2765
+}

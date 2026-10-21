@@ -260,3 +260,42 @@ property of the benchmark, not of the adapter.
 **realfake.py.** Reals without a FairFace label (137 in real_all) formed a `__` race x gender
 level; they are now excluded from that breakdown, as from race, gender and age band. All 12
 snapshots (3 detectors x face512, face512_2s, native_up, native_up_2s) re-aggregated.
+
+## 2026-10-21: V-PVP adapter; AIGVDBench test sample
+
+**V-PVP** (`eval/detectors/vpvp/`; Cui et al., NeurIPS 2026, arXiv 2607.15321, "Rethinking the
+Readout"; github.com/manic-cui/Rethinking-the-readout @ 6ca3b11, MIT). The authors' own head and
+VideoMAE wrapper, from the pinned copy mannicui0/Rethinking-the-readout @ 249f040 (src/ identical
+to GitHub). Head `videomae_k400_vpvp.pt` (SHA256 33581d50...f93b, 492,674 parameters, trained by
+the authors on AIGVDBench Real + Open-Sora + CogVideoX1.5 + EasyAnimate) on a frozen
+MCG-NJU/videomae-base-finetuned-kinetics @ 488eb9a (model.safetensors 065cfde5...4f73). All 182
+backbone tensors checked equal to the checkpoint under transformers 5.20 (no final LayerNorm, as the
+wrapper requires). Preprocessing: AIGVDBench section 7 extraction (32 of the first 128 frames,
+centre square, 256x256), then the V-PVP loader (16 of the 32 at linspace(0, 31, 16), 224 bicubic,
+ImageNet mean/std); backbone fp16 autocast, head fp32.
+- The official float32 sigmoid rounds every logit above ~17 to exactly 1.0. On FairDeep that tied
+  12% of reals and 10-14% of fakes at the top (face512_2s), so the 5%-FPR threshold flagged 6.9%
+  of reals. Logits reach ~28; the adapter takes the sigmoid in float64 (version 1+c6ec2331), and
+  calibration is back at 5.0% FPR. Rank metrics barely moved. (`scores.csv` in snapshots prints 6
+  decimals, so those scores still display as 1.000000; the parquet scores are distinct.)
+
+**AIGVDBench test sample** (`eval/fetch_aigvdb_sample.py`): 150 test-split Video_ids (seed
+20261021), the same ids from Real and each of the 20 Open-Source generators (3,150 videos, 2 GB),
+read out of the release zips at bf48acaa by HTTP range requests. Against V-PVP paper Table 1
+(`results/sanity/{vpvp,decof}_aigvdb150/`):
+
+| | ours (mean AUC, 20 generators) | Table 1 |
+|---|---|---|
+| V-PVP | 97.70 | 95.28 |
+| DeCoF (AIGVDBench checkpoint) | 79.28 | 92.20 |
+
+V-PVP is 2-4 points above the paper on nearly every generator with the same ordering (Open-Sora
+and VideoCrafter highest; Wan2.1 91.6 vs 87.7, RepVideo and V2V-LTX lowest): the adapter
+reproduces it; the uniform offset fits 150 vs 3,000 reals and the frame extraction. Table 1's
+DeCoF row is not reproduced by the AIGVDBench DeCoF checkpoint, which did reproduce AIGVDBench's
+own Table 3 on DeltaAI (Step 3 above); Table 1 most likely lists a differently trained DeCoF.
+
+**V-PVP on FairDeep** (all generators, AUC): face512 0.440, face512_2s 0.519, native_up 0.450,
+native_up_2s 0.512; HunyuanVideo 1.5 far below chance (0.21-0.31: rated more real than the
+reals), Wan 2.2 0.63-0.66, LTX 2.3 0.40-0.52. At the calibrated threshold it detects 0-3% of
+fakes. Real FPR is highest for perceived MENA (race gap ~0.10 [0.06, 0.17]), as for DeCoF.
