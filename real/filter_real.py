@@ -36,6 +36,9 @@ Two deliberate non-conformances, both recorded per clip rather than resolved:
     python real/filter_real.py --videos <dir> --out-root <dir>
 """
 import argparse, csv, glob, json, os, subprocess, sys
+from contextlib import nullcontext
+from functools import partial
+from multiprocessing import Pool
 from pathlib import Path
 
 import cv2
@@ -344,6 +347,8 @@ def main():
     ap.add_argument("--scan-fps", type=float, default=SCAN_FPS)
     ap.add_argument("--crf", type=int, default=18)
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--workers", type=int, default=1,
+                    help="clips processed in parallel; each one decodes, runs YuNet and x264")
     ap.add_argument("--overwrite", action="store_true")
     ap.add_argument("--report", default=None)
     a = ap.parse_args()
@@ -367,11 +372,14 @@ def main():
 
     print(f"filtering {len(paths)} clips -> {out_dir}")
     recs = []
-    for i, p in enumerate(paths, 1):
-        recs.append(process(p, out_dir, model, ff, a))
-        if i % 25 == 0 or i == len(paths):
-            acc = sum(r.get("accepted", 0) for r in recs)
-            print(f"  {i}/{len(paths)}  accepted {acc} ({100*acc/len(recs):.0f}%)", flush=True)
+    work = partial(process, out_dir=out_dir, model=model, ff=ff, args=a)
+    with Pool(a.workers) if a.workers > 1 else nullcontext() as pool:
+        results = pool.imap(work, paths) if pool else map(work, paths)
+        for i, rec in enumerate(results, 1):
+            recs.append(rec)
+            if i % 25 == 0 or i == len(paths):
+                acc = sum(r.get("accepted", 0) for r in recs)
+                print(f"  {i}/{len(paths)}  accepted {acc} ({100*acc/len(recs):.0f}%)", flush=True)
 
     keys = ["clip", "accepted", "reason", "src_w", "src_h", "src_fps", "src_dur",
             "w", "h", "fps", "duration", "window_start", "face_frac", "upscale", "crop_w",

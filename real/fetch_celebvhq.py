@@ -13,7 +13,7 @@ so a resumed run does not spend its budget re-requesting videos that are gone.
     python real/fetch_celebvhq.py --pool manifests/celebvhq_pool.json \
         --out-root ../celebvhq_raw --limit 8000 --workers 4
 """
-import argparse, json, os, shutil, subprocess, sys, threading, time
+import argparse, json, os, random, shutil, subprocess, sys, threading, time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
@@ -154,6 +154,12 @@ def main():
     ap.add_argument("--cookies", default=None,
                     help="cookies.txt, if age-gated sources need to be reachable")
     ap.add_argument("--max-gb", type=float, default=0.0, help="stop after this much data")
+    ap.add_argument("--sleep", type=float, default=0.0,
+                    help="mean pause (s, +-50%% jitter) after each request, per worker; "
+                         "slows the request rate that triggers YouTube's bot check")
+    ap.add_argument("--max-bot-streak", type=int, default=50,
+                    help="stop after this many bot checks in a row: the IP is blocked, and "
+                         "walking the rest of the pool only burns requests (0 = never stop)")
     ap.add_argument("--js-runtimes", default=None,
                     help="passed to yt-dlp, e.g. node or node:/path/to/node; "
                          "default: deno if installed, else node if on PATH")
@@ -201,6 +207,7 @@ def main():
 
     stats = {"ok": 0, "fail": 0, "skip": 0, "bot": 0}
     stop = threading.Event()
+    streak = [0]
 
     def work(rec):
         if stop.is_set():
@@ -208,6 +215,12 @@ def main():
         r = fetch_one(rec, out_root, log_path, ff, a.timeout, a.cookies, js)
         with LOCK:
             stats[r] += 1
+            if r != "skip":
+                streak[0] = streak[0] + 1 if r == "bot" else 0
+                if a.max_bot_streak and streak[0] >= a.max_bot_streak and not stop.is_set():
+                    print(f"  {streak[0]} bot checks in a row: IP is blocked, stopping "
+                          "(rerun later; blocked clips are retried)", flush=True)
+                    stop.set()
             if r == "bot" and stats["bot"] == 1:
                 print("  ! YouTube is asking this IP to prove it is not a bot - the usual "
                       "block on datacenter/cluster IPs. Pass --cookies cookies.txt "
@@ -222,6 +235,8 @@ def main():
                 if a.max_gb and gb >= a.max_gb:
                     print(f"  reached --max-gb {a.max_gb}, stopping")
                     stop.set()
+        if r != "skip" and a.sleep > 0:
+            time.sleep(a.sleep * random.uniform(0.5, 1.5))
 
     with ThreadPoolExecutor(max_workers=a.workers) as ex:
         list(ex.map(work, pool))
