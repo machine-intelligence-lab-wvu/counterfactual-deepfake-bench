@@ -1,7 +1,8 @@
 # Batches that make up the current eval set. A batch is scored once per
 # (detector, checkpoint, view); aggregate unions every active batch that has scores.
 # To add a batch: build its manifest, add it here with active: true, preprocess, score.
-active: [fake_b1, fake_b2, real_b1]
+# real_b1 (filtered) and real_all (unfiltered superset) share clips: activate one at a time.
+active: [fake_b1, fake_b2, real_all]
 batches:
   fake_b1:
     kind: fake
@@ -18,3 +19,8 @@ batches:
     manifest: eval/manifests/real_b1.csv
     source: CelebV-HQ, fetched + filtered on the real-half branch; clean runs cut losslessly at source resolution
     data_root: /home/WVU-AD/aa00307/projects/DeepFake/celebvhq_clean
+  real_all:
+    kind: real
+    manifest: eval/manifests/real_all.csv
+    source: CelebV-HQ, every fetched raw segment (2,221), unfiltered; filter verdict kept as filter_accepted / filter_reason
+    data_root: /home/WVU-AD/aa00307/projects/DeepFake/celebvhq_raw

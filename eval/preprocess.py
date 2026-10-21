@@ -6,7 +6,8 @@
 Per source clip:
   - trim to the view's 5.0 s segment (fakes: start; reals: middle, excluded if shorter)
   - fakes keep native fps; reals are rendered at every fps in the spec (clip_id__fps24, ...)
-  - geometry: native = passthrough (source must equal 1280x704); face512 = scale-to-cover then
+  - geometry: native = passthrough (source must equal 1280x704); native_up = cover_window
+    (scale up or down to cover 1280x704, window at the face centre); face512 = scale-to-cover then
     one fixed 512x512 window at the median YuNet face centre, shifted inward at frame edges
   - encode with the pinned ffmpeg/x264 recipe, then verify the output with ffprobe
 
@@ -16,6 +17,7 @@ outputs already recorded ok or excluded under the same view_hash, and retries fa
 """
 import argparse
 import glob
+import hashlib
 import json
 import math
 import os
@@ -103,6 +105,24 @@ def yunet(w, h, spec):
 
 
 def face_centre(path, start, n_frames, spec):
+    """face_centre_scan, cached on disk: the 24 and 16 fps renders of a real clip, and views
+    sharing a segment and detector settings, scan the same frames, so the scan runs once."""
+    fd = spec["geometry"]["face_detector"]
+    key = hashlib.sha1(json.dumps([os.path.abspath(path), os.path.getsize(path), start, n_frames,
+                                   fd["sha256"], fd["score_threshold"], fd["nms_threshold"],
+                                   fd["min_face_px"]]).encode()).hexdigest()
+    cache = os.path.join(VIEWS_ROOT, "_face_cache", key[:2], key + ".json")
+    if os.path.exists(cache):
+        return tuple(json.load(open(cache)))
+    res = face_centre_scan(path, start, n_frames, spec)
+    os.makedirs(os.path.dirname(cache), exist_ok=True)
+    tmp = f"{cache}.{os.getpid()}.tmp"
+    json.dump(list(res), open(tmp, "w"))
+    os.replace(tmp, cache)
+    return res
+
+
+def face_centre_scan(path, start, n_frames, spec):
     """Median subject-face centre over the segment, in source pixels.
 
     Subject = largest detected face per frame (qc/faces.py rule). Returns (cx, cy, n_with_face,
@@ -139,13 +159,15 @@ def face_centre(path, start, n_frames, spec):
     return float(np.median(cxs)), float(np.median(cys)), len(cxs), n, float(np.median(hs))
 
 
-def window(src_w, src_h, cx, cy, size):
-    """Scale-to-cover + fixed window, shifted inward at the edges."""
-    s = size / min(src_w, src_h)
-    W2, H2 = round(src_w * s), round(src_h * s)
-    want_x, want_y = cx * W2 / src_w - size / 2, cy * H2 / src_h - size / 2
-    x0 = int(min(max(round(want_x), 0), W2 - size))
-    y0 = int(min(max(round(want_y), 0), H2 - size))
+def window(src_w, src_h, cx, cy, size, height=None):
+    """Scale-to-cover + fixed window, shifted inward at the edges. `size` x `height`
+    (square when height is None); the scale may be > 1 only for cover_window views."""
+    ww, wh = size, size if height is None else height
+    s = max(ww / src_w, wh / src_h)
+    W2, H2 = max(round(src_w * s), ww), max(round(src_h * s), wh)
+    want_x, want_y = cx * W2 / src_w - ww / 2, cy * H2 / src_h - wh / 2
+    x0 = int(min(max(round(want_x), 0), W2 - ww))
+    y0 = int(min(max(round(want_y), 0), H2 - wh))
     return W2, H2, x0, y0, int(abs(x0 - round(want_x))), int(abs(y0 - round(want_y)))
 
 
@@ -186,6 +208,25 @@ def process(task):
                            error=f"source {src['width']}x{src['height']} != {g['width']}x{g['height']}")
                 return rec
             vf, size = [], (g["width"], g["height"])
+        elif g["mode"] == "cover_window":
+            # scale to cover width x height (up or down), then a fixed window at the
+            # median face centre; no face -> frame centre. A source already at the
+            # target size is passed through untouched (no detection needed).
+            Wt, Ht = g["width"], g["height"]
+            size = (Wt, Ht)
+            if (src["width"], src["height"]) == size:
+                vf = []
+            else:
+                n_seg = round(D * float(src["fps"]))
+                cx, cy, nf, ns, fh = face_centre(row["path"], start, n_seg, spec)
+                rec.update(face_frames=nf, frames_scanned=ns)
+                if cx is None:
+                    cx, cy, fh = src["width"] / 2, src["height"] / 2, 0.0
+                W2, H2, x0, y0, sx, sy = window(src["width"], src["height"], cx, cy, Wt, Ht)
+                rec.update(face_cx=round(cx, 1), face_cy=round(cy, 1), face_h=round(fh, 1),
+                           win_x=x0, win_y=y0, shifted_x=int(sx > 0), shift_x_px=sx,
+                           shifted_y=int(sy > 0), shift_y_px=sy)
+                vf = [f"scale={W2}:{H2}:flags={g['scale_flags']}", f"crop={Wt}:{Ht}:{x0}:{y0}"]
         else:
             S = g["size"]
             if min(src["width"], src["height"]) < S:
