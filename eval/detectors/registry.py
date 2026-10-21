@@ -3,7 +3,8 @@ import importlib
 
 REGISTRY = {
     "decof": "eval.detectors.decof.adapter:DeCoF",
-    "demamba": "eval.detectors.demamba.adapter:DeMamba",          # stub
+    "demamba": "eval.detectors.demamba.adapter:DeMamba",
+    "d3": "eval.detectors.d3.adapter:D3",
     "aigvdet": "eval.detectors.aigvdet.adapter:AIGVDet",          # stub
     "clip_probe": "eval.detectors.clip_probe.adapter:CLIPProbe",  # stub
     "altfreezing": "eval.detectors.altfreezing.adapter:AltFreezing",  # stub

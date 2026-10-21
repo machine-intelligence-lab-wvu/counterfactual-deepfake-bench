@@ -1,0 +1,47 @@
+{
+  "detector": {
+    "detector": "d3",
+    "detector_version": "1+efab2602",
+    "checkpoint_sha256": "b5db836d57b7e22001cb2bab581719e910b4c571d926fe839b5d07bc0ba2d03e"
+  },
+  "threshold": 0.5,
+  "threshold_source": "none official (training-free statistic); 0.5 on 1/(1+std) is arbitrary - use the calibrated threshold",
+  "provisional": true,
+  "calibrated_threshold": 0.5185769110918044,
+  "calibration": "score at which 5% of primary real renders (24 and 16 fps pooled) are flagged",
+  "n_included_reals": 4442,
+  "view": "native_up_2s",
+  "view_hash": "f48f13e3eb9c049d",
+  "ffmpeg": "ffmpeg version 7.1.1 Copyright (c) 2000-2025 the FFmpeg developers",
+  "batches": [
+    "fake_b1",
+    "fake_b2",
+    "real_all"
+  ],
+  "inclusion_set": "primary",
+  "bootstrap": {
+    "B": 1000,
+    "seed": 20261020,
+    "unit": "counterfactual_group"
+  },
+  "n_scored": 9482,
+  "n_failed": 0,
+  "n_included_fakes": 4433,
+  "n_reals": 4442,
+  "ignored_other_identity_rows": 0,
+  "factor_terms": [
+    "race",
+    "gender",
+    "age_band",
+    "setting",
+    "lighting",
+    "behavior",
+    "camera",
+    "duration_nominal",
+    "generator"
+  ],
+  "git_commit": "4e41a35865f4-dirty",
+  "created": "2026-10-21T20:57:17Z",
+  "snapshot": "20261021-2056",
+  "host": "scerbcs-bebe3fs"
+}

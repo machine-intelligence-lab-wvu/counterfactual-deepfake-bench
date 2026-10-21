@@ -217,3 +217,46 @@ face), face512 1847/1892. Failures are `verify: frames N-1 != N` on 16 fps rende
 
 Filtering moves no generator's AUC by more than 0.022. DeCoF on Wan 2.2 is below chance in
 full frame (0.37-0.39) and at chance on face crops (0.51-0.53).
+
+## 2026-10-21: D3 adapter; GenVideo-Val sanity checks for D3 and DeMamba
+
+**D3** (`eval/detectors/d3/`; Zheng et al., ICCV 2025, github.com/Zig-HS/D3 @ c798fbc, MIT).
+Training-free: X-CLIP-B/16 vision tower (microsoft/xclip-base-patch16 @ d6184e3, model.safetensors
+SHA256 b5db836d...2d03e) embeds 16 frames; the statistic is the std of the first differences of
+consecutive-frame L2 distances (the authors' default `--encoder XCLIP-16 --loss l2`). Real video
+has the larger std. Score = 1 / (1 + std): strictly decreasing, so every rank metric is the
+authors' statistic, and std = 1/score - 1. No official threshold: the provisional 0.5 is
+meaningless for D3; only the calibrated threshold counts. Preprocessing as the official code:
+`ffmpeg -t 3 -vf fps=8` to JPEG (from the view's start; the authors pick a random start), first 16
+frames (8 if 8-15), cv2.imread BGR, 10% centre trim of the long side, 224x224 INTER_LINEAR,
+ImageNet mean/std, fp32.
+- transformers 5.x `XCLIPVisionModel.from_pretrained` on the full X-CLIP checkpoint does not map
+  `vision_model.*` and **silently random-initialises the whole tower** (4.57, the authors'
+  version, maps it). The adapter loads the tower's tensors explicitly and strictly; its
+  pooler_output equals `XCLIPModel.vision_model` exactly (max |d| 0.0).
+
+**GenVideo-Val** (DeMamba authors' validation set, ModelScope cccnju/Gen-Video, 13.9 GB; Real =
+10,000 MSR-VTT clips, Fake = 8,286 clips from 10 generators), scored as released, no view
+(`eval/sanity_genvideo.py`, `results/sanity/*_genvideo/`):
+
+| | ours | reported |
+|---|---|---|
+| D3, mean AP (real positive, raw std; 1,000 per source) | 99.02 | 98.46 (paper Table 1) |
+| D3, mean AUC | 98.55 | 97.72 (paper Table 8) |
+| DeMamba, full set: AUC / AP | 96.94 / 96.50 | 96.67 / 96.28 (checkpoint card) |
+| DeMamba, accuracy / real recall at 0.5 | 88.32% / 0.818 | 88.74% / 0.832 |
+
+D3 per generator is within ~1 AP point of the paper; DeMamba per generator AP within 0.3-3 points
+of the card (WildScrape 55.1 vs 65.5: this copy has 626 WildScrape clips, the card counts 924).
+Both adapters reproduce their references; DeMamba's small gaps fit its centre window vs the
+card's random window.
+
+**D3 on FairDeep** (fake_b1 + fake_b2 + real_all, all generators, AUC): face512 0.497,
+face512_2s 0.487, native_up 0.474, native_up_2s 0.467 - chance, with LTX 2.3 below chance
+(0.40-0.44; full frame 0.398 [0.349, 0.452]). Talking-head reals and fakes have similar
+second-order feature spread; LTX's is the larger. Given the sanity check above, this is a
+property of the benchmark, not of the adapter.
+
+**realfake.py.** Reals without a FairFace label (137 in real_all) formed a `__` race x gender
+level; they are now excluded from that breakdown, as from race, gender and age band. All 12
+snapshots (3 detectors x face512, face512_2s, native_up, native_up_2s) re-aggregated.

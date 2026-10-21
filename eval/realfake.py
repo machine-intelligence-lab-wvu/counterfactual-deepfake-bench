@@ -73,11 +73,13 @@ class RealFake:
         r["render_fps"] = r["clip_id"].str.extract(r"__fps(\d+)$")[0].astype(float)
         ic = r["identity_cluster"] if "identity_cluster" in r else pd.Series(np.nan, index=r.index)
         r["identity"] = ic.where(ic.notna() & (ic.astype(str) != ""), r["source_clip_id"]).astype(str)
-        r["race_gender"] = r["race"] + "__" + r["gender"]
+        r["race_gender"] = np.where((r["race"] != "") & (r["gender"] != ""),
+                                    r["race"] + "__" + r["gender"], "")     # unlabelled reals: no level
         self.r = r
         for k in ["race", "gender", "age_band"]:
             self.f[k] = self.f[k].fillna("").astype(str)
-        self.f["race_gender"] = self.f["race"] + "__" + self.f["gender"]
+        self.f["race_gender"] = np.where((self.f["race"] != "") & (self.f["gender"] != ""),
+                                         self.f["race"] + "__" + self.f["gender"], "")
         self.gb_f = gb_fake
         self.gb_r = GroupBootstrap(r["identity"], B=B, seed=SEED + 1)
         self.Wf = gb_fake.W[:, gb_fake.gidx(self.f["counterfactual_group"])]
