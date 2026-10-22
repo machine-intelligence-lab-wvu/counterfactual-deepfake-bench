@@ -31,7 +31,7 @@ from eval.views.spec import load as load_view
 
 DEMO = ["race", "gender", "age_band", "cell"]
 SCENE = ["setting", "lighting", "behavior", "camera", "duration_nominal"]
-GEN_ORDER = ["ltx23", "wan22", "hunyuan15"]
+GEN_ORDER = ["ltx23", "wan22", "hunyuan15", "ltx25"]
 PENDING_63 = [
     ("AUC, AP, EER, TPR@5%FPR (overall, per generator)", "needs reals (real_b1)"),
     ("Calibrated threshold (5% FPR on fps-matched reals)", "needs reals (real_b1)"),

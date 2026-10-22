@@ -11,8 +11,8 @@ from sklearn.metrics import roc_auc_score
 R = __import__("os").path.dirname(__import__("os").path.dirname(__import__("os").path.abspath(__file__)))
 man = pd.read_csv(f"{R}/eval/manifests/real_all.csv")
 man = man.set_index("clip_id")
-GEN_FPS = {"ltx23": 24, "wan22": 16, "hunyuan15": 24}
-NAMES = {"ltx23": "LTX 2.3", "wan22": "Wan 2.2", "hunyuan15": "HunyuanVideo 1.5"}
+GEN_FPS = {"ltx23": 24, "wan22": 16, "hunyuan15": 24, "ltx25": 24}
+NAMES = {"ltx23": "LTX 2.3", "wan22": "Wan 2.2", "hunyuan15": "HunyuanVideo 1.5", "ltx25": "LTX 2.5"}
 
 for view in sys.argv[1:]:
     print(f"\n## View `{view}`\n")

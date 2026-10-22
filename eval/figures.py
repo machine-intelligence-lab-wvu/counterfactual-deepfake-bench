@@ -1,7 +1,7 @@
 """Snapshot figures (EVALUATION_PLAN.md section 7). PNG 300 dpi + PDF, 4:3.
 
 Colour: generators use the first three slots of the reference categorical palette in fixed
-order (ltx23 blue, wan22 orange, hunyuan15 aqua) so a generator keeps its colour in every
+order (ltx23 blue, wan22 orange, hunyuan15 aqua, ltx25 yellow) so a generator keeps its colour in every
 figure; magnitude uses one sequential blue ramp. Provisional-threshold figures carry a
 "provisional threshold" label.
 """
@@ -9,9 +9,9 @@ import os
 
 import numpy as np
 
-GEN_ORDER = ["ltx23", "wan22", "hunyuan15"]
-GEN_COLOR = {"ltx23": "#2a78d6", "wan22": "#eb6834", "hunyuan15": "#1baf7a"}
-GEN_LABEL = {"ltx23": "LTX 2.3", "wan22": "Wan 2.2", "hunyuan15": "HunyuanVideo 1.5"}
+GEN_ORDER = ["ltx23", "wan22", "hunyuan15", "ltx25"]
+GEN_COLOR = {"ltx23": "#2a78d6", "wan22": "#eb6834", "hunyuan15": "#1baf7a", "ltx25": "#eda100"}
+GEN_LABEL = {"ltx23": "LTX 2.3", "wan22": "Wan 2.2", "hunyuan15": "HunyuanVideo 1.5", "ltx25": "LTX 2.5"}
 INK, INK2, MUTED, GRID, AXIS = "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#c3c2b7"
 SEQ = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d366b"]
 PROV = "provisional threshold"

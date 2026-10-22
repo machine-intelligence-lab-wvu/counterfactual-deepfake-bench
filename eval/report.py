@@ -5,7 +5,8 @@ import os
 import numpy as np
 import pandas as pd
 
-GEN_LABEL = {"ltx23": "LTX 2.3", "wan22": "Wan 2.2", "hunyuan15": "HunyuanVideo 1.5", "all": "all"}
+GEN_LABEL = {"ltx23": "LTX 2.3", "wan22": "Wan 2.2", "hunyuan15": "HunyuanVideo 1.5", "ltx25": "LTX 2.5",
+             "all": "all"}
 
 
 def _md(df, cols=None, n=None, fmt="{:.3f}"):

@@ -5,7 +5,7 @@ One row per clip: every metadata column, plus
   clip_id       prompt_id (unique across generators)
   batch, label  batch name, 1 (generated)
   path          absolute path of the source .mp4
-  generator     model key (ltx23, wan22, hunyuan15)
+  generator     model key (ltx23, wan22, hunyuan15, ltx25)
   duration_nominal  5 or 6 (requested clip length; views trim to 5.0 s)
   qc_technical  technical QC pass (0/1)
   qc_face       face QC pass (0/1)

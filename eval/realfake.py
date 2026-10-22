@@ -20,7 +20,7 @@ from eval.metrics import B_DEFAULT, SEED, GroupBootstrap, ci, gap
 
 FPR_TARGET = 0.05
 MIN_REAL = 30          # fewer real renders than this in a subgroup -> AUC not estimable
-GEN_FPS = {"ltx23": 24, "wan22": 16, "hunyuan15": 24}
+GEN_FPS = {"ltx23": 24, "wan22": 16, "hunyuan15": 24, "ltx25": 24}
 ATTRS = ["race", "gender", "age_band", "race_gender"]
 
 
