@@ -1,0 +1,4 @@
+scope,n_renders,n_sources,n_identities,threshold,fpr
+all real renders,1847,928,807,1,0.0503519
+16 fps renders,928,928,807,1,0.049569
+24 fps renders,919,919,798,1,0.0511425

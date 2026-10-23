@@ -1,0 +1,9 @@
+set,generator,n,mean_score,provisional_detection_rate
+all,hunyuan15,1008,0.166656,0.12004
+all,ltx23,2016,0.407513,0.388889
+all,ltx25,2016,0.243429,0.212798
+all,wan22,2016,0.0792013,0.0436508
+primary,hunyuan15,989,0.164609,0.116279
+primary,ltx23,1878,0.401738,0.382322
+primary,ltx25,2002,0.243103,0.211788
+primary,wan22,1566,0.0708645,0.0351213

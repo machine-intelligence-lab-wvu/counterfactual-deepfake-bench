@@ -1,6 +1,6 @@
 # Coverage
 
-Updated 2026-10-21T22:31:28Z. Active batches: fake_b1, fake_b2, real_all.
+Updated 2026-10-23T02:48:47Z. Active batches: fake_b1, fake_b2, fake_b3, real_all.
 `rendered` = view videos that passed ffprobe verification; `excluded` = clips the view rules exclude (e.g. no face for face512); `pending` = rendered but not yet scored by this detector.
 
 | batch    | detector    | view       | clips               |   rendered |   excluded |   render_failed |   scored |   score_failed | pending                  |
@@ -61,6 +61,34 @@ Updated 2026-10-21T22:31:28Z. Active batches: fake_b1, fake_b2, real_all.
 | fake_b2  | altfreezing | face512    | 504                 |        504 |          0 |               0 |        0 |              0 | detector not implemented |
 | fake_b2  | altfreezing | native_2s  | 504                 |        504 |          0 |               0 |        0 |              0 | detector not implemented |
 | fake_b2  | altfreezing | face512_2s | 504                 |        504 |          0 |               0 |        0 |              0 | detector not implemented |
+| fake_b3  | decof       | native     | 2016                |          0 |          0 |               0 |        0 |              0 | 0                        |
+| fake_b3  | decof       | face512    | 2016                |       2016 |          0 |               0 |     2016 |              0 | 0                        |
+| fake_b3  | decof       | native_2s  | 2016                |          0 |          0 |               0 |        0 |              0 | 0                        |
+| fake_b3  | decof       | face512_2s | 2016                |       2016 |          0 |               0 |     2016 |              0 | 0                        |
+| fake_b3  | demamba     | native     | 2016                |          0 |          0 |               0 |        0 |              0 | 0                        |
+| fake_b3  | demamba     | face512    | 2016                |       2016 |          0 |               0 |     2016 |              0 | 0                        |
+| fake_b3  | demamba     | native_2s  | 2016                |          0 |          0 |               0 |        0 |              0 | 0                        |
+| fake_b3  | demamba     | face512_2s | 2016                |       2016 |          0 |               0 |     2016 |              0 | 0                        |
+| fake_b3  | d3          | native     | 2016                |          0 |          0 |               0 |        0 |              0 | 0                        |
+| fake_b3  | d3          | face512    | 2016                |       2016 |          0 |               0 |     2016 |              0 | 0                        |
+| fake_b3  | d3          | native_2s  | 2016                |          0 |          0 |               0 |        0 |              0 | 0                        |
+| fake_b3  | d3          | face512_2s | 2016                |       2016 |          0 |               0 |     2016 |              0 | 0                        |
+| fake_b3  | vpvp        | native     | 2016                |          0 |          0 |               0 |        0 |              0 | 0                        |
+| fake_b3  | vpvp        | face512    | 2016                |       2016 |          0 |               0 |     2016 |              0 | 0                        |
+| fake_b3  | vpvp        | native_2s  | 2016                |          0 |          0 |               0 |        0 |              0 | 0                        |
+| fake_b3  | vpvp        | face512_2s | 2016                |       2016 |          0 |               0 |     2016 |              0 | 0                        |
+| fake_b3  | aigvdet     | native     | 2016                |          0 |          0 |               0 |        0 |              0 | detector not implemented |
+| fake_b3  | aigvdet     | face512    | 2016                |       2016 |          0 |               0 |        0 |              0 | detector not implemented |
+| fake_b3  | aigvdet     | native_2s  | 2016                |          0 |          0 |               0 |        0 |              0 | detector not implemented |
+| fake_b3  | aigvdet     | face512_2s | 2016                |       2016 |          0 |               0 |        0 |              0 | detector not implemented |
+| fake_b3  | clip_probe  | native     | 2016                |          0 |          0 |               0 |        0 |              0 | detector not implemented |
+| fake_b3  | clip_probe  | face512    | 2016                |       2016 |          0 |               0 |        0 |              0 | detector not implemented |
+| fake_b3  | clip_probe  | native_2s  | 2016                |          0 |          0 |               0 |        0 |              0 | detector not implemented |
+| fake_b3  | clip_probe  | face512_2s | 2016                |       2016 |          0 |               0 |        0 |              0 | detector not implemented |
+| fake_b3  | altfreezing | native     | 2016                |          0 |          0 |               0 |        0 |              0 | detector not implemented |
+| fake_b3  | altfreezing | face512    | 2016                |       2016 |          0 |               0 |        0 |              0 | detector not implemented |
+| fake_b3  | altfreezing | native_2s  | 2016                |          0 |          0 |               0 |        0 |              0 | detector not implemented |
+| fake_b3  | altfreezing | face512_2s | 2016                |       2016 |          0 |               0 |        0 |              0 | detector not implemented |
 | real_b1  | decof       | native     | 1785 (3570 renders) |          0 |       3570 |               0 |        0 |              0 | 0                        |
 | real_b1  | decof       | face512    | 1785 (3570 renders) |       1306 |       2216 |              48 |     1306 |              0 | 0                        |
 | real_b1  | decof       | native_2s  | 1785 (3570 renders) |          0 |       3570 |               0 |        0 |              0 | 0                        |
