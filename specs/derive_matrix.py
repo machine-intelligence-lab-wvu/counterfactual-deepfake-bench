@@ -16,6 +16,9 @@ MODELS = {
     "wan22": {"fps": 16, "stride": 4, "width": 1280, "height": 704},
     "hunyuan15": {"fps": 24, "stride": 4, "width": 1280, "height": 704},
     "ltx25": {"fps": 24, "stride": 8, "width": 1280, "height": 704},
+    # Kandinsky 6.0 Pro is a 5 s model (121 frames at 24 fps): length is capped there
+    "k6pro": {"fps": 24, "stride": 4, "width": 1280, "height": 704, "max_length": 121},
+    "k6prod": {"fps": 24, "stride": 4, "width": 1280, "height": 704, "max_length": 121},
 }
 
 
@@ -27,6 +30,8 @@ def derive(src, model):
         # nearest stride*k+1 frame count to the source duration
         k = round(s["duration_s"] * m["fps"] / m["stride"])
         length = m["stride"] * k + 1
+        if m.get("max_length"):
+            length = min(length, m["max_length"])
         d.update(model=model, fps=m["fps"], length=length,
                  width=m["width"], height=m["height"],
                  duration_s=round(length / m["fps"], 2),
