@@ -9,3 +9,9 @@ logs/*
 *.zip
 *.onnx
 real/models/
+# evaluation: score/preprocess parquet stays on disk (a CSV export per snapshot is committed)
+results/scores/
+results/preprocess/**/*.parquet
+eval/**/__pycache__/
+.pytest_cache/
+results/locks/

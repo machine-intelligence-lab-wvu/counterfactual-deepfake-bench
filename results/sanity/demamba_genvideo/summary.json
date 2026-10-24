@@ -1,0 +1,24 @@
+{
+  "detector": {
+    "detector": "demamba",
+    "detector_version": "1+504611ba",
+    "checkpoint_sha256": "f89897c72b595aa85a524e59083919cebb0b92161d2a694a2cbffbdd8456ce17"
+  },
+  "n_scored": 18286,
+  "n_failed": 0,
+  "overall_auc": 96.94117004586047,
+  "overall_ap_fake_pos": 96.50238262436928,
+  "accuracy_at_thr": 88.31893251667942,
+  "real_recall_at_thr": 0.8176,
+  "mean_auc_per_source": 96.30869948623675,
+  "per_source": 0,
+  "seed": 20261021,
+  "seconds": 434,
+  "gpu": "NVIDIA RTX PRO 5000 Blackwell",
+  "git_commit": "4e41a35865f4-dirty",
+  "created": "2026-10-21T20:59:34Z",
+  "card_accuracy": 88.74,
+  "card_auc": 96.67,
+  "card_ap": 96.28,
+  "card_real_recall": 0.8316
+}

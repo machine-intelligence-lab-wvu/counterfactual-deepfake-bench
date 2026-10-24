@@ -1,0 +1,6 @@
+batch,generator,clips,primary,rendered,view_excluded,render_failed,scored,score_failed,included
+fake_b1,hunyuan15,504,492,504,0,0,504,0,492
+fake_b1,ltx23,2016,1878,2005,11,0,2005,0,1867
+fake_b1,wan22,2016,1566,2016,0,0,2016,0,1566
+fake_b2,hunyuan15,504,497,504,0,0,504,0,497
+real_b1,real,1785,1684,1768,0,17,1768,0,1668

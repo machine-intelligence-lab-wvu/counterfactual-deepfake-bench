@@ -1,0 +1,5 @@
+attribute,n_levels,fpr_gap,ci_lo,ci_hi,max_level,max_fpr,min_level,min_fpr
+race,7,0.136364,0.0612245,0.25,mena,0.136364,southeast_asian,0
+gender,2,0.0178934,0.000775572,0.0520408,m,0.0563549,f,0.0384615
+age_band,4,0.0170455,0.0130513,0.0974518,60+,0.0625,18-29,0.0454545
+race_gender,14,0.178571,0.0833333,0.363636,mena__m,0.178571,black__f,0

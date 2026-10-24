@@ -1,0 +1,23 @@
+{
+  "detector": {
+    "detector": "decof",
+    "detector_version": "1+b75d2cbe",
+    "checkpoint_sha256": "4edb7b310cc729771e74b93f658c7fdc4f2e31fdfa617a88372a540d4f9e7b4a"
+  },
+  "n_scored": 3150,
+  "n_failed": 0,
+  "overall_auc": 79.28177777777779,
+  "overall_ap_fake_pos": 98.68343634367642,
+  "accuracy_at_thr": 32.0,
+  "real_recall_at_thr": 0.98,
+  "mean_auc_per_source": 79.28177777777779,
+  "per_source": 0,
+  "seed": 20261021,
+  "seconds": 167,
+  "gpu": "NVIDIA RTX PRO 5000 Blackwell",
+  "git_commit": "0528ba2cad5a-dirty",
+  "created": "2026-10-21T22:15:36Z",
+  "reference": "V-PVP paper Table 1 (AIGVDBench Open-Source test split)",
+  "paper_mean_auc": 92.2,
+  "paper_mean_auc_same_sources": 92.19550000000001
+}

@@ -1,0 +1,22 @@
+{
+  "track": "A (generator benchmark)",
+  "batches": [
+    "fake_b1",
+    "fake_b2",
+    "fake_b3"
+  ],
+  "n_clips": 7056,
+  "n_primary_measured": 6435,
+  "n_face_found": 6425,
+  "fairface_sha256": "37f2e74c0e7da196f8edd7dae0c88cffdbef7923beebebcc27381f0ad0fdb2c1",
+  "measure_version": "1",
+  "bootstrap": {
+    "B": 1000,
+    "seed": 20261020,
+    "unit": "counterfactual_group"
+  },
+  "git_commit": "2949de581861-dirty",
+  "created": "2026-10-23T02:52:00Z",
+  "snapshot": "20261023-0251",
+  "host": "scerbcs-bebe3fs"
+}

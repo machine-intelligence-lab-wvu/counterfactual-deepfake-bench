@@ -1,0 +1,4 @@
+generator,n_groups,flip_rate,ci_lo,ci_hi,median,max
+ltx23,36,0.972222,0.916667,1,1,1
+wan22,36,0.388889,0.222222,0.555556,0,1
+hunyuan15,9,1,1,1,1,1

@@ -1,0 +1,5 @@
+batch,generator,clips,qc_technical,qc_face,primary,measured,face_found
+fake_b1,hunyuan15,504,504,492,492,504,504
+fake_b1,ltx23,2016,1885,2009,1878,2016,2006
+fake_b1,wan22,2016,2016,1566,1566,2016,2016
+fake_b2,hunyuan15,504,504,497,497,504,504

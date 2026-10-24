@@ -1,0 +1,4 @@
+component,variance,converged
+counterfactual_group (random intercept),0.000519963,True
+residual,0.00621581,True
+ICC (group share of random variance),0.0771943,True

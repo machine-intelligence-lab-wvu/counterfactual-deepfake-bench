@@ -1,0 +1,31 @@
+# Batches that make up the current eval set. A batch is scored once per
+# (detector, checkpoint, view); aggregate unions every active batch that has scores.
+# To add a batch: build its manifest, add it here with active: true, preprocess, score.
+# real_b1 (filtered) and real_all (unfiltered superset) share clips: activate one at a time.
+active: [fake_b1, fake_b2, fake_b3, real_all]
+batches:
+  fake_b1:
+    kind: fake
+    manifest: eval/manifests/fake_b1.csv
+    source: Ahsanz/fairdeep-bench@837c7a6 (ltx23, wan22) + robinrizwan/fairdeep-bench@96f6a98 (hunyuan15)
+    data_root: /home/WVU-AD/aa00307/projects/DeepFake/fairdeep-bench
+  fake_b2:
+    kind: fake
+    manifest: eval/manifests/fake_b2.csv
+    source: Ahsanz/fairdeep-bench synthetic/hunyuan15 (504 clips, the counterfactual groups not in fake_b1)
+    data_root: /home/WVU-AD/aa00307/projects/DeepFake/fake_b2_hunyuan15
+  fake_b3:
+    kind: fake
+    manifest: eval/manifests/fake_b3.csv
+    source: Ahsanz/fairdeep-bench synthetic/ltx25 (LTX 2.5 dev2, 2,016 clips, matched to LTX 2.3)
+    data_root: /home/WVU-AD/aa00307/projects/DeepFake/fake_b3_ltx25
+  real_b1:
+    kind: real
+    manifest: eval/manifests/real_b1.csv
+    source: CelebV-HQ, fetched + filtered on the real-half branch; clean runs cut losslessly at source resolution
+    data_root: /home/WVU-AD/aa00307/projects/DeepFake/celebvhq_clean
+  real_all:
+    kind: real
+    manifest: eval/manifests/real_all.csv
+    source: CelebV-HQ, every fetched raw segment (2,221), unfiltered; filter verdict kept as filter_accepted / filter_reason
+    data_root: /home/WVU-AD/aa00307/projects/DeepFake/celebvhq_raw
