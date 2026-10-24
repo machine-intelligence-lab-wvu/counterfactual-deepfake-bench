@@ -1,4 +1,4 @@
-# FairDeep-Fake Bench — evaluation results pack
+# DeepFake Bench — evaluation results pack
 
 Upload this file first. It says what every other file in this folder is, and carries the headline
 numbers so the rest can be read selectively rather than all at once.
@@ -45,9 +45,9 @@ scaled to cover 1280×704, fixed window at median face centre — **excludes not
 
 ## The headline: three of four detectors collapse to chance, and it is not an implementation bug
 
-Each detector was first reproduced on **its own published benchmark**, then run on FairDeep:
+Each detector was first reproduced on **its own published benchmark**, then run on DeepFake Bench:
 
-| detector | its own benchmark | our AUC | paper / card | **FairDeep AUC** |
+| detector | its own benchmark | our AUC | paper / card | **DeepFake Bench AUC** |
 |---|---|---|---|---|
 | **DeMamba** | GenVideo-Val | 96.94 | 96.67 | **0.930 – 0.938** |
 | **D3** | GenVideo-Val | **98.60** | 97.72 | **0.467 – 0.497** |
@@ -78,10 +78,10 @@ alone. DeMamba is flat across all four views (0.930–0.938), D3 (0.467–0.497)
 
 ---
 
-## Fairness results — read these only for DeMamba
+## Subgroup results — read these only for DeMamba
 
 A subgroup AUC gap is only meaningful where the detector works at all; for a detector at chance,
-subgroup differences are noise around 0.5. **DeMamba is the only arm where fairness is
+subgroup differences are noise around 0.5. **DeMamba is the only arm where subgroup gaps are
 interpretable.** `native_up_2s`, pooled:
 
 | axis | worst | best | gap [95% CI] |
@@ -128,7 +128,7 @@ real-half filter: no generator moves by more than 0.022, on any view or detector
   calibrated to 5% FPR over all reals.
 - **DeMamba's weights are ours, not the authors'** — it reproduces the model card (AUC 96.94 vs
   96.67, accuracy 88.32% vs 88.74%), but published DeMamba numbers are not directly comparable.
-- **DeCoF under-reproduces its reference** (79.28 vs 92.20 on AIGVDBench-150), so its FairDeep
+- **DeCoF under-reproduces its reference** (79.28 vs 92.20 on AIGVDBench-150), so its DeepFake Bench
   number may be pessimistic; D3 and V-PVP over-reproduce theirs, so theirs is not.
 - **The real half is skewed.** 51 of 56 cells; White 1,418 vs South Asian 56; male 1,512 vs female
   690. Subgroups under 30 real renders are reported "not estimable".
@@ -155,7 +155,7 @@ real-half filter: no generator moves by more than 0.022, on any view or detector
 | `tables/02_worstgroup_auc_gaps.csv` | worst vs best subgroup AUC with CIs |
 | `tables/10_fairface_fidelity.csv` | prompt-vs-perceived match rates |
 | `figures/01_detection_rate_by_detector_view.png` | all four detectors at a glance |
-| `figures/03_subgroup_auc_demamba.png` | the fairness chart for the one detector that works |
+| `figures/03_subgroup_auc_demamba.png` | the subgroup AUC chart for the one detector that works |
 | `GENERATION_OVERVIEW.md` | how the corpus was built |
 
 ### Add as the discussion needs them

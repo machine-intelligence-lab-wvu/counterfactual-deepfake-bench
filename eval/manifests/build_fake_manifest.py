@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Build a fake-batch manifest from a combined fairdeep-bench metadata.csv.
+"""Build a fake-batch manifest from a combined deepfake-bench-data metadata.csv.
 
 One row per clip: every metadata column, plus
   clip_id       prompt_id (unique across generators)

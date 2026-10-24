@@ -33,7 +33,7 @@ RECIPES = ("dev1", "distilled2", "dev2")
 
 
 def build(positive, negative, width, height, length, seed, steps=20, cfg=3.0,
-          fps=24, recipe="dev1", prefix="fairdeep/ltx25"):
+          fps=24, recipe="dev1", prefix="dfbench/ltx25"):
     if recipe not in RECIPES:
         raise ValueError(f"recipe must be one of {RECIPES}")
     if (length - 1) % 8 or width % 64 or height % 64:

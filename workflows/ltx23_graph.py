@@ -18,7 +18,7 @@ DENYLIST = {
 
 
 def build(positive, negative, width, height, length, seed, steps=20, cfg=3.0,
-          fps=24, audio_fps=25, with_audio=True, prefix="fairdeep/ltx23"):
+          fps=24, audio_fps=25, with_audio=True, prefix="dfbench/ltx23"):
     for node in (CKPT, GEMMA):
         if node in DENYLIST:
             raise ValueError(f"denylisted real-person model: {node}")

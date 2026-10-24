@@ -10,12 +10,12 @@ Either uploader only sends files the repo does not already hold, so this is
 also how new runs get appended. huggingface_hub 2.x dropped the resumable
 upload_large_folder, so fall back to upload_folder there.
 
-  python scripts/upload_hf.py --data-root ../fairdeep-bench            # main run
-  python scripts/upload_hf.py --data-root ../fairdeep-bench --include-pilots
+  python scripts/upload_hf.py --data-root ../deepfake-bench-data            # main run
+  python scripts/upload_hf.py --data-root ../deepfake-bench-data --include-pilots
   python scripts/upload_hf.py --metadata-only                          # just rebuild csv
 
 Download elsewhere:
-  hf download Ahsanz/fairdeep-bench --repo-type dataset --local-dir fairdeep-bench
+  hf download Ahsanz/fairdeep-bench --repo-type dataset --local-dir deepfake-bench-data
 """
 import argparse, csv, glob, json, os
 from huggingface_hub import HfApi, hf_hub_download
@@ -72,7 +72,7 @@ def remote_rows(repo, local_names, columns):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data-root", default=os.path.join(os.path.dirname(HERE), "fairdeep-bench"))
+    ap.add_argument("--data-root", default=os.path.join(os.path.dirname(HERE), "deepfake-bench-data"))
     ap.add_argument("--repo", default="Ahsanz/fairdeep-bench")
     ap.add_argument("--qc", default=os.path.join(HERE, "manifests", "qc_report_*.csv"),
                     help="glob of qc/scan.py reports, merged by clip filename")

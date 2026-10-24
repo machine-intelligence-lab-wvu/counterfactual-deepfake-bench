@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""FairDeep-Fake batch driver for generators that run in diffusers rather than ComfyUI.
+"""DeepFake Bench batch driver for generators that run in diffusers rather than ComfyUI.
 
 Same guarantees and outputs as run_batch.py, so a clip looks the same whichever driver made it:
   - idempotent by prompt_id: an existing output file means skip (crash-safe resume)
@@ -11,7 +11,7 @@ Same guarantees and outputs as run_batch.py, so a clip looks the same whichever 
 One worker process per GPU, each loading the pipeline once and taking every n-th spec.
 
   python run_diffusers.py --model k6pro --matrix ../manifests/prompt_matrix_k6pro.json \
-      --gpus 2,3 --out-root ../../fairdeep-bench/synthetic [--recipe native720] [--limit N]
+      --gpus 2,3 --out-root ../../deepfake-bench-data/synthetic [--recipe native720] [--limit N]
       [--only-ids id1,id2 | --only-ids-file ids.json] [--log ../manifests/generation_log_k6pro.jsonl]
 
 Supported models
@@ -210,8 +210,8 @@ def worker(a):
                                  "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                                  **provenance}
         sidecar["provenance"] = {"ai_generated": True, "synthetic_identity": True,
-                                 "real_person_depicted": False, "project": "FairDeep-Fake Bench",
-                                 "purpose": "deepfake detector fairness evaluation (research only)"}
+                                 "real_person_depicted": False, "project": "DeepFake Bench",
+                                 "purpose": "deepfake detector evaluation by demographic subgroup (research only)"}
         sidecar["qc"] = {"status": "pending"}
         json.dump(sidecar, open(json_path, "w"), indent=1)
         rec.update(ok=True, seconds=dt, output=os.path.relpath(mp4_path, a.out_root))

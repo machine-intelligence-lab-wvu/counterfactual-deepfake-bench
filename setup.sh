@@ -2,11 +2,11 @@
 # One-time install on a new cluster: ComfyUI (pinned), custom nodes, Python env, weights.
 #   bash setup.sh                 # LTX 2.3 only (~67 GiB of weights)
 #   MODELS=all bash setup.sh      # + Wan 2.2 and HunyuanVideo 1.5 (~200 GiB)
-# Env overrides: FAIRDEEP_COMFY_ROOT (default ../ComfyUI), VENV (default ../.venv),
+# Env overrides: DFBENCH_COMFY_ROOT (default ../ComfyUI), VENV (default ../.venv),
 #                TORCH_INDEX (default cu128 wheels), HF_HUB_CACHE.
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"
-COMFY="${FAIRDEEP_COMFY_ROOT:-$(dirname "$HERE")/ComfyUI}"
+COMFY="${DFBENCH_COMFY_ROOT:-$(dirname "$HERE")/ComfyUI}"
 VENV="${VENV:-$(dirname "$HERE")/.venv}"
 MODELS="${MODELS:-ltx23}"
 TORCH_INDEX="${TORCH_INDEX:-https://download.pytorch.org/whl/cu128}"

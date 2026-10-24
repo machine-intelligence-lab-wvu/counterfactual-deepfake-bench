@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=fairdeep-real
+#SBATCH --job-name=dfbench-real
 #SBATCH --nodes=1
 #SBATCH --gpus=1
 #SBATCH --cpus-per-task=16
@@ -13,12 +13,12 @@
 # fetch_celebvhq.py tends to fail en masse from a cluster even though it works
 # from a laptop. Fetch elsewhere, stage RAW_ROOT here, then submit this.
 #
-#   RAW_ROOT=../celebvhq_raw OUT_ROOT=../fairdeep-bench/real sbatch slurm/filter_real.sbatch
+#   RAW_ROOT=../celebvhq_raw OUT_ROOT=../deepfake-bench-data/real sbatch slurm/filter_real.sbatch
 
 set -euo pipefail
 
 RAW_ROOT="${RAW_ROOT:-../celebvhq_raw}"
-OUT_ROOT="${OUT_ROOT:-../fairdeep-bench/real}"
+OUT_ROOT="${OUT_ROOT:-../deepfake-bench-data/real}"
 WEIGHTS="${WEIGHTS:-models/res34_fair_align_multi_7_20190809.pt}"
 PER_CELL="${PER_CELL:-90}"
 MAX_UPSCALE="${MAX_UPSCALE:-2.0}"
@@ -26,9 +26,9 @@ MIN_DUR="${MIN_DUR:-2.0}"          # shortest clean run kept; clips are not trim
 PY="${PY:-../.venv/bin/python}"
 
 # Bridges-2 / DeltaAI keep weights off the home quota; env.sh exports the paths.
-if [ -f "${FAIRDEEP_ENV:-}" ]; then
+if [ -f "${DFBENCH_ENV:-}" ]; then
     # shellcheck disable=SC1090
-    source "$FAIRDEEP_ENV"
+    source "$DFBENCH_ENV"
 fi
 
 mkdir -p logs "$OUT_ROOT"

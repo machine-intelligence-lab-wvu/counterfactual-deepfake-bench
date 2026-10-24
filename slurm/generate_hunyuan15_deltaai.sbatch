@@ -5,7 +5,7 @@
 #   for k in 0 1; do sbatch --export=ALL,SHARD=$k,NSHARDS=2 slurm/generate_hunyuan15_deltaai.sbatch; done
 #   LIMIT=1 sbatch --gpus-per-node=1 --time=1:00:00 slurm/generate_hunyuan15_deltaai.sbatch  # smoke
 # Resubmitting is safe - run_batch.py skips clips that already exist.
-#SBATCH --job-name=fairdeep-hy15
+#SBATCH --job-name=dfbench-hy15
 #SBATCH --account=bjej-dtai-gh
 #SBATCH --partition=ghx4
 #SBATCH --nodes=1
@@ -28,11 +28,11 @@ IDS="$("$VENV/bin/python" -c "import json,sys; s=json.load(open('$MATRIX'));
 print(','.join(x['prompt_id'] for x in s[$SHARD::$NSHARDS]))")"
 
 # per-job server logs/pids: shards on different nodes share the ComfyUI tree
-export LOG_DIR="$FAIRDEEP_COMFY_ROOT/logs/${SLURM_JOB_ID:-local}"
+export LOG_DIR="$DFBENCH_COMFY_ROOT/logs/${SLURM_JOB_ID:-local}"
 eval "$(bash scripts/launch_comfy.sh)"
-trap 'kill $(cat "$FAIRDEEP_PIDS") 2>/dev/null || true' EXIT
+trap 'kill $(cat "$DFBENCH_PIDS") 2>/dev/null || true' EXIT
 
 "$VENV/bin/python" driver/run_batch.py --matrix "$MATRIX" --model hunyuan15 \
-  --hosts "$FAIRDEEP_HOSTS" --out-root "$OUT_ROOT" --steps 20 --cfg 6.0 \
+  --hosts "$DFBENCH_HOSTS" --out-root "$OUT_ROOT" --steps 20 --cfg 6.0 \
   --only-ids "$IDS" "${EXTRA[@]}" \
   --log "manifests/generation_log_hunyuan15b_deltaai_s${SHARD}_${SLURM_JOB_ID:-local}.jsonl"

@@ -9,7 +9,7 @@
 # request schedules far sooner at the same cost.
 #   sbatch slurm/qc_scan.sbatch
 #   TAG=wan22 ROOT=/path/to/synthetic WORKERS=16 sbatch slurm/qc_scan.sbatch
-#SBATCH --job-name=fairdeep-qc
+#SBATCH --job-name=dfbench-qc
 #SBATCH --account=cis260353p
 #SBATCH --partition=GPU-shared
 #SBATCH --gres=gpu:1

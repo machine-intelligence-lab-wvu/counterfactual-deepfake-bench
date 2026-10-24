@@ -2,7 +2,7 @@
 patch readout (~0.5M parameters) on a frozen VideoMAE-B/16 fine-tuned on Kinetics-400.
 
 Code: github.com/manic-cui/Rethinking-the-readout @ 6ca3b11 (MIT), used from the pinned copy in
-mannicui0/Rethinking-the-readout @ 249f040 under $FAIRDEEP_WEIGHTS/vpvp (src/ is identical to the
+mannicui0/Rethinking-the-readout @ 249f040 under $DFBENCH_WEIGHTS/vpvp (src/ is identical to the
 GitHub commit): `src/pvp_head.py` (PVPHead) and `src/backbones/videomae_k400.py` (frozen VideoMAE
 wrapper that remaps the checkpoint's attention q/v offsets to the installed transformers layout; all 182
 tensors was checked equal to the checkpoint on transformers 5.20).
@@ -23,7 +23,7 @@ Preprocessing (applied on top of the view):
     here);
   - backbone under fp16 autocast, head fp32 (src/eval_opensource.py).
 Score = sigmoid(logit) computed in float64 (the official float32 sigmoid rounds every logit above
-~17 to exactly 1.0, which on FairDeep tied 12% of reals and 10-14% of fakes at the top; the logits
+~17 to exactly 1.0, which on DeepFake Bench tied 12% of reals and 10-14% of fakes at the top; the logits
 reach ~28, inside float64's range); threshold 0.5 (eval_opensource.py `--threshold`).
 """
 import os

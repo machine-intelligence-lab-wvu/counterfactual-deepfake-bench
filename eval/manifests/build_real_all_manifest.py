@@ -13,8 +13,8 @@ raw segment for rejected clips (real-half `real/label_raw.py`); label_source say
   age 0-19) still count in overall metrics; subgroup tables skip empty labels.
 
   python -m eval.manifests.build_real_all_manifest --raw <celebvhq_raw> \
-      --report <qc_report_real.csv> --accepted <fairdeep-bench/real> \
-      --rejected <fairdeep-bench/real_raw_labels> --info <celebvhq_info.json>
+      --report <qc_report_real.csv> --accepted <deepfake-bench-data/real> \
+      --rejected <deepfake-bench-data/real_raw_labels> --info <celebvhq_info.json>
 """
 import argparse
 import csv

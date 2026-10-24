@@ -3,12 +3,12 @@
 
 Reads the `latest` symlink under each results/snapshots/<detector>/<view>/, so a
 re-run after new scoring picks up the new snapshots with no edits. Run from the
-repo root:  python presentation_upload/build_pack.py
+repo root:  python docs/presentation/build_pack.py
 """
 import csv, glob, json, os, shutil, sys
 
-REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PACK = os.path.join(REPO, "presentation_upload")
+REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+PACK = os.path.join(REPO, "docs", "presentation")
 TAB, FIG = os.path.join(PACK, "tables"), os.path.join(PACK, "figures")
 os.chdir(REPO)
 for d in (TAB, FIG):

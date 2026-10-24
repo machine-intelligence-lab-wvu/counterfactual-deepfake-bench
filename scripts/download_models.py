@@ -58,7 +58,7 @@ def main():
     here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     ap = argparse.ArgumentParser()
     ap.add_argument("--comfy-root", default=os.environ.get(
-        "FAIRDEEP_COMFY_ROOT", os.path.join(os.path.dirname(here), "ComfyUI")))
+        "DFBENCH_COMFY_ROOT", os.path.join(os.path.dirname(here), "ComfyUI")))
     ap.add_argument("--models", default="ltx23",
                     help="comma list of " + ",".join(MODELS) + " or 'all'")
     args = ap.parse_args()

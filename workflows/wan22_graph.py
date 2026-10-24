@@ -16,7 +16,7 @@ CKPT = UNET_HI                    # provenance hook, mirrors ltx23_graph.CKPT
 
 
 def build(positive, negative, width, height, length, seed, steps=4, cfg=1.0,
-          fps=16, shift=5.0, lora=True, boundary=None, prefix="fairdeep/wan22"):
+          fps=16, shift=5.0, lora=True, boundary=None, prefix="dfbench/wan22"):
     if (length - 1) % 4:
         raise ValueError(f"Wan length must be 4k+1, got {length}")
     boundary = steps // 2 if boundary is None else boundary

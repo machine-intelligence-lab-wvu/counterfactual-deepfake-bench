@@ -16,13 +16,13 @@ results/compare/<stamp>/                       cross-detector tables and figures
 results/coverage.md                            scored / pending / failed per batch x detector x view
 ```
 
-Large data stays outside the repo: view videos in `$FAIRDEEP_VIEWS_ROOT`, weights and pinned
-code checkouts in `$FAIRDEEP_EXT`. Paths are set in `eval/env.sh`.
+Large data stays outside the repo: view videos in `$DFBENCH_VIEWS_ROOT`, weights and pinned
+code checkouts in `$DFBENCH_EXT`. Paths are set in `eval/env.sh`.
 
 ## Every session
 
 ```bash
-cd fairdeep_video_generation
+cd deepfake-bench
 source eval/env.sh                 # PyTorch module 2.10.0 + venv + pinned ffmpeg + paths
 python -m pytest eval/tests -q     # before every commit
 ```
@@ -32,7 +32,7 @@ Every job is resumable: resubmitting skips finished clips and retries failures.
 ## Add `fake_b2` (more generated clips)
 
 1. **Data + manifest.** Download the clips with their `metadata.csv` (same columns as
-   fairdeep-bench), then
+   deepfake-bench-data), then
    ```bash
    python -m eval.manifests.build_fake_manifest --batch fake_b2 --data-root <dir with metadata.csv> --check-files
    ```

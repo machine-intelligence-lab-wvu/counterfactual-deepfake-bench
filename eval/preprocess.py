@@ -285,7 +285,7 @@ def process(task):
         rec["status"] = "ok"
     except Exception as e:
         rec.update(status="failed", error=f"{type(e).__name__}: {e}"[:600])
-        if os.environ.get("FAIRDEEP_DEBUG"):
+        if os.environ.get("DFBENCH_DEBUG"):
             traceback.print_exc()
     finally:
         rec["seconds"] = round(time.time() - t0, 2)

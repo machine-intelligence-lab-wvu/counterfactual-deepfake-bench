@@ -189,7 +189,7 @@ def _setup_two_batches(tmp_path):
         sc.to_parquet(d / "part-0.parquet")
     sets = tmp_path / "eval_sets.yaml"
     sets.write_text(yaml.safe_dump({"active": list(batches), "batches": batches}))
-    env = {**os.environ, "FAIRDEEP_RESULTS": str(res), "FAIRDEEP_EVAL_SETS": str(sets),
+    env = {**os.environ, "DFBENCH_RESULTS": str(res), "DFBENCH_EVAL_SETS": str(sets),
            "PYTHONPATH": REPO}
     return env, res, det, view
 
@@ -238,14 +238,14 @@ def test_metric_words():
 def test_aggregate_folds_in_a_real_batch(tmp_path):
     """A scored real batch (two fps renders per clip) joins without rescoring the fakes."""
     env, res, det, view = _setup_two_batches(tmp_path)
-    sets = yaml.safe_load(open(env["FAIRDEEP_EVAL_SETS"]))
+    sets = yaml.safe_load(open(env["DFBENCH_EVAL_SETS"]))
     tpl = pd.read_csv(os.path.join(REPO, "eval", "manifests", "real_b1.template.csv"))
     reals = pd.concat([tpl.assign(clip_id=f"celebvhq__r{i}", source_id=f"r{i}") for i in range(5)])
     reals["batch"] = "real_bt"
     p = tmp_path / "manifests" / "real_bt.csv"; reals.to_csv(p, index=False)
     sets["batches"]["real_bt"] = {"kind": "real", "manifest": str(p), "data_root": "x"}
     sets["active"].append("real_bt")
-    open(env["FAIRDEEP_EVAL_SETS"], "w").write(yaml.safe_dump(sets))
+    open(env["DFBENCH_EVAL_SETS"], "w").write(yaml.safe_dump(sets))
     ids = [f"{c}__fps{f}" for c in reals["clip_id"] for f in (24, 16)]
     d = res / "preprocess" / "face512" / "real_bt"; d.mkdir(parents=True)
     pd.DataFrame({"clip_id": ids, "source_clip_id": [i.rsplit("__fps", 1)[0] for i in ids],

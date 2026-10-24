@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # Start one headless ComfyUI server per visible GPU, ports BASE_PORT, BASE_PORT+1, ...
 # Prints the --hosts string for run_batch.py and waits until every server answers.
-#   eval "$(bash scripts/launch_comfy.sh)"   # exports FAIRDEEP_HOSTS
-# Env: FAIRDEEP_COMFY_ROOT, VENV, BASE_PORT (8188), GPUS (default: all from nvidia-smi
+#   eval "$(bash scripts/launch_comfy.sh)"   # exports DFBENCH_HOSTS
+# Env: DFBENCH_COMFY_ROOT, VENV, BASE_PORT (8188), GPUS (default: all from nvidia-smi
 # or CUDA_VISIBLE_DEVICES), LOG_DIR (default $COMFY/logs).
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")/.." && pwd)"
-COMFY="${FAIRDEEP_COMFY_ROOT:-$(dirname "$HERE")/ComfyUI}"
+COMFY="${DFBENCH_COMFY_ROOT:-$(dirname "$HERE")/ComfyUI}"
 VENV="${VENV:-$(dirname "$HERE")/.venv}"
 BASE_PORT="${BASE_PORT:-8188}"
 LOG_DIR="${LOG_DIR:-$COMFY/logs}"
@@ -34,4 +34,4 @@ for h in "${hosts[@]}"; do
   until curl -sf "http://$h/system_stats" >/dev/null; do sleep 5; done
   echo "ready: $h" >&2
 done
-echo "export FAIRDEEP_HOSTS=$(IFS=,; echo "${hosts[*]}") FAIRDEEP_PIDS=$PIDS"
+echo "export DFBENCH_HOSTS=$(IFS=,; echo "${hosts[*]}") DFBENCH_PIDS=$PIDS"

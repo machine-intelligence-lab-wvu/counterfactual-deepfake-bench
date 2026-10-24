@@ -9,7 +9,7 @@ halves on. The eval therefore reads these extracts and applies its own face wind
 run (window_start, duration) that filter_real.py chose; x264 -qp 0 (lossless), no crop, no
 scale, no fps change, no audio.
 
-  python real/extract_clean.py --clips ../fairdeep-bench/real --raw ../celebvhq_raw \
+  python real/extract_clean.py --clips ../deepfake-bench-data/real --raw ../celebvhq_raw \
       --out-root ../celebvhq_clean --workers 12
 """
 import argparse, glob, json, os, subprocess, sys
@@ -38,7 +38,7 @@ def main():
     ap.add_argument("--clips", required=True, help="filter_real.py output (sidecars)")
     ap.add_argument("--raw", required=True, help="raw CelebV-HQ segments (fetch_celebvhq.py)")
     ap.add_argument("--out-root", required=True)
-    ap.add_argument("--ffmpeg", default=os.environ.get("FAIRDEEP_FFMPEG", "ffmpeg"))
+    ap.add_argument("--ffmpeg", default=os.environ.get("DFBENCH_FFMPEG", "ffmpeg"))
     ap.add_argument("--workers", type=int, default=8)
     a = ap.parse_args()
 

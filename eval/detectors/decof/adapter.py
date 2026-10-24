@@ -1,7 +1,7 @@
 """DeCoF (Ma et al., arXiv 2402.02085) with the AIGVDBench release checkpoint.
 
 Model code is the authors' own (github.com/LongMa-2025/DeCoF @ 5f73e8dc), used from a pinned
-checkout under $FAIRDEEP_EXT/src_DeCoF rather than copied: frozen OpenAI CLIP ViT-L/14 image
+checkout under $DFBENCH_EXT/src_DeCoF rather than copied: frozen OpenAI CLIP ViT-L/14 image
 encoder per frame -> 8 x 768 features -> 2-layer temporal transformer (`vit.ViT`) -> 2 logits.
 The checkpoint holds only the temporal transformer (`model` key), exactly what the authors'
 test.py loads into `Detector.net_all`.

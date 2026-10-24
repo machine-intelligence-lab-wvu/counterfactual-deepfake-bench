@@ -1,4 +1,4 @@
-# FairDeep-Fake Bench: Evaluation Plan (v2, incremental)
+# DeepFake Bench: Evaluation Plan (v2, incremental)
 
 CITeR project 25F-01W · Curating and Evaluating AI-Generated Video Content
 
@@ -6,7 +6,7 @@ CITeR project 25F-01W · Curating and Evaluating AI-Generated Video Content
 
 This is a **dataset and benchmark**, not a bias study. Results are breakdowns by subgroup,
 generator, and scene factor. Use "per-subgroup", "worst-subgroup", "subgroup gap",
-"counterfactual consistency". Never use "bias" or "fairness" in code, file names, tables, or text.
+"counterfactual consistency". Never use the two excluded words (listed in `eval/tests/test_pipeline.py::test_metric_words`) in code, file names, tables, or text.
 
 ## 1. Design principle: score once, aggregate any time
 
@@ -68,7 +68,7 @@ Rules:
 - One script, one pinned ffmpeg version for every clip. Record `ffmpeg -version` in the view spec.
 
 **Why two views:** CelebV-HQ clips are face-cropped. If the reals are 512×512, only `face512` is
-a fair comparison. `native` remains useful for fake-only analyses. Scoring fakes in both views
+a like-for-like comparison. `native` remains useful for fake-only analyses. Scoring fakes in both views
 now means no rescoring later.
 
 ## 4. Detectors

@@ -1,6 +1,6 @@
-# FairDeep-Fake Bench — Synthetic Video Generation: Overview & Progress
+# DeepFake Bench — Synthetic Video Generation: Overview & Progress
 
-Source material for a presentation. Everything here is measured from the `fairdeep-datagen`
+Source material for a presentation. Everything here is measured from the `deepfake-bench`
 repository (all branches), its run logs and its QC reports, as of **2026-10-18**.
 
 ---
@@ -35,7 +35,7 @@ Three text-to-video generators, one shared prompt design, one shared taxonomy.
 ## 2. The demographic taxonomy — 56 cells
 
 Chosen to be **FairFace-compatible**, so that FairFace/MiVOLO classifiers can later verify the
-output and so results line up with prior fairness work.
+output and so results line up with prior per-subgroup detector studies.
 
 - **7 race / ethnicity presentations:** White, Black, East Asian, Southeast Asian, South Asian,
   Middle Eastern, Hispanic

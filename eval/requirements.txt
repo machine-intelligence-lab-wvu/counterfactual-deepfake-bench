@@ -1,8 +1,8 @@
 # On top of `module load python/miniforge3_pytorch/2.10.0` (python 3.12.9, torch 2.10.0+cu129,
 # torchvision 0.25.0, pandas 3.0.1, pyarrow 23.0.1, scikit-learn 1.8.0, scipy 1.17.1,
 # matplotlib 3.10.8, pyyaml 6.0.3, pillow 11.3.0, huggingface_hub 1.6.0).
-# Install: python -m venv --system-site-packages $FAIRDEEP_EVAL_ENV/venv
-#          $FAIRDEEP_EVAL_ENV/venv/bin/pip install --only-binary=:all: -r eval/requirements.txt
+# Install: python -m venv --system-site-packages $DFBENCH_EVAL_ENV/venv
+#          $DFBENCH_EVAL_ENV/venv/bin/pip install --only-binary=:all: -r eval/requirements.txt
 statsmodels==0.14.5
 opencv-python-headless==4.11.0.86
 av==19.0.1
@@ -12,5 +12,5 @@ regex==2024.11.6
 tabulate==0.9.0
 pytest==8.3.5
 # ffmpeg (separate prefix, conda-forge only):
-#   CONDA_PKGS_DIRS=$FAIRDEEP_EVAL_ENV/conda_pkgs conda create -p $FAIRDEEP_EVAL_ENV/ffmpeg \
+#   CONDA_PKGS_DIRS=$DFBENCH_EVAL_ENV/conda_pkgs conda create -p $DFBENCH_EVAL_ENV/ffmpeg \
 #       -c conda-forge --override-channels ffmpeg=7.1.1   # -> gpl_h0a60610_911, x264 1!164.3095

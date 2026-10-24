@@ -14,12 +14,12 @@ import yaml
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EVAL = os.path.join(REPO, "eval")
-RESULTS = os.environ.get("FAIRDEEP_RESULTS", os.path.join(REPO, "results"))
-VIEWS_ROOT = os.environ.get("FAIRDEEP_VIEWS_ROOT", "/work/nvme/bjej/rahamed/fairdeep/eval_views")
-WEIGHTS = os.environ.get("FAIRDEEP_WEIGHTS", "/work/nvme/bjej/rahamed/fairdeep/eval_ext/weights")
-EXT = os.environ.get("FAIRDEEP_EXT", "/work/nvme/bjej/rahamed/fairdeep/eval_ext")
-FFMPEG = os.environ.get("FAIRDEEP_FFMPEG", "/projects/bjej/rahamed/fairdeep_eval/ffmpeg/bin/ffmpeg")
-FFPROBE = os.environ.get("FAIRDEEP_FFPROBE", os.path.join(os.path.dirname(FFMPEG), "ffprobe"))
+RESULTS = os.environ.get("DFBENCH_RESULTS", os.path.join(REPO, "results"))
+VIEWS_ROOT = os.environ.get("DFBENCH_VIEWS_ROOT", "/work/nvme/bjej/rahamed/fairdeep/eval_views")
+WEIGHTS = os.environ.get("DFBENCH_WEIGHTS", "/work/nvme/bjej/rahamed/fairdeep/eval_ext/weights")
+EXT = os.environ.get("DFBENCH_EXT", "/work/nvme/bjej/rahamed/fairdeep/eval_ext")
+FFMPEG = os.environ.get("DFBENCH_FFMPEG", "/projects/bjej/rahamed/fairdeep_eval/ffmpeg/bin/ffmpeg")
+FFPROBE = os.environ.get("DFBENCH_FFPROBE", os.path.join(os.path.dirname(FFMPEG), "ffprobe"))
 
 MANIFEST_DIR = os.path.join(EVAL, "manifests")
 VIEW_DIR = os.path.join(EVAL, "views")
@@ -64,7 +64,7 @@ def load_yaml(path):
 
 
 def eval_sets():
-    return load_yaml(os.environ.get("FAIRDEEP_EVAL_SETS",
+    return load_yaml(os.environ.get("DFBENCH_EVAL_SETS",
                                     os.path.join(MANIFEST_DIR, "eval_sets.yaml")))
 
 

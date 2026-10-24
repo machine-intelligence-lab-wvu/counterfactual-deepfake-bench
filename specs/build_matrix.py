@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Build the FairDeep-Fake controlled-synthetic prompt matrix.
+"""Build the DeepFake Bench controlled-synthetic prompt matrix.
 
 Design
 ------

@@ -4,7 +4,7 @@
 #   sbatch slurm/generate_ltx23_bridges2.sbatch                       # full matrix
 #   LIMIT=2 sbatch --gres=gpu:h100-80:1 --time=1:00:00 slurm/generate_ltx23_bridges2.sbatch   # smoke test
 # Resubmitting is safe - run_batch.py skips clips that already exist.
-#SBATCH --job-name=fairdeep-ltx23
+#SBATCH --job-name=dfbench-ltx23
 #SBATCH --account=cis260353p
 #SBATCH --partition=GPU-shared
 #SBATCH --gres=gpu:h100-80:4
@@ -20,8 +20,8 @@ EXTRA=()
 [ -n "${ONLY_IDS:-}" ] && EXTRA+=(--only-ids "$ONLY_IDS")
 
 eval "$(bash scripts/launch_comfy.sh)"
-trap 'kill $(cat "$FAIRDEEP_PIDS") 2>/dev/null || true' EXIT
+trap 'kill $(cat "$DFBENCH_PIDS") 2>/dev/null || true' EXIT
 
-"$VENV/bin/python" driver/run_batch.py --matrix "$MATRIX" --hosts "$FAIRDEEP_HOSTS" \
+"$VENV/bin/python" driver/run_batch.py --matrix "$MATRIX" --hosts "$DFBENCH_HOSTS" \
   --out-root "$OUT_ROOT" --steps 20 --cfg 3.0 "${EXTRA[@]}" \
   --log "manifests/generation_log_${SLURM_JOB_ID:-local}.jsonl"

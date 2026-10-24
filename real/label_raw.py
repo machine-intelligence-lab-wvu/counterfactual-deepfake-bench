@@ -4,8 +4,8 @@ Same face crops (label_strata.face_crops) and classifier as --stage label, but r
 from the raw segment, so the unfiltered real set has a label for every clip it can.
 Writes one <clip_id>.json per clip with the same `demographic` record.
 
-  python real/label_raw.py --raw ../celebvhq_raw --report ../fairdeep-bench/qc_report_real.csv \
-      --out ../fairdeep-bench/real_raw_labels --weights <res34_fair_align_multi_7>.pt
+  python real/label_raw.py --raw ../celebvhq_raw --report ../deepfake-bench-data/qc_report_real.csv \
+      --out ../deepfake-bench-data/real_raw_labels --weights <res34_fair_align_multi_7>.pt
 """
 import argparse, csv, json, sys
 from pathlib import Path

@@ -1,47 +1,55 @@
-# fairdeep-datagen
+# DeepFake Bench
 
-Controlled synthetic video generation for **FairDeep-Fake Bench**. ComfyUI is driven headlessly
-over its HTTP API, one server per GPU. Clips are published to Hugging Face datasets:
-LTX 2.3 and Wan 2.2 (2,016 each) in
-[`Ahsanz/fairdeep-bench`](https://huggingface.co/datasets/Ahsanz/fairdeep-bench), the HunyuanVideo
-1.5 sub504b subset (504/504) in
-[`robinrizwan/fairdeep-bench`](https://huggingface.co/datasets/robinrizwan/fairdeep-bench) (private).
+Code for **DeepFake Bench**, a controlled benchmark of AI-generated talking-head video for
+measuring how video deepfake detectors perform per demographic subgroup. This repo holds the
+whole pipeline: the prompt matrix, synthetic generation, the real half, QC, and the detector
+evaluation.
+
+**Dataset:** [`machine-intelligence-lab-wvu/deepfake-bench`](https://huggingface.co/datasets/machine-intelligence-lab-wvu/deepfake-bench)
+on Hugging Face (CC BY-NC 4.0): 7,056 synthetic clips from LTX 2.3, Wan 2.2, HunyuanVideo 1.5 and
+LTX 2.5 across 56 demographic cells and 36 counterfactual groups, with sidecars, `metadata.csv`
+and QC verdicts. The real half (CelebV-HQ) is not redistributed.
 
 ## Layout
 | Path | Role |
 |---|---|
-| `specs/taxonomy.py` | 56 demographic cells + scene/lighting/behaviour/camera banks |
-| `specs/build_matrix.py` | counterfactual-group prompt matrix → `manifests/*.json` |
-| `specs/derive_matrix.py` | re-time a matrix for another generator (same cells, groups, seeds) |
-| `renderers/{ltx23,wan22,hunyuan15}.py` | spec → per-model positive/negative prompt |
-| `workflows/{ltx23,wan22,hunyuan15}_graph.py` | production ComfyUI API graphs (LTX 2.3 audio+video, Wan 2.2 and Hunyuan 1.5 video-only) |
-| `workflows/{wan22,hunyuan15,ltx23}_t2v.py` | throughput benchmarks |
-| `driver/run_batch.py` | multi-GPU batch driver, resumable, writes sidecars + log |
-| `qc/scan.py`, `qc/montage.py` | technical QC report, review montages |
+| `specs/` | taxonomy (56 cells + scene/lighting/behaviour/camera banks), prompt-matrix builder, per-generator re-timing |
+| `renderers/` | spec → per-model positive/negative prompt (LTX 2.3/2.5, Wan 2.2, HunyuanVideo 1.5, Kandinsky 6) |
+| `workflows/` | production ComfyUI API graphs and throughput benchmarks |
+| `driver/` | `run_batch.py` (multi-GPU ComfyUI driver, resumable) and `run_diffusers.py` (diffusers models, e.g. Kandinsky 6) |
+| `qc/` | technical QC report and review montages |
 | `real/` | the real half: fetch CelebV-HQ (or DFDC) and conform it to the synthetic spec - see `real/README.md` |
-| `scripts/` | cluster setup helpers, remaining-work matrix, HF upload |
-| `slurm/` | example SLURM job |
-| `P0_REPORT.md`, `THROUGHPUT_REPORT.md` | feasibility + timing reports |
+| `eval/` | detector evaluation: views, detector adapters, scoring, metrics, generator benchmark - see `eval/README.md` |
+| `manifests/` | prompt matrices, generation logs and QC reports for every run |
+| `results/` | evaluation snapshots (CSV tables, figures), sanity checks against published numbers |
+| `scripts/` | cluster setup, remaining-work matrix, HF upload, GPU budget |
+| `slurm/` | SLURM jobs (generic, PSC Bridges-2, NCSA DeltaAI) |
+| `docs/` | evaluation plan, feasibility and throughput reports, presentation pack |
+
+Generated media and weights never go into git: clips live on Hugging Face, and paths outside
+the repo are set by environment variables (`DFBENCH_*`) or command-line flags.
+
+# Generation
 
 ## New cluster
 ```bash
-mkdir fairdeep && cd fairdeep
-git clone git@github.com:Ahsan06080/fairdeep-datagen.git
-cd fairdeep-datagen
+mkdir dfbench && cd dfbench
+git clone https://github.com/machine-intelligence-lab-wvu/deepfake-bench.git
+cd deepfake-bench
 hf auth login                     # LTX 2.3 / Gemma weights come from HF
 bash setup.sh                     # ComfyUI @ pinned commit, venv, LTX weights (~67 GiB)
 # MODELS=all bash setup.sh        # also Wan 2.2 + HunyuanVideo 1.5 (~200 GiB)
 ```
-Defaults put `ComfyUI/` and `.venv/` next to this repo. Override with `FAIRDEEP_COMFY_ROOT`,
+Defaults put `ComfyUI/` and `.venv/` next to this repo. Override with `DFBENCH_COMFY_ROOT`,
 `VENV`, `TORCH_INDEX` (CUDA wheel index; default cu128) and `HF_HUB_CACHE`.
 
 ## Generate
 ```bash
 # interactive node
-eval "$(bash scripts/launch_comfy.sh)"            # one server per GPU, exports FAIRDEEP_HOSTS
+eval "$(bash scripts/launch_comfy.sh)"            # one server per GPU, exports DFBENCH_HOSTS
 ../.venv/bin/python driver/run_batch.py --matrix manifests/prompt_matrix_ltx23.json \
-    --hosts "$FAIRDEEP_HOSTS" --out-root ../fairdeep-bench/synthetic --steps 20 --cfg 3.0
-kill $(cat "$FAIRDEEP_PIDS")
+    --hosts "$DFBENCH_HOSTS" --out-root ../deepfake-bench-data/synthetic --steps 20 --cfg 3.0
+kill $(cat "$DFBENCH_PIDS")
 
 # SLURM
 sbatch slurm/generate_ltx23.sbatch               # MATRIX=..., OUT_ROOT=... to override
@@ -77,9 +85,9 @@ New matrix: `python specs/build_matrix.py --model ltx23 --groups 36 --out manife
 
 ## QC and publish
 ```bash
-../.venv/bin/python qc/scan.py --root ../fairdeep-bench/synthetic --out-dir manifests
-../.venv/bin/python scripts/upload_hf.py --repo <user>/fairdeep-bench   # rebuild metadata.csv + upload new clips
-hf download Ahsanz/fairdeep-bench --repo-type dataset --local-dir ../fairdeep-bench
+../.venv/bin/python qc/scan.py --root ../deepfake-bench-data/synthetic --out-dir manifests
+../.venv/bin/python scripts/upload_hf.py --repo <user>/deepfake-bench   # rebuild metadata.csv + upload new clips
+hf download Ahsanz/fairdeep-bench --repo-type dataset --local-dir ../deepfake-bench-data
 ```
 `upload_hf.py` keeps the hub's existing `metadata.csv` rows for clips this machine does not
 hold, so a cluster with only its own run can append without erasing the rest.
@@ -90,3 +98,13 @@ ComfyUI `7972b5ba`, VideoHelperSuite `4ee72c06`, torch 2.11.0+cu128, Python 3.12
 ## Ethics guardrails
 Synthetic identities only. `workflows/ltx23_graph.py` refuses identity LoRAs trained on real
 people (CelebV-HQ / TalkVid). Every sidecar records `ai_generated: true`.
+
+# Real half
+CelebV-HQ clips are fetched, filtered (single frontal face, no cuts), labelled with FairFace,
+stratified per cell and conformed to the synthetic format (1280x704, 24 and 16 fps renders).
+See `real/README.md`.
+
+# Evaluation
+Every clip is scored once per detector and view, and all tables are aggregated from those
+scores. Four detectors are wired in (DeCoF, DeMamba, D3, V-PVP), each checked against its
+published numbers in `results/sanity/`. See `eval/README.md` and `docs/EVALUATION_PLAN.md`.

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Sanity check: score AIGVDBench test videos with our DeCoF adapter, compare with the paper.
 
-  python -m eval.sanity_aigvdb --manifest $FAIRDEEP_EXT/aigvdb_sanity/sanity_manifest.csv \
+  python -m eval.sanity_aigvdb --manifest $DFBENCH_EXT/aigvdb_sanity/sanity_manifest.csv \
       --out results/sanity/decof_aigvdb
 
 Videos are scored as released (already H.264), with no view applied: this checks the adapter

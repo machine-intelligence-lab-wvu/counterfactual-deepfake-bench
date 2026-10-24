@@ -14,7 +14,7 @@ CKPT = UNET                       # provenance hook, mirrors ltx23_graph.CKPT
 
 
 def build(positive, negative, width, height, length, seed, steps=20, cfg=6.0,
-          fps=24, shift=7.0, prefix="fairdeep/hunyuan15"):
+          fps=24, shift=7.0, prefix="dfbench/hunyuan15"):
     if (length - 1) % 4:
         raise ValueError(f"HunyuanVideo 1.5 length must be 4k+1, got {length}")
     return {

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""FairDeep-Fake batch driver.
+"""DeepFake Bench batch driver.
 
 Drives ComfyUI headlessly over its HTTP API. One worker thread per ComfyUI
 server (one server per GPU), pulling from a shared queue of prompt specs.
@@ -13,7 +13,7 @@ Guarantees
 Usage
   python run_batch.py --matrix ../manifests/prompt_matrix_ltx23.json \
       --hosts 127.0.0.1:8188,127.0.0.1:8189,127.0.0.1:8190,127.0.0.1:8192 \
-      --out-root ../../fairdeep-bench/synthetic --steps 20 --cfg 3.0 [--limit N]
+      --out-root ../../deepfake-bench-data/synthetic --steps 20 --cfg 3.0 [--limit N]
       [--only-ids id1,id2] [--dry-run]
 """
 import argparse, hashlib, json, os, queue, shutil, sys, threading, time
@@ -32,8 +32,8 @@ import hunyuan15 as hunyuan15_renderer  # noqa: E402
 import ltx25_graph                      # noqa: E402
 import ltx25 as ltx25_renderer          # noqa: E402
 
-# ComfyUI checkout location; override per cluster with FAIRDEEP_COMFY_ROOT or --comfy-root
-COMFY_ROOT = os.environ.get("FAIRDEEP_COMFY_ROOT",
+# ComfyUI checkout location; override per cluster with DFBENCH_COMFY_ROOT or --comfy-root
+COMFY_ROOT = os.environ.get("DFBENCH_COMFY_ROOT",
                             os.path.join(os.path.dirname(ROOT), "ComfyUI"))
 RENDERERS = {"ltx23": ltx23_renderer.render, "wan22": wan22_renderer.render,
              "hunyuan15": hunyuan15_renderer.render, "ltx25": ltx25_renderer.render}
@@ -145,7 +145,7 @@ def worker(host, q, args, log_path, stats, provenance):
         extra = {"recipe": args.recipe} if args.recipe else {}
         graph = build(pos, neg, spec["width"], spec["height"], spec["length"],
                       spec["seed"], steps=args.steps, cfg=args.cfg,
-                      fps=spec["fps"], prefix=f"fairdeep/{args.model}/{pid}", **extra)
+                      fps=spec["fps"], prefix=f"dfbench/{args.model}/{pid}", **extra)
         t0 = time.time()
         rec = {"prompt_id": pid, "cell": spec["cell"], "host": host,
                "group": spec["counterfactual_group"], "seed": spec["seed"],
@@ -226,8 +226,8 @@ def worker(host, q, args, log_path, stats, provenance):
             "ai_generated": True,
             "synthetic_identity": True,
             "real_person_depicted": False,
-            "project": "FairDeep-Fake Bench",
-            "purpose": "deepfake detector fairness evaluation (research only)",
+            "project": "DeepFake Bench",
+            "purpose": "deepfake detector evaluation by demographic subgroup (research only)",
         }
         sidecar["qc"] = {"status": "pending"}
         json.dump(sidecar, open(json_path, "w"), indent=1)

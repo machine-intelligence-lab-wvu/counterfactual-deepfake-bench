@@ -1,6 +1,6 @@
 # P0 — Environment Recon & Feasibility Report
 
-**FairDeep-Fake Bench / controlled synthetic video generation**
+**DeepFake Bench / controlled synthetic video generation**
 Date: 2026-08-06 · Host: 4× RTX PRO 5000 Blackwell · ComfyUI v0.30.0 (`7972b5ba`)
 
 ---
@@ -72,7 +72,7 @@ Disk: **2.9 TB free.** Not a constraint.
 ComfyUI core is unmodified; a server is currently running on GPU 2, port 8188.
 
 ### Files delivered
-- `fairdeep-datagen/` scaffold (`specs/ renderers/ driver/ qc/ workflows/ manifests/`)
+- `deepfake-bench/` scaffold (`specs/ renderers/ driver/ qc/ workflows/ manifests/`)
 - Working API-format Wan 2.2 T2V workflow builder + timing harness (in session scratchpad, to be promoted into `driver/` at P1)
 
 ---

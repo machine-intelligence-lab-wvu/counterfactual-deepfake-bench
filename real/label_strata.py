@@ -16,7 +16,7 @@ A note that belongs in the paper, not just the code: these are FairFace's
 *perceived* labels on real people who did not self-identify for this dataset.
 The synthetic half's demographics are prompted and then verified; the real
 half's are inferred only. The two halves therefore carry different label
-provenance, and a fairness result that compares them must say so.
+provenance, and a subgroup result that compares them must say so.
 
     python real/label_strata.py --stage label  --clips <dir> --weights <fairface.pth>
     python real/label_strata.py --stage select --clips <dir> --per-cell 90

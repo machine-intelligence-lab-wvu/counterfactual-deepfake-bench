@@ -1,6 +1,6 @@
 # Real half
 
-The synthetic half of FairDeep-Fake Bench is 3,936 QC-passing clips at 1280x704,
+The synthetic half of DeepFake Bench is 3,936 QC-passing clips at 1280x704,
 one subject, head-and-shoulders, balanced over 56 FairFace-compatible cells. This
 directory builds the real half it gets scored against.
 
@@ -61,12 +61,12 @@ python real/fetch_celebvhq.py --pool manifests/celebvhq_pool.json \
     --out-root ../celebvhq_raw --limit 10000 --workers 4
 
 # 3. conform to the synthetic spec
-python real/filter_real.py --videos ../celebvhq_raw --out-root ../fairdeep-bench/real
+python real/filter_real.py --videos ../celebvhq_raw --out-root ../deepfake-bench-data/real
 
 # 4. demographics, then stratified selection
-python real/label_strata.py --stage label  --clips ../fairdeep-bench/real \
+python real/label_strata.py --stage label  --clips ../deepfake-bench-data/real \
     --weights <fairface res34 7-race>.pth
-python real/label_strata.py --stage select --clips ../fairdeep-bench/real --per-cell 90
+python real/label_strata.py --stage select --clips ../deepfake-bench-data/real --per-cell 90
 ```
 
 `plan_pool.py` orders by predicted scarcity, not at random. CelebV-HQ ships 40
@@ -177,7 +177,7 @@ GPU node - see `slurm/filter_real.sbatch`.
 for using DFDC as the real half instead. Note the economics: DFDC is ~84% fakes,
 so the full 50-part, ~472 GB train set holds only ~19,154 real clips. Its reals
 are consented paid actors with deliberate demographic spread, which suits a
-fairness benchmark - but per GB it is far more expensive than CelebV-HQ. Output
+demographic-subgroup benchmark - but per GB it is far more expensive than CelebV-HQ. Output
 feeds `filter_real.py` unchanged.
 
 ## Dependencies
