@@ -18,6 +18,7 @@ LTX 2.3 and Wan 2.2 (2,016 each) in
 | `workflows/{wan22,hunyuan15,ltx23}_t2v.py` | throughput benchmarks |
 | `driver/run_batch.py` | multi-GPU batch driver, resumable, writes sidecars + log |
 | `qc/scan.py`, `qc/montage.py` | technical QC report, review montages |
+| `real/` | the real half: fetch CelebV-HQ (or DFDC) and conform it to the synthetic spec - see `real/README.md` |
 | `scripts/` | cluster setup helpers, remaining-work matrix, HF upload |
 | `slurm/` | example SLURM job |
 | `P0_REPORT.md`, `THROUGHPUT_REPORT.md` | feasibility + timing reports |

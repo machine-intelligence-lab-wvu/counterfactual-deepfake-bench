@@ -4,3 +4,7 @@ numpy
 pillow
 huggingface_hub>=1.0
 opencv-python-headless   # qc/faces.py (YuNet), only needed for scan.py --faces
+yt-dlp                   # real/fetch_celebvhq.py, segment-only YouTube fetch
+imageio-ffmpeg           # real/filter_real.py, bundles an ffmpeg binary
+torch                    # real/fairface.py (ResNet-34 7-race checkpoint)
+torchvision

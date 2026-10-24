@@ -7,3 +7,5 @@ logs/*
 *.mp4
 *.safetensors
 *.zip
+*.onnx
+real/models/
