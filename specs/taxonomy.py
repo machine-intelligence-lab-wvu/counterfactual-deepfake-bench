@@ -1,4 +1,4 @@
-"""DeepFake Bench: demographic taxonomy and confound-balancing banks.
+"""Counterfactual DeepFake Bench: demographic taxonomy and confound-balancing banks.
 
 Taxonomy is FairFace-compatible (7 race x 2 gender x 4 age = 56 cells) so that
 FairFace/MiVOLO classifiers can gate generation output in QC, and so results are

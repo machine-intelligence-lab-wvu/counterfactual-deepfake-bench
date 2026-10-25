@@ -1,4 +1,4 @@
-# DeepFake Bench: Evaluation Plan (v2, incremental)
+# Counterfactual DeepFake Bench: Evaluation Plan (v2, incremental)
 
 CITeR project 25F-01W · Curating and Evaluating AI-Generated Video Content
 

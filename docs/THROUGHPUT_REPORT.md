@@ -1,6 +1,6 @@
 # Full-Precision Throughput Report — 3 Generators, 15-Day Budget
 
-**DeepFake Bench / controlled synthetic video generation**
+**Counterfactual DeepFake Bench / controlled synthetic video generation**
 Date: 2026-08-06 · 4× RTX PRO 5000 Blackwell (48.9 GiB each) · ComfyUI v0.30.0
 Supersedes the throughput section of `P0_REPORT.md` (which measured fp8 + 4-step LoRA only).
 

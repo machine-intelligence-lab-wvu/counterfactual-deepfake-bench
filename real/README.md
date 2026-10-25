@@ -1,6 +1,6 @@
 # Real half
 
-The synthetic half of DeepFake Bench is 3,936 QC-passing clips at 1280x704,
+The synthetic half of Counterfactual DeepFake Bench is 3,936 QC-passing clips at 1280x704,
 one subject, head-and-shoulders, balanced over 56 FairFace-compatible cells. This
 directory builds the real half it gets scored against.
 

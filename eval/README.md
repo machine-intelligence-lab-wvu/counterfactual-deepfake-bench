@@ -22,7 +22,7 @@ code checkouts in `$DFBENCH_EXT`. Paths are set in `eval/env.sh`.
 ## Every session
 
 ```bash
-cd deepfake-bench
+cd counterfactual-deepfake-bench
 source eval/env.sh                 # PyTorch module 2.10.0 + venv + pinned ffmpeg + paths
 python -m pytest eval/tests -q     # before every commit
 ```

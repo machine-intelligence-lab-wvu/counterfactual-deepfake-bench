@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""DeepFake Bench batch driver.
+"""Counterfactual DeepFake Bench batch driver.
 
 Drives ComfyUI headlessly over its HTTP API. One worker thread per ComfyUI
 server (one server per GPU), pulling from a shared queue of prompt specs.
@@ -226,7 +226,7 @@ def worker(host, q, args, log_path, stats, provenance):
             "ai_generated": True,
             "synthetic_identity": True,
             "real_person_depicted": False,
-            "project": "DeepFake Bench",
+            "project": "Counterfactual DeepFake Bench",
             "purpose": "deepfake detector evaluation by demographic subgroup (research only)",
         }
         sidecar["qc"] = {"status": "pending"}

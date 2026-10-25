@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Build a real-batch manifest (real_b1) from the real-half outputs.
 
-Inputs (deepfake-bench branch real-half):
+Inputs (counterfactual-deepfake-bench branch real-half):
   --clips   filter_real.py output: one sidecar per accepted clip, with the FairFace labels
             written by label_strata.py --stage label
   --clean   extract_clean.py output: each clip's clean run cut losslessly from the raw

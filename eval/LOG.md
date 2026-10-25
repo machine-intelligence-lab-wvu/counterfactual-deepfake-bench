@@ -251,7 +251,7 @@ of the card (WildScrape 55.1 vs 65.5: this copy has 626 WildScrape clips, the ca
 Both adapters reproduce their references; DeMamba's small gaps fit its centre window vs the
 card's random window.
 
-**D3 on DeepFake Bench** (fake_b1 + fake_b2 + real_all, all generators, AUC): face512 0.497,
+**D3 on Counterfactual DeepFake Bench** (fake_b1 + fake_b2 + real_all, all generators, AUC): face512 0.497,
 face512_2s 0.487, native_up 0.474, native_up_2s 0.467 - chance, with LTX 2.3 below chance
 (0.40-0.44; full frame 0.398 [0.349, 0.452]). Talking-head reals and fakes have similar
 second-order feature spread; LTX's is the larger. Given the sanity check above, this is a
@@ -273,7 +273,7 @@ backbone tensors checked equal to the checkpoint under transformers 5.20 (no fin
 wrapper requires). Preprocessing: AIGVDBench section 7 extraction (32 of the first 128 frames,
 centre square, 256x256), then the V-PVP loader (16 of the 32 at linspace(0, 31, 16), 224 bicubic,
 ImageNet mean/std); backbone fp16 autocast, head fp32.
-- The official float32 sigmoid rounds every logit above ~17 to exactly 1.0. On DeepFake Bench that tied
+- The official float32 sigmoid rounds every logit above ~17 to exactly 1.0. On Counterfactual DeepFake Bench that tied
   12% of reals and 10-14% of fakes at the top (face512_2s), so the 5%-FPR threshold flagged 6.9%
   of reals. Logits reach ~28; the adapter takes the sigmoid in float64 (version 1+c6ec2331), and
   calibration is back at 5.0% FPR. Rank metrics barely moved. (`scores.csv` in snapshots prints 6
@@ -295,7 +295,7 @@ reproduces it; the uniform offset fits 150 vs 3,000 reals and the frame extracti
 DeCoF row is not reproduced by the AIGVDBench DeCoF checkpoint, which did reproduce AIGVDBench's
 own Table 3 on DeltaAI (Step 3 above); Table 1 most likely lists a differently trained DeCoF.
 
-**V-PVP on DeepFake Bench** (all generators, AUC): face512 0.440, face512_2s 0.519, native_up 0.450,
+**V-PVP on Counterfactual DeepFake Bench** (all generators, AUC): face512 0.440, face512_2s 0.519, native_up 0.450,
 native_up_2s 0.512; HunyuanVideo 1.5 far below chance (0.21-0.31: rated more real than the
 reals), Wan 2.2 0.63-0.66, LTX 2.3 0.40-0.52. At the calibrated threshold it detects 0-3% of
 fakes. Real FPR is highest for perceived MENA (race gap ~0.10 [0.06, 0.17]), as for DeCoF.

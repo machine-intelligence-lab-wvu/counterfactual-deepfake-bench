@@ -1,11 +1,11 @@
-# DeepFake Bench
+# Counterfactual DeepFake Bench
 
-Code for **DeepFake Bench**, a controlled benchmark of AI-generated talking-head video for
+Code for **Counterfactual DeepFake Bench**, a controlled benchmark of AI-generated talking-head video for
 measuring how video deepfake detectors perform per demographic subgroup. This repo holds the
 whole pipeline: the prompt matrix, synthetic generation, the real half, QC, and the detector
 evaluation.
 
-**Dataset:** [`machine-intelligence-lab-wvu/deepfake-bench`](https://huggingface.co/datasets/machine-intelligence-lab-wvu/deepfake-bench)
+**Dataset:** [`machine-intelligence-lab-wvu/counterfactual-deepfake-bench`](https://huggingface.co/datasets/machine-intelligence-lab-wvu/counterfactual-deepfake-bench)
 on Hugging Face (CC BY-NC 4.0): 7,056 synthetic clips from LTX 2.3, Wan 2.2, HunyuanVideo 1.5 and
 LTX 2.5 across 56 demographic cells and 36 counterfactual groups, with sidecars, `metadata.csv`
 and QC verdicts. The real half (CelebV-HQ) is not redistributed.
@@ -34,8 +34,8 @@ the repo are set by environment variables (`DFBENCH_*`) or command-line flags.
 ## New cluster
 ```bash
 mkdir dfbench && cd dfbench
-git clone https://github.com/machine-intelligence-lab-wvu/deepfake-bench.git
-cd deepfake-bench
+git clone https://github.com/machine-intelligence-lab-wvu/counterfactual-deepfake-bench.git
+cd counterfactual-deepfake-bench
 hf auth login                     # LTX 2.3 / Gemma weights come from HF
 bash setup.sh                     # ComfyUI @ pinned commit, venv, LTX weights (~67 GiB)
 # MODELS=all bash setup.sh        # also Wan 2.2 + HunyuanVideo 1.5 (~200 GiB)
@@ -86,7 +86,7 @@ New matrix: `python specs/build_matrix.py --model ltx23 --groups 36 --out manife
 ## QC and publish
 ```bash
 ../.venv/bin/python qc/scan.py --root ../deepfake-bench-data/synthetic --out-dir manifests
-../.venv/bin/python scripts/upload_hf.py --repo <user>/deepfake-bench   # rebuild metadata.csv + upload new clips
+../.venv/bin/python scripts/upload_hf.py --repo <user>/counterfactual-deepfake-bench   # rebuild metadata.csv + upload new clips
 hf download Ahsanz/fairdeep-bench --repo-type dataset --local-dir ../deepfake-bench-data
 ```
 `upload_hf.py` keeps the hub's existing `metadata.csv` rows for clips this machine does not

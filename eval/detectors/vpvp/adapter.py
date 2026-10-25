@@ -23,7 +23,7 @@ Preprocessing (applied on top of the view):
     here);
   - backbone under fp16 autocast, head fp32 (src/eval_opensource.py).
 Score = sigmoid(logit) computed in float64 (the official float32 sigmoid rounds every logit above
-~17 to exactly 1.0, which on DeepFake Bench tied 12% of reals and 10-14% of fakes at the top; the logits
+~17 to exactly 1.0, which on Counterfactual DeepFake Bench tied 12% of reals and 10-14% of fakes at the top; the logits
 reach ~28, inside float64's range); threshold 0.5 (eval_opensource.py `--threshold`).
 """
 import os

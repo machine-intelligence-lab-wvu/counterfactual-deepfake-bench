@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""DeepFake Bench batch driver for generators that run in diffusers rather than ComfyUI.
+"""Counterfactual DeepFake Bench batch driver for generators that run in diffusers rather than ComfyUI.
 
 Same guarantees and outputs as run_batch.py, so a clip looks the same whichever driver made it:
   - idempotent by prompt_id: an existing output file means skip (crash-safe resume)
@@ -210,7 +210,7 @@ def worker(a):
                                  "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                                  **provenance}
         sidecar["provenance"] = {"ai_generated": True, "synthetic_identity": True,
-                                 "real_person_depicted": False, "project": "DeepFake Bench",
+                                 "real_person_depicted": False, "project": "Counterfactual DeepFake Bench",
                                  "purpose": "deepfake detector evaluation by demographic subgroup (research only)"}
         sidecar["qc"] = {"status": "pending"}
         json.dump(sidecar, open(json_path, "w"), indent=1)

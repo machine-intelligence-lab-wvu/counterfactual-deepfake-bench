@@ -1,6 +1,6 @@
-# DeepFake Bench — Synthetic Video Generation: Overview & Progress
+# Counterfactual DeepFake Bench — Synthetic Video Generation: Overview & Progress
 
-Source material for a presentation. Everything here is measured from the `deepfake-bench`
+Source material for a presentation. Everything here is measured from the `counterfactual-deepfake-bench`
 repository (all branches), its run logs and its QC reports, as of **2026-10-18**.
 
 ---

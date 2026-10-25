@@ -323,7 +323,7 @@ def process(path, out_dir, model, ff, args):
         },
         "provenance": {"ai_generated": False, "synthetic_identity": False,
                        "real_person_depicted": True,
-                       "project": "DeepFake Bench",
+                       "project": "Counterfactual DeepFake Bench",
                        "purpose": "deepfake detector evaluation by demographic subgroup (research only)"},
         "demographic": None,     # filled by label_strata.py
         "qc": {"status": "filtered"},
