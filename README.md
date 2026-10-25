@@ -108,3 +108,8 @@ See `real/README.md`.
 Every clip is scored once per detector and view, and all tables are aggregated from those
 scores. Four detectors are wired in (DeCoF, DeMamba, D3, V-PVP), each checked against its
 published numbers in `results/sanity/`. See `eval/README.md` and `docs/EVALUATION_PLAN.md`.
+
+# License
+Code and documentation in this repo: [CC BY-NC 4.0](LICENSE), the same license as the dataset.
+Third-party code and weights used by the pipeline (ComfyUI, the generators, the detectors) keep
+their own licenses.
